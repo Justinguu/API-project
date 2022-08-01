@@ -30,7 +30,10 @@ const validateSignup = [
 ];
 
 //test
-// Sign up
+// User Sign up
+// if username created successful then call setTokenCookie and return json response else return validation error
+// It checks to see if req.body.email exists and is an email
+// req.body.username is a minimum length of 4 and is not an email, and req.body.password is not empty and has a minimum length of 6. 
 router.post(
     '/',
     validateSignup,
