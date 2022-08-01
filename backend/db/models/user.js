@@ -43,7 +43,9 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       User.hasMany(models.Spot, {foreignKey: 'ownerid'})
+      User.belongsToMany(models.Spot, {through: 'Booking' })
     }
+   
   };
   
   User.init(
