@@ -1,4 +1,4 @@
-
+28
 // backend/routes/api/users.js
 const express = require('express')
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
@@ -38,8 +38,8 @@ router.post(
     '/',
     validateSignup,
     async (req, res) => {
-        const { email, password, username } = req.body;
-        const user = await User.signup({ firstName, lastName, email, token, password });
+        const { firstName,lastName, email, username, password } = req.body;
+        const user = await User.signup({firstName, lastName, email, username, password });
 
         await setTokenCookie(res, user);
 
@@ -48,4 +48,10 @@ router.post(
         });
     }
 );
+//get current user
+router.get("/current", requireAuth, async (req, res) => {
+    res.json(req.user)
+  });
+
+
 module.exports = router;
