@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     ownerId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique:true
+      unique:true,
+      references: {model: 'Users'}
     },
     address: {
       type: DataTypes.STRING,
@@ -60,14 +61,7 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.INTEGER,
       allowNull: false,
     },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE
-    },
-    updatedAt: {
-      allowNull: false,
-      type: DataTypes.DATE
-    }
+    
   }, {
     sequelize,
     modelName: 'Spot',
