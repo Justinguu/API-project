@@ -9,8 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      // define association here
+     static associate(models) {
+      Review.belongsTo(models.User,{foreignKey: 'userid', onDelete: "CACADE", hooks:true}),
+      Review.belongsTo(models.Spot,{foreignKey: 'spotid', onDelete: "CACADE", hooks:true}),
+      Review.belongsTo(models.Image,{foreignKey: 'imageid', onDelete: "CACADE", hooks:true})
     }
   }
   Review.init({

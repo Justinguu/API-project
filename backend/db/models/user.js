@@ -42,9 +42,9 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     static associate(models) {
-      User.hasMany(models.Spot, {foreignKey: 'ownerid'})
-      User.hasMany(models.Booking,{foreignKey:'userid'})
-      User.hasMany(models.Review,{foreignKey:'userid'})
+      User.hasMany(models.Spot, {foreignKey: 'ownerid', onDelete: "CACADE", hooks:true})
+      User.hasMany(models.Booking,{foreignKey:'userid', onDelete: "CACADE", hooks:true})
+      User.hasMany(models.Review,{foreignKey:'userid', onDelete: "CACADE", hooks:true})
     }
    
   };
