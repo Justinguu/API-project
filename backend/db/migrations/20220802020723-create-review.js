@@ -18,12 +18,12 @@ module.exports = {
         allowNull:false
   
       },
-      userid: {
+      userId: {
         type: Sequelize.INTEGER,
         unique: true,
         allowNull: false
       },
-      spotid: {
+      spotId: {
         type: Sequelize.INTEGER,
         unique: true,
         allowNull: false
