@@ -16,7 +16,20 @@ module.exports = {
           name: "App Academy",
           description: "Place where web developers are created",
           price: 123
-        }],
+        },
+        {
+          ownerId: 2,
+          address: "127 Disney Lane",
+          city: "San Francisco",
+          state: "California",
+          country: "United States of America",
+          lat: 58.7645358,
+          lng: -222.4730327,
+          name: "Dab Academy",
+          description: "Place where web developers are created",
+          price: 400
+        }
+      ],
       {}
     )},
 
