@@ -10,9 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
      static associate(models) {
-      Review.belongsTo(models.User,{foreignKey: 'userid', onDelete: "CACADE", hooks:true}),
-      Review.belongsTo(models.Spot,{foreignKey: 'spotid', onDelete: "CACADE", hooks:true}),
-      Review.belongsTo(models.Image,{foreignKey: 'imageid', onDelete: "CACADE", hooks:true})
+      Review.belongsTo(models.User,{foreignKey: 'userid', onDelete: "CASCADE", hooks:true}),
+      Review.belongsTo(models.Spot,{foreignKey: 'spotid', onDelete: "CASCADE", hooks:true}),
+      Review.hasMany(models.Image,{foreignKey: 'reviewid', onDelete: "CASCADE", hooks:true})
     }
   }
   Review.init({
