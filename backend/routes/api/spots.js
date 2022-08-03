@@ -1,5 +1,6 @@
 const express = require("express");
-const { Spot, Review, Image, sequelize, User } = require("../../db/models");
+const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { Spot, Review, Image, sequelize, User, Booking } = require("../../db/models");
 const router = express.Router();
 
 //GET ALL SPOTS
