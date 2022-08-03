@@ -1,7 +1,8 @@
 28
 // backend/routes/api/users.js
 const express = require('express')
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { setTokenCookie } = require('../../utils/auth');
+const { requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -48,10 +49,6 @@ router.post(
         });
     }
 );
-//get current user
-router.get("/current", requireAuth, async (req, res) => {
-    res.json(req.user)
-  });
-
+  
 
 module.exports = router;

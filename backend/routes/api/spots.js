@@ -1,6 +1,6 @@
 const express = require('express')
-const {setTokenCookie, restoreUser } = require('../../utils/auth')
-const { Spot } = require('../../db/models')
+const {setTokenCookie } = require('../../utils/auth')
+const { Spot, Review ,Image, sequelize } = require('../../db/models')
 const router = express.Router();
 
 //get all spots
@@ -17,11 +17,27 @@ const getAllSpots = await Spot.findAll({
         'name',
         'description',
         'price'
+       
     ]
 })
 res.status(200)
-return res.json(getAllSpots)
+return res.json({getAllSpots})
 })
+
+//get spots owned by current user
+router.get('/', async (req, res) => {
+
+    const spots = await Spot.findAll(req.params.id, {
+        include: [
+            {
+            
+            },
+        ]
+    });
+    res.json({spots});
+});
+
+
 
 
 

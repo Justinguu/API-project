@@ -1,6 +1,6 @@
 // backend/routes/api/session.js
 const express = require('express')
-const { setTokenCookie, restoreUser } = require('../../utils/auth');  // USER LOGIN API ROUTE
+const { setTokenCookie, requireAuth } = require('../../utils/auth');  // USER LOGIN API ROUTE
 const { User } = require('../../db/models');
 const { check } = require('express-validator'); //line 5 & 6 checking validation login request body
 const { handleValidationErrors } = require('../../utils/validation');
@@ -59,23 +59,11 @@ router.delete(
     return res.json({ message: 'success' });
   }
 );
-
-
-// Restore session user
-// will return the session user as JSON under the key of user .
-// else will return empty object
-router.get(
-  '/',
-  restoreUser,
-  (req, res) => {
-    const { user } = req;
-    if (user) {
-      return res.json({
-        user: user.toSafeObject()
-      });
-    } else return res.json({});
-  }
-);
+// requiring authorization to get /session but need to be logged in,
+//send a request to get a user from req.user = await User.scope('currentUser').findByPk(id);
+router.get("/", requireAuth, async (req, res) => {
+  res.json(req.user)
+});
 
 
 module.exports = router;

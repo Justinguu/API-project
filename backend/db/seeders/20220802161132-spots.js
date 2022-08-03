@@ -28,6 +28,18 @@ module.exports = {
           name: "Dab Academy",
           description: "Place where web developers are created",
           price: 400
+        },
+        {
+          ownerId: 3,
+          address: "123 Memory Lane",
+          city: "Atlanta",
+          state: "Georgia",
+          country: "United States of America",
+          lat: 50.7645358,
+          lng: -111.4730327,
+          name: "Crab Academy",
+          description: "Place where web developers are created",
+          price: 200
         }
       ],
       {}
