@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
 //get spots owned by current user
 router.get("/current", async (req, res) => {
   //using file path of /current bc spot is already implied
-  console.log(req.user);
+//   console.log(req.user);
   const userId = req.user.dataValues.id;
   const CurrUserSpots = await Spot.findAll({
     include: [{ model: User, where: { id: userId } }],
@@ -36,22 +36,22 @@ router.get("/current", async (req, res) => {
 });
 
 // GET details of a Spot from an id
-router.get("/:spotId", async (req, res) => {
-  const spot = await Spot.findByOne({
-    attributes: {},
-    include: [
-      {
-        model: Review,
-        attributes: [],
-      },
-    ],
-  });
-  res.json(spot);
-});
+// router.get("/:spotId", async (req, res) => {
+//   const spot = await Spot.findByOne({
+//     attributes: {},
+//     include: [
+//       {
+//         model: Review,
+//         attributes: [],
+//       },
+//     ],
+//   });
+//   res.json(spot);
+// });
 
 router.post("/", async (req, res) => {
-  let { address, city, state, country, lat, lng, name, description, price } =
-    req.body;
+  let { address, city, state, country, lat, lng, name, description, price } = req.body;
+  //console.log(req.user)
   let userId = req.user.dataValues.id;
   let newSpot = await Spot.create({
     ownerId: userId,
@@ -69,9 +69,9 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:spotId", async (req, res) => {
-  const { spotId } = req.params;
-  const { address, city, state, country, lat, lng, name, description, price } =
-    req.body;
+    console.log(req)
+  const { spotId } = req.params; 
+  const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
   const editSpot = await Spot.findByPk(spotId);
 

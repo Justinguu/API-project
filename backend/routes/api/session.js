@@ -59,8 +59,7 @@ router.delete(
     return res.json({ message: 'success' });
   }
 );
-// requiring authorization to get /session but need to be logged in,
-//send a request to get a user from req.user = await User.scope('currentUser').findByPk(id);
+
 router.get("/", requireAuth, async (req, res) => {
   res.json(req.user)
 });
