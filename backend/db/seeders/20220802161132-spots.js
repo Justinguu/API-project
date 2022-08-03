@@ -40,7 +40,8 @@ module.exports = {
           name: "Crab Academy",
           description: "Place where web developers are created",
           price: 200
-        }
+        },
+     
       ],
       {}
     )},
