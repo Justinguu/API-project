@@ -2,46 +2,46 @@ const express = require("express");
 const { Spot, Review, Image, sequelize, User } = require("../../db/models");
 const router = express.Router();
 
-//get all spots
+//GET ALL SPOTS
 router.get("/", async (req, res) => {
-//   const getAllSpots = await Spot.findAll({
-//     attributes: {
-//       include: [
-//         [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"],
-//       ],
-//     },
-//     include: [
-//       {
-//         model: Review,
-//         attributes: [],
-//       },
-//       {
-//         model: Image,
-//         attributes: ["previewImage"],
-//       },
-//     ],
-//   });
-console.log(req)
-const getAllSpots = await Spot.findAll({
+  //   const getAllSpots = await Spot.findAll({
+  //     attributes: {
+  //       include: [
+  //         [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"],
+  //       ],
+  //     },
+  //     include: [
+  //       {
+  //         model: Review,
+  //         attributes: [],
+  //       },
+  //       {
+  //         model: Image,
+  //         attributes: ["previewImage"],
+  //       },
+  //     ],
+  //   });
+  // console.log(req)
+  const getAllSpots = await Spot.findAll({
     include: [
-              {
-                model: Review,
-                attributes: ['review'],
-              },
-              {
-                model: Image,
-                attributes: ["previewImage"],
-              },
-            ],
-
-    })
+      {
+        model: Review,
+        attributes: ["review"],
+      },
+      {
+        model: Image,
+        attributes: ["previewImage"],
+      },
+    ],
+  });
   return res.json({ getAllSpots });
 });
 
-//get spots owned by current user
+//GET SPOTS BY CURRENT USER
+
 router.get("/current", async (req, res) => {
   //using file path of /current bc spot is already implied
-//   console.log(req.user);
+  //   console.log(req.user);
   const userId = req.user.dataValues.id;
   const CurrUserSpots = await Spot.findAll({
     include: [{ model: User, where: { id: userId } }],
@@ -50,25 +50,41 @@ router.get("/current", async (req, res) => {
 });
 
 // GET details of a Spot from an id
-// router.get("/:spotId", async (req, res) => {
-//   const spot = await Spot.findByOne({
-//     attributes: {},
-//     include: [
-//       {
-//         model: Review,
-//         attributes: [],
-//       },
-//     ],
-//   });
-//   res.json(spot);
-// });
+
+router.get("/:spotId", async (req, res) => {
+  let spotId = req.params.spotId;
+  const spotIdDetails = await Spot.findByPk(spotId, {
+    include: [
+      {
+        model: Image,
+        attributes: ["id", "url"],
+      },
+      {
+        model: User,
+        attributes: ["id", "firstName", "lastName"],
+      },
+    ],
+  });
+  if (spotIdDetails) {
+    res.json({ spotIdDetails });
+  } else {
+    res.status(404);
+    res.json({
+      statusCode: 404,
+      message: "Spot couldn't be found",
+    });
+  }
+  res.json(spotIdDetails);
+});
+
+//CREATE A SPOT
 
 router.post("/", async (req, res) => {
-  let { address, city, state, country, lat, lng, name, description, price } = req.body;
+  let { address, city, state, country, lat, lng, name, description, price } = req.body; //destructure the body
   //console.log(req.user)
-  let userId = req.user.dataValues.id;
-  let newSpot = await Spot.create({
-    ownerId: userId,
+  let userId = req.user.dataValues.id; //key into req.user.datavalues to pull out id
+  let createSpot = await Spot.create({
+    ownerId: userId,  //want the ownerId to show the userId and following attributes
     address,
     city,
     state,
@@ -79,12 +95,34 @@ router.post("/", async (req, res) => {
     description,
     price,
   });
+  if (createSpot) {
+    res.json(createSpot);
+  } else {
+    res.status(400);
+    res.json({
+      message: "Validation Error",
+      statusCode: 400,
+      errors: {
+        address: "Street address is required",
+        city: "City is required",
+        state: "State is required",
+        country: "Country is required",
+        lat: "Latitude is not valid",
+        lng: "Longitude is not valid",
+        name: "Name must be less than 50 characters",
+        description: "Description is required",
+        price: "Price per day is required",
+      },
+    });
+  }
   res.json(newSpot);
 });
 
+//EDIT A SPOT
+
 router.put("/:spotId", async (req, res) => {
-    console.log(req)
-  const { spotId } = req.params; 
+  console.log(req);
+  const { spotId } = req.params;
   const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
   const editSpot = await Spot.findByPk(spotId);
@@ -104,7 +142,22 @@ router.put("/:spotId", async (req, res) => {
     await editSpot.save();
     res.json(editSpot);
   } else {
-    res.json({ message: "Spot couldn't be found", statusCode: 404 });
+    res.status(400); //EDIT A SPOT ERROR CHECK
+    res.json({
+      message: "Validation Error",
+      statusCode: 400,
+      errors: {
+        address: "Street address is required",
+        city: "City is required",
+        state: "State is required",
+        country: "Country is required",
+        lat: "Latitude is not valid",
+        lng: "Longitude is not valid",
+        name: "Name must be less than 50 characters",
+        description: "Description is required",
+        price: "Price per day is required",
+      },
+    });
   }
 });
 
