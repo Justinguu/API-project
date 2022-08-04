@@ -20,18 +20,18 @@ router.get("/current", async (req, res) => {
 router.put("/:reviewId", async (req, res) => {
   
   const { reviewId } = req.params;
-  const { userId, spotId, review, stars } = req.body;
+  const {  review, stars } = req.body;
     console.log(reviewId);
   const editReview = await Review.findByPk(reviewId);
 
   if (editReview) {
     editReview.set({
-      userId, spotId, review, stars
+     review, stars
     });
     await editReview.save();
     res.json(editReview);
   } 
-  if(!editReview) {
+  else if (stars < 1 || stars > 5) {
     res.status(400); //EDIT A SPOT ERROR CHECK
     res.json({
       message: "Validation Error",
@@ -48,8 +48,6 @@ router.put("/:reviewId", async (req, res) => {
   } else {
     res.status(404); //EDIT A SPOT ERROR CHECK
     res.json({
-      message: "Validation Error",
-      statusCode: 400,
       errors: {
         
           "message": "Review couldn't be found",

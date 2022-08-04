@@ -7,50 +7,85 @@ const {
   sequelize,
   User,
   Booking,
+  
 } = require("../../db/models");
+const { raw } = require('express');
+const { check } = require('express-validator');
 const router = express.Router();
 
 //GET ALL SPOTS
-router.get("/", async (req, res) => {
-  //   const getAllSpots = await Spot.findAll({
-  //     attributes: {
-  //       include: [
-  //         [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"],
-  //       ],
-  //     },
-  //     include: [
-  //       {
-  //         model: Review,
-  //         attributes: [],
-  //       },
-  //       {
-  //         model: Image,
-  //         attributes: ["previewImage"],
-  //       },
-  //     ],
-  //   });
-  // console.log(req)
-  const getAllSpots = await Spot.findAll({
-    group: ['getAllSpots.id'],
-    include: [
-    //   {
-    //     model: Review,
-    //     attributes: [
-    //               [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"],
-    //            ]
-            
-    //   },
-      {
-        model: Image,
-        attributes: ["url"],
-        where: {spotId: Spot.id,previewImage: true}
-      },
-    ],
-});
 
-getAllSpots.dataValues.previewImage = previewImage
-  return res.json({ getAllSpots });
-});
+router.get('/', async (req, res, next) => {
+  const Spots = await Spot.findAll({
+      attributes: {
+          include: [
+              //adding in a column of avgRating using a built in sequelize function in the column stars
+              [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"]
+          ]
+      },
+      //giving access to these models thru the associations created
+      include: [
+          { model: Review, attributes: [] }
+      ],
+      //making sure to find All Spots
+      group: ['Spot.id'],
+      raw: true
+  })
+  // console.log(Spots) arr of obj
+
+  //because spot is referencing Spots, I dont have to add it into Spots
+  for (let spot of Spots) { //spot is checking every single spot in Spots table
+      const img = await Image.findOne({
+          attributes: ['url'],
+          where: {
+              previewImage: true,
+              spotId: spot.id
+          },
+          raw: true
+      })
+
+      // console.log(img) returning an object : { url: 'www.home8.com' } || null depending on the value of previewImage
+      if (img) {
+          spot.previewImage = img.url
+      } else {
+          spot.previewImage = null
+      }
+  }
+
+  res.json({ Spots })
+})
+// router.get("/", async (req, res) => {
+//   //   const getAllSpots = await Spot.findAll({
+//   //     attributes: {
+//   //       include: [
+//   //         [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"],
+//   //       ],
+//   //     },
+//   //     include: [
+//   //       {
+//   //         model: Review,
+//   //         attributes: [],
+//   //       },
+//   //       {
+//   //         model: Image,
+//   //         attributes: ["previewImage"],
+//   //       },
+//   //     ],
+//   //   });
+//   // console.log(req)
+  
+//     //     model: Review,
+//     //     attributes: [
+//     //               [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"],
+//     //            ]
+            
+//     //   },
+//        //because spot is referencing Spots, I dont have to add it into Spots
+  
+
+// getAllSpots.dataValues.previewImage = previewImage
+//   return res.json({ getAllSpots });
+// });
 
 //GET SPOTS BY CURRENT USER
 
@@ -304,12 +339,40 @@ router.get("/:spotId/reviews", async (req, res) => {
 });
 
 
+
+// Get all Bookings for a Spot based on the Spot's id
+router.get('/:spotId/bookings', async (req, res) => {
+  let { spotId } = req.params
+  const findSpot = await Spot.findByPk(spotId)
+
+  const allBookings = await Booking.findAll({
+      where: { spotId },
+      include: [
+          { model: User, attributes: ['id', 'firstName', 'lastName'] },
+      ]
+  })
+
+  if (findSpot) {
+      res.status(200)
+      res.json({ allBookings })
+  } else {
+      res.status(404)
+      res.json({
+          message: "Spot couldn't be found",
+          statusCode: 404,
+      })
+  }
+})
+
+
+
 //Delete a Spot
 
-router.delete("/:spotId", async (req, res) => {
+router.delete("/:spotId", requireAuth, async (req, res) => {
   const { spotId } = req.params;
   const currentSpot = await Spot.findByPk(spotId);
 
+  // console.log('current spot',currentSpot)
   if (!currentSpot) {
     res.status(404);
     return res.json({
@@ -324,5 +387,7 @@ router.delete("/:spotId", async (req, res) => {
     });
   }
 });
+
+
 
 module.exports = router;
