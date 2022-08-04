@@ -273,15 +273,27 @@ router.get("/current", async (req, res) => {
 //get Reviews by Spot Id
 
 router.get("/:spotId/reviews", async (req, res) => {
-  const { review, stars } = req.body;
-  const { spotId } = req.params;
+  const { spotId } = req.params; // = req.params.spotId
   const currentSpot = await Spot.findByPk(spotId);
-
-  if (currentSpot) {
-    const reviews = await Review.findAll({
-      include: [{ model: Review, where: { id: spotId } }],
-    });
-  }
+    const spotReview = await Review.findAll({
+    where: {
+        spotId
+    },include: [
+        {model: User, attributes: ['id','firstName', 'lastName']},
+        {model: Image}
+     ]
+    
+    })
+   if(currentSpot){
+    res.status(200)
+    return res.json(spotReview)
+       } else {
+        res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404,
+          });
+       }
+ 
 });
 
 //Delete a Spot
