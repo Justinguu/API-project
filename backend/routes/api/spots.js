@@ -31,17 +31,24 @@ router.get("/", async (req, res) => {
   //   });
   // console.log(req)
   const getAllSpots = await Spot.findAll({
+    group: ['getAllSpots.id'],
     include: [
-      {
-        model: Review,
-        attributes: ["review"],
-      },
+    //   {
+    //     model: Review,
+    //     attributes: [
+    //               [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"],
+    //            ]
+            
+    //   },
       {
         model: Image,
-        attributes: ["previewImage"],
+        attributes: ["url"],
+        where: {spotId: Spot.id,previewImage: true}
       },
     ],
-  });
+});
+
+getAllSpots.dataValues.previewImage = previewImage
   return res.json({ getAllSpots });
 });
 
@@ -295,6 +302,7 @@ router.get("/:spotId/reviews", async (req, res) => {
        }
  
 });
+
 
 //Delete a Spot
 
