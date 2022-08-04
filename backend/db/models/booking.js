@@ -23,13 +23,12 @@ module.exports = (sequelize, DataTypes) => {
     spotId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
       references: { model: 'Bookings'}
     },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
+      
       references: { model: 'Users'}
     },
     startDate: {

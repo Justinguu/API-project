@@ -48,6 +48,8 @@ router.put("/:reviewId", async (req, res) => {
   } else {
     res.status(404); //EDIT A SPOT ERROR CHECK
     res.json({
+      message: "Validation Error",
+      statusCode: 400,
       errors: {
         
           "message": "Review couldn't be found",
