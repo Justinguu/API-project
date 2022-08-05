@@ -25,117 +25,181 @@ router.get("/current",requireAuth, async (req, res) => {
 });
 
 
-// Edit a Booking
-router.put('/:bookingId', requireAuth, async (req, res) => {
+// // Edit a Booking
+
+router.put('/:bookingId',requireAuth, async(req, res) => {
   const { bookingId } = req.params
+
   const { startDate, endDate } = req.body
 
-  const editBooking = await Booking.findByPk(bookingId)
+  const editBookings = await Booking.findByPk(bookingId)
 
-  const allBookings = await Booking.findAll({
-      attributes: ['startDate', 'endDate']
+  const getAllBookings= await Booking.findAll({
+    attributes: ['startDate', 'endDate'],
   })
-
-  // if (editBooking) {
-  //     let booked;
-  //     for (let booking of allBookings) {
-  //         if (booking.startDate === editBooking.startDate) {
-  //             booked = true
-  //         }
-  //     }
-  //     if (booked) {
-  //         res.json({
-  //             message: "Sorry, this spot is already booked for the specified dates",
-  //             statusCode: 403,
-  //             errors: {
-  //                 startDate: "Start date conflicts with an existing booking",
-  //                 endDate: "End date conflicts with an existing booking"
-  //             }
-  //         })
-  //     } else if (endDate < startDate) {
-  //         res.status(400)
-  //         res.json({
-  //             message: "Validation error",
-  //             statusCode: 400,
-  //             errors: {
-  //                 endDate: "endDate cannot come before startDate"
-  //             }
-  //         })
-  //     } else if (endDate < new Date()) {
-  //         res.json({
-  //             message: "Past bookings can't be modified",
-  //             statusCode: 403
-  //         })
-  //     } else {
-  //         editBooking.set({ startDate, endDate });
-  //         await editBooking.save()
-  //         res.json(editBooking)
-  //     }
-  // } else {
-  //     res.json({
-  //         "message": "Booking couldn't be found",
-  //         "statusCode": 404
-  //     })
-  // }
-  editBooking.set({ startDate, endDate });
-  await editBooking.save()
-  res.json(editBooking)
+  if(editBookings){
+    let booked;
+    for(let bookings of getAllBookings){
+      if(editBookings.startDate === bookings.startDate || editBookings.endDate === bookings.endDate){
+        booked = true
+      }
+    }
+    if(booked){
+    res.status(403)
+    return res.json({
+      message: "Sorry, this spot is already booked for the specified dates",
+      statusCode: 403,
+      errors: {
+        startDate: "Start date conflicts with an existing booking",
+        endDate: "End date conflicts with an existing booking",
+      },
+    });
+  }
+}
+if(endDate < startDate){
+      res.status(400)
+      return res.json({
+        message: "Validation error",
+        statusCode: 400,
+        errors: {
+          endDate: "endDate cannot come before startDate",
+        },
+      });
+  } 
+  if(endDate < new Date()){
+      res.status(403)
+       return res.json({
+        message: "Past bookings can't be modified",
+        statusCode: 403,
+      });
+  }
+  if(editBookings){
+      editBookings.set({
+          startDate,
+          endDate
+      })
+      await editBookings.save()
+       return res.json(editBookings)
+  }else {
+    res.status(404)
+    return res.json({
+      message: "Booking couldn't be found",
+      statusCode: 404,
+    });
+  }
 })
 
 
-// router.put('/:bookingId',requireAuth, async(req, res) => {
+// router.put('/:bookingId', requireAuth, async (req, res) => {
 //   const { bookingId } = req.params
-
 //   const { startDate, endDate } = req.body
 
-//   const editBookings = await Booking.findByPk(bookingId)
+//   const editBooking = await Booking.findByPk(bookingId)
 
-//   const getAllBookings= await Booking.findAll({
+//   const allBookings = await Booking.findAll({
+//       attributes: ['startDate', 'endDate']
 //   })
 
-//   if(editBookings === getAllBookings){
-//     res.status(403)
-//     return res.json({
-//       message: "Sorry, this spot is already booked for the specified dates",
-//       statusCode: 403,
-//       errors: {
-//         startDate: "Start date conflicts with an existing booking",
-//         endDate: "End date conflicts with an existing booking",
-//       },
-//     });
-//   }
-//   if(endDate < startDate){
-//       res.status(400)
-//       return res.json({
-//         message: "Validation error",
-//         statusCode: 400,
-//         errors: {
-//           endDate: "endDate cannot come before startDate",
-//         },
-//       });
-//   } 
-//   if(endDate < new Date()){
-//       res.status(403)
-//        return res.json({
-//         message: "Past bookings can't be modified",
-//         statusCode: 403,
-//       });
-//   }
-//   if(editBookings){
-//       editBookings.set({
-//           startDate,
-//           endDate
-//       })
-//       await editBookings.save()
-//        return res.json(editBookings)
-//   }else {
-//     res.status(404)
-//     return res.json({
-//       message: "Booking couldn't be found",
-//       statusCode: 404,
-//     });
-//   }
+//   // if (editBooking) {
+//   //     let booked;
+//   //     for (let booking of allBookings) {
+//   //         if (booking.startDate === editBooking.startDate) {
+//   //             booked = true
+//   //         }
+//   //     }
+//   //     if (booked) {
+//   //         res.json({
+//   //             message: "Sorry, this spot is already booked for the specified dates",
+//   //             statusCode: 403,
+//   //             errors: {
+//   //                 startDate: "Start date conflicts with an existing booking",
+//   //                 endDate: "End date conflicts with an existing booking"
+//   //             }
+//   //         })
+//   //     } else if (endDate < startDate) {
+//   //         res.status(400)
+//   //         res.json({
+//   //             message: "Validation error",
+//   //             statusCode: 400,
+//   //             errors: {
+//   //                 endDate: "endDate cannot come before startDate"
+//   //             }
+//   //         })
+//   //     } else if (endDate < new Date()) {
+//   //         res.json({
+//   //             message: "Past bookings can't be modified",
+//   //             statusCode: 403
+//   //         })
+//   //     } else {
+//   //         editBooking.set({ startDate, endDate });
+//   //         await editBooking.save()
+//   //         res.json(editBooking)
+//   //     }
+//   // } else {
+//   //     res.json({
+//   //         "message": "Booking couldn't be found",
+//   //         "statusCode": 404
+//   //     })
+//   // }
+//   editBooking.set({ startDate, endDate });
+//   await editBooking.save()
+//   res.json(editBooking)
 // })
+
+
+// // router.put('/:bookingId',requireAuth, async(req, res) => {
+// //   const { bookingId } = req.params
+
+// //   const { startDate, endDate } = req.body
+
+// //   const editBookings = await Booking.findByPk(bookingId)
+
+// //   const getAllBookings= await Booking.findAll({
+// //   })
+
+// //   if(editBookings === getAllBookings){
+// //     res.status(403)
+// //     return res.json({
+// //       message: "Sorry, this spot is already booked for the specified dates",
+// //       statusCode: 403,
+// //       errors: {
+// //         startDate: "Start date conflicts with an existing booking",
+// //         endDate: "End date conflicts with an existing booking",
+// //       },
+// //     });
+// //   }
+// //   if(endDate < startDate){
+// //       res.status(400)
+// //       return res.json({
+// //         message: "Validation error",
+// //         statusCode: 400,
+// //         errors: {
+// //           endDate: "endDate cannot come before startDate",
+// //         },
+// //       });
+// //   } 
+// //   if(endDate < new Date()){
+// //       res.status(403)
+// //        return res.json({
+// //         message: "Past bookings can't be modified",
+// //         statusCode: 403,
+// //       });
+// //   }
+// //   if(editBookings){
+// //       editBookings.set({
+// //           startDate,
+// //           endDate
+// //       })
+// //       await editBookings.save()
+// //        return res.json(editBookings)
+// //   }else {
+// //     res.status(404)
+// //     return res.json({
+// //       message: "Booking couldn't be found",
+// //       statusCode: 404,
+// //     });
+// //   }
+// // })
 
 
 // });
