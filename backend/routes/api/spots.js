@@ -50,7 +50,7 @@ router.get('/', async (req, res, next) => {
 
 //GET ALL SPOTS OWNED BY CURRENT USER
 
-router.get('/current', requireAuth, async (req, res) => {
+router.get('/current', requireAuth,restoreUser, async (req, res) => {
   let userId = req.user.dataValues.id
 
   const allSpots = await Spot.findAll({
@@ -201,7 +201,7 @@ router.get('/:spotId', async (req, res) => {
 
 //CREATE A SPOT
 
-router.post("/", requireAuth, async (req, res) => {
+router.post("/", requireAuth,restoreUser, async (req, res) => {
   let { address, city, state, country, lat, lng, name, description, price } =
     req.body; //destructure the body
   //console.log(req.user)
@@ -327,7 +327,7 @@ router.post('/:spotId/images', restoreUser, async (req, res, next) => {
 
 //EDIT A SPOT
 
-router.put("/:spotId", requireAuth, async (req, res) => {
+router.put("/:spotId", requireAuth,restoreUser, async (req, res) => {
   console.log(req);
   const { spotId } = req.params;
   const { address, city, state, country, lat, lng, name, description, price } =
@@ -369,7 +369,7 @@ router.put("/:spotId", requireAuth, async (req, res) => {
   }
 });
 //Create a Review for a Spot based on the Spot's id
-router.post('/:spotId/reviews',requireAuth, async (req, res) => {
+router.post('/:spotId/reviews',requireAuth, restoreUser,async (req, res) => {
     const { review, stars } = req.body; // { review: 'This was an awesome spot!', star: undefined }
     const { user } = req   //
     // console.log(user)
@@ -495,7 +495,7 @@ router.get("/:spotId/reviews", async (req, res) => {
 
 
 // Get all Bookings for a Spot based on the Spot's id
-router.get('/:spotId/bookings',requireAuth, async (req, res) => {
+router.get('/:spotId/bookings',requireAuth,restoreUser, async (req, res) => {
   let { spotId } = req.params
   const findSpot = await Spot.findByPk(spotId)
 
@@ -519,7 +519,7 @@ router.get('/:spotId/bookings',requireAuth, async (req, res) => {
 })
 
 // Create a Booking from a Spot based on the Spot's id
-router.post('/:spotId/bookings',requireAuth, async (req, res) => {
+router.post('/:spotId/bookings',requireAuth,restoreUser, async (req, res) => {
   const { startDate, endDate } = req.body
 
   const { spotId } = req.params
@@ -582,7 +582,7 @@ router.post('/:spotId/bookings',requireAuth, async (req, res) => {
 
 //Delete a Spot
 
-router.delete("/:spotId",requireAuth, async (req, res) => {
+router.delete("/:spotId",requireAuth,restoreUser, async (req, res) => {
   const { spotId } = req.params;
   const currSpot = await Spot.findByPk(spotId);
 

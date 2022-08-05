@@ -13,12 +13,12 @@ const router = express.Router();
 
 //get current bookings
 
-router.get("/current",requireAuth, async (req, res) => {
-  const CurrUserBookings = await Booking.findAll({
+router.get("/current",requireAuth, restoreUser, async (req, res) => {
+  const CurrUserBookings = await Booking.findAll({  //finding all
     where: {
-      userId: req.user.id,
+      userId: req.user.id,   //console.log( req.user)
     },
-    include: [{ model: Spot }],
+    include: [{ model: Spot }],  //include the model
   });
   res.json({ CurrUserBookings });
 });
@@ -26,11 +26,11 @@ router.get("/current",requireAuth, async (req, res) => {
 
 // Edit a Booking
 router.put('/:bookingId', requireAuth, restoreUser, async (req, res, next) => {
-  const bookingId = req.params.bookingId
-  const { startDate, endDate } = req.body
-  const newBooking = await Booking.findByPk(bookingId)
+  const bookingId = req.params.bookingId    //pull out params
+  const { startDate, endDate } = req.body   // required material
+  const newBooking = await Booking.findByPk(bookingId)   //find by id
 
-  if (startDate > endDate) {
+  if (startDate > endDate) {    //if start date is greater than end date throw err
     res.json({
       message: "Validation error",
       statusCode: 400,
@@ -40,17 +40,17 @@ router.put('/:bookingId', requireAuth, restoreUser, async (req, res, next) => {
     })
   }
 
-  if (!newBooking) {
+  if (!newBooking) {     // if not found throw err
     res.json({
       message: "Booking couldn't be found",
       statusCode: 404
     })
   }
 
-  let now = Date.now()
-  let bookingdate = new Date(newBooking.endDate)
+  let now = Date.now()     // date.now()  returns the number of milliseconds elapsed since January 1
+  let bookingdate = new Date(newBooking.endDate)  // new Date key into the newbooking to get endDate
 
-  if (now > bookingdate) {
+  if (now > bookingdate) {     // if greater than booking date
     res.json({
       message: "Past bookings can't be modified",
       statusCode: 403
@@ -61,15 +61,15 @@ router.put('/:bookingId', requireAuth, restoreUser, async (req, res, next) => {
 
   const currentBookings = await Booking.findAll({
     where: {
-      spotId: spotId,
-      [Op.and]: [
-        {endDate: {[Op.gte]: startDate}},
-        {startDate: {[Op.lte]: endDate}},
+      spotId: spotId,    //spotId = spotid
+      [Op.and]: [      //endDate and startDate
+        {endDate: {[Op.gte]: startDate}},  //greater than equal to startDate
+        {startDate: {[Op.lte]: endDate}},  // less than equal to endDate
       ],
     },
   });
 
-  if (currentBookings.length) {
+  if (currentBookings.length) {  //if bookings is the same then throw this error
     res.json({
       message: "Sorry, this spot is already booked for the specified dates",
       statusCode: 403,
@@ -80,7 +80,7 @@ router.put('/:bookingId', requireAuth, restoreUser, async (req, res, next) => {
     })
   }
 
-  if (newBooking.userId === req.user.id) {
+  if (newBooking.userId === req.user.id) {      //if booking userId is equaled to user.id
     newBooking.startDate = startDate,
     newBooking.endDate = endDate,
 
@@ -101,9 +101,9 @@ router.delete('/:bookingId', requireAuth, restoreUser, async (req, res, next) =>
       statusCode: 404
     })
   }
- let now = new Date
+ let now = Date.now()   // date.now()  returns the number of milliseconds elapsed since January 1
   let bookingdate = new Date(booking.startDate)
-  if (now > bookingdate) {
+  if (now > bookingdate) {       //if after the bookingdate then cant be deleted
     res.json({
       message: "Bookings that have been started can't be deleted",
       statusCode: 403
