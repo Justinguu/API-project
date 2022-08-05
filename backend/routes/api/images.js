@@ -4,8 +4,12 @@ const { handleValidationErrors } = require('../../utils/validation')
 const {  restoreUser, requireAuth } = require('../../utils/auth');
 const router = express.Router()
 
-// Delete an Image
-router.delete('/:imageId',requireAuth, async (req, res, next) => {
+
+
+
+//delete an image 
+
+router.delete('/:imageId', requireAuth, restoreUser, async (req, res) => {
   const imageId = req.params.imageId
   const image = await Image.findByPk(imageId)
 

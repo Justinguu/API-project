@@ -1,5 +1,5 @@
 const express = require("express");
-const { requireAuth } = require("../../utils/auth");
+const { requireAuth, restoreUser } = require("../../utils/auth");
 const {
   Spot,
   Review,
@@ -8,8 +8,7 @@ const {
   User,
   Booking,
 } = require("../../db/models");
-const { raw } = require("express");
-const { check } = require("express-validator");
+const { Op } = require("sequelize");
 const router = express.Router();
 
 //get current bookings
@@ -25,67 +24,68 @@ router.get("/current",requireAuth, async (req, res) => {
 });
 
 
-// // Edit a Booking
-
-router.put('/:bookingId',requireAuth, async(req, res) => {
-  const { bookingId } = req.params
-
+// Edit a Booking
+router.put('/:bookingId', requireAuth, restoreUser, async (req, res, next) => {
+  const bookingId = req.params.bookingId
   const { startDate, endDate } = req.body
+  const newBooking = await Booking.findByPk(bookingId)
 
-  const editBookings = await Booking.findByPk(bookingId)
-
-  const getAllBookings= await Booking.findAll({
-    attributes: ['startDate', 'endDate'],
-  })
-  if(editBookings){
-    let booked;
-    for(let bookings of getAllBookings){
-      if(editBookings.startDate === bookings.startDate || editBookings.endDate === bookings.endDate){
-        booked = true
+  if (startDate > endDate) {
+    res.json({
+      message: "Validation error",
+      statusCode: 400,
+      errors: {
+        endDate: "endDate cannot come before startDate"
       }
-    }
-    if(booked){
-    res.status(403)
-    return res.json({
+    })
+  }
+
+  if (!newBooking) {
+    res.json({
+      message: "Booking couldn't be found",
+      statusCode: 404
+    })
+  }
+
+  let now = Date.now()
+  let bookingdate = new Date(newBooking.endDate)
+
+  if (now > bookingdate) {
+    res.json({
+      message: "Past bookings can't be modified",
+      statusCode: 403
+    })
+  }
+
+  const spotId = newBooking.spotId
+
+  const currentBookings = await Booking.findAll({
+    where: {
+      spotId: spotId,
+      [Op.and]: [
+        {endDate: {[Op.gte]: startDate}},
+        {startDate: {[Op.lte]: endDate}},
+      ],
+    },
+  });
+
+  if (currentBookings.length) {
+    res.json({
       message: "Sorry, this spot is already booked for the specified dates",
       statusCode: 403,
       errors: {
         startDate: "Start date conflicts with an existing booking",
-        endDate: "End date conflicts with an existing booking",
-      },
-    });
+        endDate: "End date conflicts with an existing booking"
+      }
+    })
   }
-}
-if(endDate < startDate){
-      res.status(400)
-      return res.json({
-        message: "Validation error",
-        statusCode: 400,
-        errors: {
-          endDate: "endDate cannot come before startDate",
-        },
-      });
-  } 
-  if(endDate < new Date()){
-      res.status(403)
-       return res.json({
-        message: "Past bookings can't be modified",
-        statusCode: 403,
-      });
-  }
-  if(editBookings){
-      editBookings.set({
-          startDate,
-          endDate
-      })
-      await editBookings.save()
-       return res.json(editBookings)
-  }else {
-    res.status(404)
-    return res.json({
-      message: "Booking couldn't be found",
-      statusCode: 404,
-    });
+
+  if (newBooking.userId === req.user.id) {
+    newBooking.startDate = startDate,
+    newBooking.endDate = endDate,
+
+    await newBooking.save()
+    res.json(newBooking)
   }
 })
 
