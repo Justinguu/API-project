@@ -5,15 +5,19 @@ const router = express.Router();
 
 
 //get all reviews of current
-router.get("/current", requireAuth, async (req, res) => {
-    //using file path of /current bc spot is already implied
-    //   console.log(req.user);
-    const userId = req.user.dataValues.id;
-    const allReviewsByCurr = await Spot.findAll({
-      include: [{ model: User, where: { id: userId }, as: 'Owner' }],
-    });
-    res.json({ allReviewsByCurr });
+router.get('/current', requireAuth, async (req, res) => {
+  const reviews = await Review.findAll({
+    include: [
+      { model: User, attributes: ['id', 'firstName', 'lastName'] },
+      { model: Spot, attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price'] },
+      { model: Image, attributes: ['id', ['reviewId', 'imageableId'], 'url'] },
+    ],
+    where: { userId: req.user.id },
   });
+
+  res.json({ Reviews: reviews })
+
+})
   
   //Edit a Review
 
