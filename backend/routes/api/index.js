@@ -15,7 +15,7 @@ const { restoreUser } = require("../../utils/auth.js");   //restoreUser
 
 router.use(restoreUser); // no matter where the route is. middleware is applied //references line 7
 
-router.use('/images', imagesRouter);
+router.use('/images', imagesRouter);  // cant believe i didnt add this here spent 2000 hours bc of this << remember to add all routes
 
 router.use('/session', sessionRouter);   //sessionRouter and userRouter already defined here so can just use "/"
 
