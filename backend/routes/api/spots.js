@@ -610,7 +610,7 @@ router.get('/', async (req, res, next) => {
   size = parseInt(size);
 
   if (Number.isNaN(page)) page = 1;
-  if (Number.isNaN(size)) size = 20;
+  if (Number.isNaN(size)) size = 3;
   pagination.limit = size
   pagination.offset = size * (page - 1)
 
