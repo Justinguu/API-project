@@ -228,7 +228,7 @@ router.post("/", requireAuth, async (req, res) => {
 });
 
 
-//CREATE AN IMAGE FOR A SPOT   & ERROR
+//CREATE AN IMAGE FOR A SPOT & ERROR
 router.post('/:spotId/images', requireAuth, async (req, res) => {
   const spotId = req.params.spotId
   const { url } = req.body
