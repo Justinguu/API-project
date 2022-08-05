@@ -609,7 +609,7 @@ router.get('/', async (req, res, next) => {
   page = parseInt(page);
   size = parseInt(size);
 
-  if (Number.isNaN(page)) page = 1;
+  if (Number.isNaN(page)) page = 1;  //fixed limit to 1 with size of 3
   if (Number.isNaN(size)) size = 3;
   pagination.limit = size
   pagination.offset = size * (page - 1)
@@ -637,7 +637,7 @@ router.get('/', async (req, res, next) => {
       });
   
       const avgRating = spotReviewData[0].dataValues.avgStarRating;
-      spot.dataValues.avgRating = Number(avgRating).toFixed(1);
+      spot.dataValues.avgRating = Number(avgRating).toFixed(1);  //fixed to certain length
       const previewImage = await Image.findOne({
         where: {
           [Op.and]: {
