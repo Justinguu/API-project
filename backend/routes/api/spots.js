@@ -88,102 +88,116 @@ router.get('/current', requireAuth, async (req, res) => {
   res.json({ allSpots })
 })
 // //### Get details of a Spot from an Id
-//Part 1
-router.get('/:spotId', async (req, res, next) => {
-  // console.log(req)
+// //Part 1
+// router.get('/:spotId', async (req, res, next) => {
+//   // console.log(req)
+//   const spotId = req.params.spotId
+
+//   const getSpots = await Spot.findByPk(spotId) //CONFIRM IF spotId EXISTS
+//   const reviews = await Review.count({ //DETERMINE REVIEW COUNT
+//     where: { spotId }
+//   })
+
+//   const spotDetails = await Spot.findOne({
+
+//       //Determine the key:value pair for numReviews
+//       attributes:{
+//         include: [
+//           [sequelize.fn("COUNT", reviews), "numReviews"],
+//           [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"]
+//         ]
+//       },
+
+
+//       include: [
+//         {model: Review, attributes: []},
+//         {model: Image, attributes: []},
+//       ],
+
+
+//       raw:true, //method to convert out from findByPk && findOne into raw data aka JS object... otherise data will resemble console.log(req)
+//       where: {id: spotId}
+//   })
+
+
+//   //Part 2
+//   const imagesDetails = await Image.findAll({ //Set up a query for Images
+//     attributes: ['id', ['spotId','imageableId'], 'url'], //Extract attributes from Images and attach spotID ==> imageableID
+//     where: {spotId},
+//     raw: true //method to convert out from findByPk && findOne into raw data aka JS object... otherise data will resemble console.log(req)
+//   })
+
+//   spotDetails.Images = imagesDetails
+
+//   let owner = {} //Include details of owner within spotDetails
+//   let user = await User.findByPk(spotId)
+//   let userData = user.dataValues
+//   owner.id = userData.id;
+
+//   // console.log(userdata)
+//   //id: 3,
+//   // firstName: 'firstuser3',
+//   // lastName: 'lastuser3',
+//   // username: 'FakeUser2'
+
+//   owner.firstName = userData.firstName
+//   owner.lastName = userData.lastName
+
+//   spotDetails.Owner = owner
+
+
+
+//   //ERROR HANDLER IF SPOT COULD NOT BE FOUND WITH THE SPECIFICED ID
+//   if(!getSpots) {
+//     res.json({
+//       "message": "Spot couldn't be found",
+//       "statusCode": 404
+//     })
+//   }
+//   res.json(spotDetails)
+
+// })
+// Get details of a Spot from an id
+router.get('/:spotId', async (req, res) => {
   const spotId = req.params.spotId
+  const spot = await Spot.findByPk(spotId)
 
-  const getSpots = await Spot.findByPk(spotId) //CONFIRM IF spotId EXISTS
-  const reviews = await Review.count({ //DETERMINE REVIEW COUNT
-    where: { spotId }
-  })
-
-  const spotDetails = await Spot.findOne({
-
-      //Determine the key:value pair for numReviews
-      attributes:{
-        include: [
-          [sequelize.fn("COUNT", reviews), "numReviews"],
-          [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"]
-        ]
-      },
-
-
-      include: [
-        {model: Review, attributes: []},
-        {model: Image, attributes: []},
-      ],
-
-
-      raw:true, //method to convert out from findByPk && findOne into raw data aka JS object... otherise data will resemble console.log(req)
-      where: {id: spotId}
-  })
-
-
-  //Part 2
-  const imagesDetails = await Image.findAll({ //Set up a query for Images
-    attributes: ['id', ['spotId','imageableId'], 'url'], //Extract attributes from Images and attach spotID ==> imageableID
-    where: {spotId},
-    raw: true //method to convert out from findByPk && findOne into raw data aka JS object... otherise data will resemble console.log(req)
-  })
-
-  spotDetails.Images = imagesDetails
-
-  let owner = {} //Include details of owner within spotDetails
-  let user = await User.findByPk(spotId)
-  let userData = user.dataValues
-  owner.id = userData.id;
-
-  // console.log(userdata)
-  //id: 3,
-  // firstName: 'firstuser3',
-  // lastName: 'lastuser3',
-  // username: 'FakeUser2'
-
-  owner.firstName = userData.firstName
-  owner.lastName = userData.lastName
-
-  spotDetails.Owner = owner
-
-
-
-  //ERROR HANDLER IF SPOT COULD NOT BE FOUND WITH THE SPECIFICED ID
-  if(!getSpots) {
+  if (!spot) {
     res.json({
       "message": "Spot couldn't be found",
       "statusCode": 404
     })
   }
-  res.json(spotDetails)
 
+  const numReviews = await Review.count({
+    where: { spotId: spotId }
+  })
+
+  const rating = await Review.findOne({
+    attributes: [[ sequelize.fn("avg", sequelize.col('stars')), "avgStarRating" ]],
+    where: { spotId: spotId },
+    raw: true
+  })
+
+  const images = await Image.findAll({
+    attributes: [ 'id', ['spotId', 'imageableId'], 'url' ],
+    where: { spotId: spotId }
+  })
+
+  const owner = await User.findByPk(spot.ownerId, {
+    attributes: ['id', 'firstName', 'lastName']
+  })
+
+  const response = spot.toJSON()
+
+  response.numReviews = numReviews
+  response.avgStarRating = rating.avgStarRating
+  response.Images = images
+  response.Owner = owner
+
+  res.json(response)
 })
-// // GET details of a Spot from an id
 
-// router.get("/:spotId", async (req, res) => {
-//   let spotId = req.params.spotId;
-//   const spotIdDetails = await Spot.findByPk(spotId, {
-//     include: [
-//       {
-//         model: Image,
-//         attributes: ["id", "url"],
-//       },
-//       {
-//         model: User,
-//         attributes: ["id", "firstName", "lastName"],
-//       },
-//     ],
-//   });
-//   if (spotIdDetails) {
-//     res.json({ spotIdDetails });
-//   } else {
-//     res.status(404);
-//     res.json({
-//       statusCode: 404,
-//       message: "Spot couldn't be found",
-//     });
-//   }
-//   res.json(spotIdDetails);
-// });
 
 //CREATE A SPOT
 
