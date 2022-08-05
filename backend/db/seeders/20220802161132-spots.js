@@ -8,9 +8,9 @@ module.exports = {
         {
           ownerId: 1,
           address: "123 Disney Lane",
-          city: "San Francisco",
-          state: "California",
-          country: "United States of America",
+          city: "Seoul",
+          state: "Korea",
+          country: "South Korea",
           lat: 37.7645358,
           lng: -122.4730327,
           name: "App Academy",
@@ -25,7 +25,7 @@ module.exports = {
           country: "United States of America",
           lat: 58.7645358,
           lng: -222.4730327,
-          name: "Dab Academy",
+          name: "Bap Academy",
           description: "Place where web developers are created",
           price: 400
         },
@@ -41,6 +41,8 @@ module.exports = {
           description: "Place where web developers are created",
           price: 200
         },
+        
+     
      
       ],
       {}

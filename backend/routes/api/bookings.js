@@ -1,5 +1,5 @@
 const express = require("express");
-const { setTokenCookie, requireAuth } = require("../../utils/auth");
+const { requireAuth } = require("../../utils/auth");
 const {
   Spot,
   Review,
@@ -14,7 +14,7 @@ const router = express.Router();
 
 //get current bookings
 
-router.get("/current", async (req, res) => {
+router.get("/current",requireAuth, async (req, res) => {
   const CurrUserBookings = await Booking.findAll({
     where: {
       userId: req.user.id,
@@ -143,7 +143,26 @@ router.put('/:bookingId',requireAuth, async(req, res) => {
 //   }
 
 // });
+//Delete a booking
 
+router.delete("/:bookingId", requireAuth,async (req, res) => {
+  const { bookingId } = req.params;
+  const currentBooking = await Booking.findByPk(bookingId);
 
+  if (!currentBooking) {
+    res.status(404);
+    return res.json({
+      message: "Booking couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  await currentBooking.destroy();
+  res.json({
+    message: "Successfully deleted",
+    statusCode: 200,
+  });
+  
+});
 
 module.exports = router;

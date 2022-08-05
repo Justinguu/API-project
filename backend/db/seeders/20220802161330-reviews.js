@@ -26,6 +26,7 @@ module.exports = {
           review: "This was mediocre spot!",
           stars: 3
         },
+        
        
       ], {});
     

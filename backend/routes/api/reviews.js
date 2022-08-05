@@ -1,11 +1,11 @@
 const express = require("express");
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { requireAuth } = require('../../utils/auth');
 const { Spot, Review, Image, sequelize, User, Booking } = require("../../db/models");
 const router = express.Router();
 
 
-
-router.get("/current", async (req, res) => {
+//get all reviews of current
+router.get("/current", requireAuth, async (req, res) => {
     //using file path of /current bc spot is already implied
     //   console.log(req.user);
     const userId = req.user.dataValues.id;
@@ -17,7 +17,7 @@ router.get("/current", async (req, res) => {
   
   //Edit a Review
 
-router.put("/:reviewId", async (req, res) => {
+router.put("/:reviewId",requireAuth, async (req, res) => {
   
   const { reviewId } = req.params;
   const {  review, stars } = req.body;
@@ -60,6 +60,52 @@ router.put("/:reviewId", async (req, res) => {
 }
 })
 
+// Add an Image to a Review based on the Review's id
+router.post('/:reviewId/images', requireAuth, async (req, res) => {
+  const review = await Review.findByPk(req.params.reviewId);
+
+  if (!review) {
+      res.status(404)
+      return res.json(
+          {
+              "message": "Review couldn't be found",
+              "statusCode": 404
+          }
+      )
+  }
+
+  const { url, previewImage } = req.body;
+
+  const newImage = await Image.create({
+      url,
+      previewImage,
+      userId: req.user.id,
+      reviewId: req.params.reviewId
+  })
+})
+
+
+//Delete a Review 
+router.delete("/:reviewId", requireAuth, async (req, res) => {
+  const { reviewId } = req.params;
+  const currentReview = await Review.findByPk(reviewId);
+
+
+  if (!currentReview) {
+    res.status(404);
+    return res.json({
+      message: "Review couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  await currentReview.destroy();
+  res.json({
+    message: "Successfully deleted",
+    statusCode: 200,
+  });
+
+});
 
 
 module.exports = router;

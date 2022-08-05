@@ -7,15 +7,15 @@ module.exports = {
       {
       url: 'www.HouseForRent.com',
       previewImage: true,
-      spotId: null,
-      reviewId: 1,
+      spotId: 2,
+      reviewId: null,
       userId: 1
      },
      {
       url: 'www.HouseForRent1.com',
       previewImage: true,
-      spotId: 2,
-      reviewId: null,
+      spotId: null,
+      reviewId: 2,
       userId: 2
      },
      {
