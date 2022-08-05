@@ -61,29 +61,44 @@ router.put("/:reviewId",requireAuth, async (req, res) => {
 })
 
 // Add an Image to a Review based on the Review's id
+// Add an Image to a Review based on the Review's id
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
-  const review = await Review.findByPk(req.params.reviewId);
+  // DECONSTRUCT SPOT ID
+  const reviewId = req.params = req.params.reviewId;
 
+  //DECONSTRUCT USER, URL & PREVIEW IMAGE
+  const { user } = req
+  const { url, previewImage } = req.body
+
+
+  //IF USER DOESN'T EXIST - THROW ERROR
+  if (!user) return res.status(401).json({ "message": "You need to be logged in to make any changes", "statusCode": 401 })
+
+
+  //CONFIRM IF SPOT ID EXISTS
+  const review = await Spot.findByPk(reviewId)
+
+
+  //THROW ERROR IF SPOT COULD NOT BE FOUND
   if (!review) {
       res.status(404)
-      return res.json(
-          {
-              "message": "Review couldn't be found",
-              "statusCode": 404
-          }
-      )
+      return res.json({
+          "message": "Spot couldn't be found",
+          "statusCode": 404
+      })
   }
 
-  const { url, previewImage } = req.body;
+  // CREATE
+  const image = await Image.create({ url, previewImage, reviewId, userId: user.id })
 
-  const newImage = await Image.create({
-      url,
-      previewImage,
-      userId: req.user.id,
-      reviewId: req.params.reviewId
-  })
+  //DEFINE AN OBJECT IN ORDER TO MAKE THE ASSOCIATION
+  const object = {}
+  object.id = image.id
+  object.imageableId = parseInt(reviewId)
+  object.url = image.url
+
+  res.status(200).json(object)
 })
-
 
 //Delete a Review 
 router.delete("/:reviewId", requireAuth, async (req, res) => {
