@@ -32,7 +32,7 @@ const router = express.Router()
 
 router.delete("/:imageId", requireAuth, restoreUser, async (req, res) => {
   const { imageId } = req.params;
-  const currentImage = await Images.findByPk(imageId);
+  const currentImage = await Image.findByPk(imageId);
 
 
   if (!currentImage) {
