@@ -10,7 +10,7 @@ router.get("/current", requireAuth, async (req, res) => {
     //   console.log(req.user);
     const userId = req.user.dataValues.id;
     const allReviewsByCurr = await Spot.findAll({
-      include: [{ model: User, where: { id: userId } }],
+      include: [{ model: User, where: { id: userId }, as: 'Owner' }],
     });
     res.json({ allReviewsByCurr });
   });

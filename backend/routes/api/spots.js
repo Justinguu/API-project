@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { check } = require('express-validator')
 const { handleValidationErrors } = require('../../utils/validation')
-const { requireAuth } = require('../../utils/auth')
+const { requireAuth, restoreUser} = require('../../utils/auth')
 const {Booking, Image, Review, Spot, User, sequelize} = require('../../db/models');
 const { response } = require('express');
 const review = require('../../db/models/review');
@@ -229,33 +229,85 @@ router.post("/", requireAuth, async (req, res) => {
 
 
 //CREATE AN IMAGE FOR A SPOT & ERROR
-router.post('/:spotId/images', requireAuth, async (req, res) => {
-  const spotId = req.params.spotId
-  const { url } = req.body
+
+//### Add an Image to a Spot based on the Spot's id - COMPLETE
+// router.post('/:spotId/images', restoreUser, async (req, res, next) => {
+
+//   // DECONSTRUCT SPOT ID
+//   const spotId = req.params = req.params.spotId;
+
+//   //DECONSTRUCT USER, URL & PREVIEW IMAGE
+//   const { user } = req
+//   const { url, previewImage } = req.body
+
+
+//   //IF USER DOESN'T EXIST - THROW ERROR
+//   if (!user) return res.status(401).json({ "message": "You need to be logged in to make any changes", "statusCode": 401 })
+
+
+//   //CONFIRM IF SPOT ID EXISTS
+//   const spot = await Spot.findByPk(spotId)
+
+
+//   //THROW ERROR IF SPOT COULD NOT BE FOUND
+//   if (!spot) {
+//     res.status(404)
+//     return res.json({
+//       "message": "Spot couldn't be found",
+//       "statusCode": 404
+//     })
+//   }
+
+//   // CREATE
+//   const image = await Image.create({ url, previewImage, spotId, userId: user.id})
+
+//   //DEFINE AN OBJECT IN ORDER TO MAKE THE ASSOCIATION
+//   const object = {}
+//   object.id = image.id
+//   object.imageableId = parseInt(spotId)
+//   object.url = image.url
+
+//   res.status(200).json(object)
+
+// })
+//### Add an Image to a Spot based on the Spot's id - COMPLETE
+router.post('/:spotId/images', restoreUser, async (req, res, next) => {
+
+  // DECONSTRUCT SPOT ID
+  const spotId = req.params = req.params.spotId;
+
+  //DECONSTRUCT USER, URL & PREVIEW IMAGE
+  const { user } = req
+  const { url, previewImage } = req.body
+
+
+  //IF USER DOESN'T EXIST - THROW ERROR
+  if (!user) return res.status(401).json({ "message": "You need to be logged in to make any changes", "statusCode": 401 })
+
+
+  //CONFIRM IF SPOT ID EXISTS
   const spot = await Spot.findByPk(spotId)
 
+
+  //THROW ERROR IF SPOT COULD NOT BE FOUND
   if (!spot) {
-    res.json({
-      message:"Spot couldn't be found",
-      statusCode: 404
+    res.status(404)
+    return res.json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
     })
   }
 
-  console.log(spot)
+  // CREATE
+  const image = await Image.create({ url, previewImage, spotId, userId: user.id})
 
-  let image = await Image.create({
-    url,
-    spotId: spot.dataValues.id,
-    userId: req.user.id
-  })
+  //DEFINE AN OBJECT IN ORDER TO MAKE THE ASSOCIATION
+  const object = {}
+  object.id = image.id
+  object.imageableId = parseInt(spotId)
+  object.url = image.url
 
-  let response = {
-    id: image.id,
-    imageableId: image.spotId,
-    url: image.url
-  }
-
-  res.json(response)
+  res.status(200).json(object)
 
 })
 
