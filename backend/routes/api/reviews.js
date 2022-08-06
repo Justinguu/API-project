@@ -8,16 +8,16 @@ const router = express.Router();
 router.get('/current', requireAuth,  async (req, res) => {
   let userId = req.user.dataValues.id
 
-  const allReviews = await Review.findAll({
+  const allCurReviews = await Review.findAll({
       include: [  // include the user, spot, image
           { model: User, where: { id: userId } },
           { model: Spot },
           { model: Image, attributes: ['id', ['spotId', 'imageableId'], 'url'] }
       ]
   })
-  if (allReviews) {
+  if (allCurReviews) {
       res.status(200)
-      res.json({ allReviews })
+      res.json({ allCurReviews })
   }
 })
   //Edit a Review
@@ -27,14 +27,14 @@ router.put("/:reviewId",requireAuth, restoreUser, async (req, res) => {
   const { reviewId } = req.params;
   const {  review, stars } = req.body;
     console.log(reviewId);
-  const editReview = await Review.findByPk(reviewId);
+  const editReviews = await Review.findByPk(reviewId);
 
-  if (editReview) {
-    editReview.set({
+  if (editReviews) {
+    editReviews.set({
      review, stars
     });
-    await editReview.save();
-    res.json(editReview);
+    await editReviews.save();
+    res.json(editReviews);
   } 
   else if (stars < 1 || stars > 5) {    // if its less than 1 or greater than 5
     res.status(400); //EDIT A SPOT ERROR CHECK
@@ -92,25 +92,24 @@ router.post('/:reviewId/images', requireAuth, restoreUser, async (req, res) => {
       })
   }
 
-  // CREATE
   const image = await Image.create({ url, previewImage, reviewId, userId: user.id })
 
-  //DEFINE AN OBJECT IN ORDER TO MAKE THE ASSOCIATION
-  const object = {}
-  object.id = image.id
-  object.imageableId = parseInt(reviewId)
-  object.url = image.url
+  
+  const obj = {}   //DEFINE AN OBJECT IN ORDER TO MAKE THE ASSOCIATION
+  obj.id = image.id
+  obj.imageableId = parseInt(reviewId)
+  obj.url = image.url
 
-  res.status(200).json(object)
+  res.status(200).json(obj)
 })
 
 //Delete a Review 
 router.delete("/:reviewId", requireAuth, restoreUser, async (req, res) => {
   const { reviewId } = req.params;
-  const currentReview = await Review.findByPk(reviewId);
+  const destoryReview = await Review.findByPk(reviewId);
 
 
-  if (!currentReview) {
+  if (!destoryReview) {
     res.status(404);
     return res.json({
       message: "Review couldn't be found",
@@ -118,7 +117,7 @@ router.delete("/:reviewId", requireAuth, restoreUser, async (req, res) => {
     });
   }
 
-  await currentReview.destroy();
+  await destoryReview.destroy();
   res.json({
     message: "Successfully deleted",
     statusCode: 200,

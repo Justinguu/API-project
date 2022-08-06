@@ -28,15 +28,14 @@ const router = express.Router()
 //       statusCode: 200
 //     })
 //   }
-
 // })
 
 router.delete("/:imageId", requireAuth, restoreUser, async (req, res) => {
   const { imageId } = req.params;
-  const currentImage = await Image.findByPk(imageId);
+  const destoryImages = await Image.findByPk(imageId);
 
 
-  if (!currentImage) {
+  if (!destoryImages) {
     res.status(404);
     return res.json({
       message: "Review couldn't be found",
@@ -44,7 +43,7 @@ router.delete("/:imageId", requireAuth, restoreUser, async (req, res) => {
     });
   }
 
-  await currentImage.destroy();
+  await destoryImages.destroy();
   res.json({
     message: "Successfully deleted",
     statusCode: 200,

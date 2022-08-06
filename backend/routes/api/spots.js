@@ -1,18 +1,9 @@
-const express = require("express");
-const { requireAuth, restoreUser } = require("../../utils/auth");
-const {
-  Spot,
-  Review,
-  Image,
-  sequelize,
-  User,
-  Booking,
-} = require("../../db/models");
-const { Op } = require("sequelize");
+const express = require('express');
 const router = express.Router();
 
+const { requireAuth, restoreUser} = require('../../utils/auth')
+const {Booking, Image, Review, Spot, User, sequelize} = require('../../db/models');
 
-const { validateQuery} = require('../../utils/auth')
 
 // //GET ALL SPOTS
 //Part 1
@@ -94,76 +85,7 @@ router.get('/current', requireAuth,restoreUser, async (req, res) => {
   res.status(200)
   res.json({ allSpots })
 })
-// //### Get details of a Spot from an Id
-// //Part 1
-// router.get('/:spotId', async (req, res, next) => {
-//   // console.log(req)
-//   const spotId = req.params.spotId
 
-//   const getSpots = await Spot.findByPk(spotId) //CONFIRM IF spotId EXISTS
-//   const reviews = await Review.count({ //DETERMINE REVIEW COUNT
-//     where: { spotId }
-//   })
-
-//   const spotDetails = await Spot.findOne({
-
-//       //Determine the key:value pair for numReviews
-//       attributes:{
-//         include: [
-//           [sequelize.fn("COUNT", reviews), "numReviews"],
-//           [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"]
-//         ]
-//       },
-
-
-//       include: [
-//         {model: Review, attributes: []},
-//         {model: Image, attributes: []},
-//       ],
-
-
-//       raw:true, //method to convert out from findByPk && findOne into raw data aka JS object... otherise data will resemble console.log(req)
-//       where: {id: spotId}
-//   })
-
-
-//   //Part 2
-//   const imagesDetails = await Image.findAll({ //Set up a query for Images
-//     attributes: ['id', ['spotId','imageableId'], 'url'], //Extract attributes from Images and attach spotID ==> imageableID
-//     where: {spotId},
-//     raw: true //method to convert out from findByPk && findOne into raw data aka JS object... otherise data will resemble console.log(req)
-//   })
-
-//   spotDetails.Images = imagesDetails
-
-//   let owner = {} //Include details of owner within spotDetails
-//   let user = await User.findByPk(spotId)
-//   let userData = user.dataValues
-//   owner.id = userData.id;
-
-//   // console.log(userdata)
-//   //id: 3,
-//   // firstName: 'firstuser3',
-//   // lastName: 'lastuser3',
-//   // username: 'FakeUser2'
-
-//   owner.firstName = userData.firstName
-//   owner.lastName = userData.lastName
-
-//   spotDetails.Owner = owner
-
-
-
-//   //ERROR HANDLER IF SPOT COULD NOT BE FOUND WITH THE SPECIFICED ID
-//   if(!getSpots) {
-//     res.json({
-//       "message": "Spot couldn't be found",
-//       "statusCode": 404
-//     })
-//   }
-//   res.json(spotDetails)
-
-// })
 // Get details of a Spot from an id
 router.get('/:spotId', async (req, res) => {
   const spotId = req.params.spotId
@@ -176,11 +98,11 @@ router.get('/:spotId', async (req, res) => {
     })
   }
 
-  const numReviews = await Review.count({
+  const reviewss = await Review.count({
     where: { spotId: spotId }
   })
 
-  const rating = await Review.findOne({
+  const avgRating = await Review.findOne({
     attributes: [[ sequelize.fn("avg", sequelize.col('stars')), "avgStarRating" ]],
     where: { spotId: spotId },
     raw: true
@@ -195,20 +117,20 @@ router.get('/:spotId', async (req, res) => {
     attributes: ['id', 'firstName', 'lastName']
   })
 
-  const response = spot.toJSON()
+  const ans = spot.toJSON()
 
-  response.numReviews = numReviews
-  response.avgStarRating = rating.avgStarRating
-  response.Images = images
-  response.Owner = owner
+  ans.reviewss = reviewss
+  ans.avgStarRating = avgRating.avgStarRating
+  ans.Images = images
+  ans.Owner = owner
 
-  res.json(response)
+  res.json(ans)
 })
 
 
 //CREATE A SPOT
 
-router.post("/", requireAuth,restoreUser, async (req, res) => {
+router.post("/", requireAuth, async (req, res) => {
   let { address, city, state, country, lat, lng, name, description, price } =
     req.body; //destructure the body
   //console.log(req.user)
@@ -245,7 +167,7 @@ router.post("/", requireAuth,restoreUser, async (req, res) => {
       },
     });
   }
-  res.json(newSpot);
+  res.json(createSpot);
 });
 
 
@@ -323,12 +245,12 @@ router.post('/:spotId/images', restoreUser, async (req, res, next) => {
   const image = await Image.create({ url, previewImage, spotId, userId: user.id})
 
   //DEFINE AN OBJECT IN ORDER TO MAKE THE ASSOCIATION
-  const object = {}
-  object.id = image.id
-  object.imageableId = parseInt(spotId)
-  object.url = image.url
+  const obj = {}
+  obj.id = image.id
+  obj.imageableId = parseInt(spotId)
+  obj.url = image.url
 
-  res.status(200).json(object)
+  res.status(200).json(obj)
 
 })
 
@@ -340,10 +262,10 @@ router.put("/:spotId", requireAuth,restoreUser, async (req, res) => {
   const { address, city, state, country, lat, lng, name, description, price } =
     req.body;
 
-  const editSpot = await Spot.findByPk(spotId);
+  const editTheSpot = await Spot.findByPk(spotId);
 
-  if (editSpot) {
-    editSpot.set({
+  if (editTheSpot) {
+    editTheSpot.set({
       address,
       city,
       state,
@@ -354,8 +276,8 @@ router.put("/:spotId", requireAuth,restoreUser, async (req, res) => {
       description,
       price,
     });
-    await editSpot.save();
-    res.json(editSpot);
+    await editTheSpot.save();
+    res.json(editTheSpot);
   } else {
     res.status(400); // Missing Error handler here:
     res.json({
@@ -379,15 +301,7 @@ router.put("/:spotId", requireAuth,restoreUser, async (req, res) => {
 router.post('/:spotId/reviews',requireAuth, restoreUser,async (req, res) => {
     const { review, stars } = req.body; // { review: 'This was an awesome spot!', star: undefined }
     const { user } = req   //
-    // console.log(user)
-    // User {
-    //   dataValues: {
-    //     id: 4,
-    //     firstName: 'John',
-    //     lastName: 'Smith',
-    //     username: 'johnnysmith',
-    //     email: 'john.smith@gmail.com'
-    //   },
+
     const userId = user.dataValues.id //Id of current logged in user
   
     const spotId = req.params.spotId //spotId: '4'
@@ -477,8 +391,8 @@ router.get("/current", async (req, res) => {
 
 router.get("/:spotId/reviews", async (req, res) => {
   const { spotId } = req.params; // = req.params.spotId
-  const currentSpot = await Spot.findByPk(spotId);
-    const spotReview = await Review.findAll({
+  const currSpot = await Spot.findByPk(spotId);
+    const spotReviews = await Review.findAll({
     where: {
         spotId
     },include: [
@@ -487,9 +401,9 @@ router.get("/:spotId/reviews", async (req, res) => {
      ]
     
     })
-   if(currentSpot){
+   if(currSpot){
     res.status(200)
-    return res.json(spotReview)
+    return res.json(spotReviews)
        } else {
         res.json({
             message: "Spot couldn't be found",
@@ -591,23 +505,50 @@ router.post('/:spotId/bookings',requireAuth,restoreUser, async (req, res) => {
 
 router.delete("/:spotId",requireAuth,restoreUser, async (req, res) => {
   const { spotId } = req.params;
-  const currSpot = await Spot.findByPk(spotId);
+  const destorySpot = await Spot.findByPk(spotId);
 
 
-  if (!currSpot) {
+  if (!destorySpot) {
     res.status(404);
     return res.json({
       message: "Spot couldn't be found",
       statusCode: 404,
     });
   }
-  await currSpot.destroy();
+  await destorySpot.destroy();
   res.json({
     message: "Successfully deleted",
     statusCode: 200,
   });
   
 });
+
+
+//  CREATE A SPOT
+// router.post('/', requireAuth, async (req,res)=>{
+//   const { address, city, state, country, lat, lng, name, description, price } = req.body
+//   // const loggeduser = await User.findByPk(User.Id)
+//   const loggeduser = req.user.id
+//               const createdSpot = await Spot.create({
+//                   ownerId: loggeduser,
+//                   // user,
+//                   // userid,
+//                   address,
+//                   city, 
+//                   state, 
+//                   country, 
+//                   lat, 
+//                   lng, 
+//                   name, 
+//                   description, 
+//                   price
+//               })
+              
+//               res.status(201)
+//               res.json(createdSpot)
+//           })
+          
+// query for spots
 
 
 module.exports = router;
