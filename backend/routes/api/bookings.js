@@ -50,7 +50,7 @@ router.put('/:bookingId', requireAuth, restoreUser, async (req, res, next) => {
   let now = Date.now()     // date.now()  returns the number of milliseconds elapsed since January 1
   let bookingdate = new Date(editBooking.endDate)  // new Date key into the newbooking to get endDate
 
-  if (now > bookingdate) {     // if greater than booking date
+  if (now > bookingdate) {     // if our curr date is greater than our booking then throw error
     res.json({
       message: "Past bookings can't be modified",
       statusCode: 403

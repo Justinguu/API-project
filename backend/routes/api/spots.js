@@ -241,7 +241,7 @@ router.post('/:spotId/images', restoreUser, async (req, res, next) => {
     })
   }
 
-  // CREATE
+
   const image = await Image.create({ url, previewImage, spotId, userId: user.id})
 
   //DEFINE AN OBJECT IN ORDER TO MAKE THE ASSOCIATION
@@ -300,7 +300,7 @@ router.put("/:spotId", requireAuth,restoreUser, async (req, res) => {
 //Create a Review for a Spot based on the Spot's id
 router.post('/:spotId/reviews',requireAuth, restoreUser,async (req, res) => {
     const { review, stars } = req.body; // { review: 'This was an awesome spot!', star: undefined }
-    const { user } = req   //
+    const { user } = req   // destructering user to be able to use id
 
     const userId = user.dataValues.id //Id of current logged in user
   
@@ -313,7 +313,7 @@ router.post('/:spotId/reviews',requireAuth, restoreUser,async (req, res) => {
       include: [{
         model: Spot,
         where: {
-          id: spotId
+          id: spotId  //grabbing spot id from model of spot
         }
       }
       ]
@@ -322,8 +322,8 @@ router.post('/:spotId/reviews',requireAuth, restoreUser,async (req, res) => {
     //* Error response: Review from the current user already exists for the Spot
     if (spot) {
       let reviewed;
-      for (let reviews of allReviews) {
-        if (reviews.userId === userId) {
+      for (let review of allReviews) {       //check review if it already exists
+        if (review.userId === userId) {
           reviewed = true
         }
       }
@@ -349,7 +349,7 @@ router.post('/:spotId/reviews',requireAuth, restoreUser,async (req, res) => {
         })
       }
       else {
-        const spotReview = await Review.create({
+        const spotReview = await Review.create({     //finally create review
           userId, spotId, review, stars
         })
         res.json(spotReview)
@@ -563,15 +563,15 @@ router.delete("/:spotId",requireAuth,restoreUser, async (req, res) => {
 //               res.json(createdSpot)
 //           })
           
-// query for spots
+// query for spots  + GET ALL SPOTS
 
 // Return spots filtered by query parameters.
 router.get('/', async (req, res) => {
-  let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query
+  let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query //destructering
 
-  let where = {};
+  let where = {};  // putting into object
 
-  if (minLat) {
+  if (minLat) {                    //if destructured exists were going to assign them to key value pair.
       where.minLat = minLat
   }
   if (maxLat) {
@@ -590,13 +590,13 @@ router.get('/', async (req, res) => {
       where.maxPrice = maxPrice
   }
 
-  page = parseInt(page);
+  page = parseInt(page); // turning it into an intger
   size = parseInt(size);
 
-  if (Number.isNaN(page) || !page) page = 1;
+  if (Number.isNaN(page) || !page) page = 1;  //if it doesnt exist  or not a number gonna default gonna become page 1 or 2
   if (Number.isNaN(size) || !size) size = 20;
 
-  if ((page < 1 || page > 10) || (size < 1 || size > 20)) {
+  if ((page < 1 || page > 10) || (size < 1 || size > 20)) {      //the constraints they gave us and itll throw an error
       res.status(400)
       res.json({
           message: "Validation Error",
@@ -608,23 +608,23 @@ router.get('/', async (req, res) => {
       })
   }
 
-  if (req.query.page && req.query.size) {
+  if (req.query.page && req.query.size) {  // accessing req to pull out req and size 
       
-      const allSpots = await Spot.findAll({
-          where: { ...where },
+      const allSpots = await Spot.findAll({   // finding all our spots
+          where: { ...where },     // spreading our destructuring
           group: ['Spot.id'],
           raw: true, //method to convert out from findByPk && findOne into raw data aka JS object... otherise data will resemble console.log(req)
           limit: size,
-          offset: size * (page - 1),
+          offset: size * (page - 1),   // doing pagination
       })
 
       //Part 2 - Associate previewImage with Spots
       //Iterate through each spot in allSpots variable
-      for (let spot of allSpots) {
+      for (let spot of allSpots) {                //itteating through our spot to find our image
           const image = await Image.findOne({
               attributes: ['url'],
               where: {
-                  previewImage: true,
+                  previewImage: true,     
                   spotId: spot.id
               },
               raw: true
@@ -639,14 +639,15 @@ router.get('/', async (req, res) => {
       }
 
       res.json({
-          allSpots,
+          allSpots,    // include print page and size
           page,
           size
       });
 
   } else {
 
-      // GET ALL SPOTS + PAGINATION
+      // GET ALL SPOTS EXCLUDING PAGINATION
+
       const allSpots = await Spot.findAll({
           attributes: {
               include: [
@@ -654,15 +655,16 @@ router.get('/', async (req, res) => {
               ]
           },
           include: [     //Provide access to Review model from associations
-              { model: Review, attributes: [] }
+              { model: Review, attributes: [] }   // empty to not show review attributes.
           ],
-          group: ['Spot.id'],
-          raw: true //method to convert out from findByPk && findOne into raw data aka JS object... otherise data will resemble console.log(req)
+          group: ['Spot.id'],   // needed in order to return all spots, was causing errors without it,    only returns first spot, almost like a push concept to show us all 
+          raw: true //method to convert out from findByPk && findOne into raw data aka JS object... console.log(raw:true) excludes unneeded data to show what is needed from allSpots
+         
       })
-
+              // console.log(allSpots)
       //Part 2 - Associate previewImage with Spots
       //Iterate through each spot in allSpots variable
-      for (let spot of allSpots) {
+      for (let spot of allSpots) {             //adding preview image
           const image = await Image.findOne({
               attributes: ['url'],
               where: {
