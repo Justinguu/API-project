@@ -77,7 +77,8 @@ router.post('/:reviewId/images', requireAuth, restoreUser, async (req, res) => {
 
 
   //IF USER DOESN'T EXIST - THROW ERROR
-  if (!user) return res.status(401).json({ "message": "You need to be logged in to make any changes", "statusCode": 401 })
+  if (!user) return res.status(401).json
+  ({ "message": "You need to be logged in to make any changes", "statusCode": 401 })
 
 
   const review = await Spot.findByPk(reviewId)   //CONFIRM IF SPOT ID EXISTS

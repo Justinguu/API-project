@@ -171,48 +171,7 @@ router.post("/", requireAuth, async (req, res) => {
 });
 
 
-//CREATE AN IMAGE FOR A SPOT & ERROR
 
-//### Add an Image to a Spot based on the Spot's id - COMPLETE
-// router.post('/:spotId/images', restoreUser, async (req, res, next) => {
-
-//   // DECONSTRUCT SPOT ID
-//   const spotId = req.params = req.params.spotId;
-
-//   //DECONSTRUCT USER, URL & PREVIEW IMAGE
-//   const { user } = req
-//   const { url, previewImage } = req.body
-
-
-//   //IF USER DOESN'T EXIST - THROW ERROR
-//   if (!user) return res.status(401).json({ "message": "You need to be logged in to make any changes", "statusCode": 401 })
-
-
-//   //CONFIRM IF SPOT ID EXISTS
-//   const spot = await Spot.findByPk(spotId)
-
-
-//   //THROW ERROR IF SPOT COULD NOT BE FOUND
-//   if (!spot) {
-//     res.status(404)
-//     return res.json({
-//       "message": "Spot couldn't be found",
-//       "statusCode": 404
-//     })
-//   }
-
-//   // CREATE
-//   const image = await Image.create({ url, previewImage, spotId, userId: user.id})
-
-//   //DEFINE AN OBJECT IN ORDER TO MAKE THE ASSOCIATION
-//   const object = {}
-//   object.id = image.id
-//   object.imageableId = parseInt(spotId)
-//   object.url = image.url
-
-//   res.status(200).json(object)
-
-// })
 //### Add an Image to a Spot based on the Spot's id - COMPLETE
 router.post('/:spotId/images', restoreUser, async (req, res, next) => {
 
@@ -307,8 +266,7 @@ router.post('/:spotId/reviews',requireAuth, restoreUser,async (req, res) => {
     const spotId = req.params.spotId //spotId: '4'
     const spot = await Spot.findByPk(spotId)
   
-    //* Error response: Review from the current user already exists
-    //for the Spot
+  
     const allReviews = await Review.findAll({
       include: [{
         model: Spot,
@@ -464,7 +422,7 @@ router.post('/:spotId/bookings',requireAuth,restoreUser, async (req, res) => {
   const { user } = req
   const userId = user.dataValues.id
 
-  const allBoookings = await Booking.findAll({
+  const allBoookings = await Booking.findAll({   
       include: [
           { model: Spot, where: { id: spotId } }
       ]
@@ -539,29 +497,6 @@ router.delete("/:spotId",requireAuth,restoreUser, async (req, res) => {
 });
 
 
-//  CREATE A SPOT
-// router.post('/', requireAuth, async (req,res)=>{
-//   const { address, city, state, country, lat, lng, name, description, price } = req.body
-//   // const loggeduser = await User.findByPk(User.Id)
-//   const loggeduser = req.user.id
-//               const createdSpot = await Spot.create({
-//                   ownerId: loggeduser,
-//                   // user,
-//                   // userid,
-//                   address,
-//                   city, 
-//                   state, 
-//                   country, 
-//                   lat, 
-//                   lng, 
-//                   name, 
-//                   description, 
-//                   price
-//               })
-              
-//               res.status(201)
-//               res.json(createdSpot)
-//           })
           
 // query for spots  + GET ALL SPOTS
 
@@ -661,7 +596,7 @@ router.get('/', async (req, res) => {
           raw: true //method to convert out from findByPk && findOne into raw data aka JS object... console.log(raw:true) excludes unneeded data to show what is needed from allSpots
          
       })
-              // console.log(allSpots)
+              console.log(allSpots)
       //Part 2 - Associate previewImage with Spots
       //Iterate through each spot in allSpots variable
       for (let spot of allSpots) {             //adding preview image
@@ -673,6 +608,7 @@ router.get('/', async (req, res) => {
               },
               raw: true
           })
+          console.log(spot)
 
           //Determine if image contains a url link
           if (image) { // if image exists, set the url of the image equal to the value of previewImage
