@@ -1,6 +1,6 @@
 // backend/routes/api/session.js
 const express = require('express')
-const { setTokenCookie, requireAuth } = require('../../utils/auth');  // USER LOGIN API ROUTE
+const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');  // USER LOGIN API ROUTE
 const { User } = require('../../db/models');
 const { check } = require('express-validator'); //line 5 & 6 checking validation login request body
 const { handleValidationErrors } = require('../../utils/validation');
@@ -60,9 +60,28 @@ router.delete(
   }
 );
 
-router.get("/", requireAuth, async (req, res) => {
-  res.json(req.user)
-});
+
+// needed to put back Restore session user and take out GET current user for authMe frontend to work
+
+// Restore session user
+router.get(
+  '/',
+  restoreUser,
+  (req, res) => {
+    const { user } = req;
+    if (user) {
+      return res.json({
+        user: user.toSafeObject()
+      });
+    } else return res.json({});
+  }
+);
+
+// // GET current user
+// router.get('/', requireAuth, async (req, res) => {
+//   res.json(req.user)
+// })
+
 
 
 module.exports = router;
