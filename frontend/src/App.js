@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import GetAllSpts from "./components/Spots/GetAllSpts";
 
 function App() {
   const dispatch = useDispatch();
@@ -13,6 +14,11 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+
+  // useEffect(() => {
+  //   dispatch(spotActions.getAllSpotsThunk())
+  // },[dispatch])
+
   return (
     <>
       <Navigation isLoaded={isLoaded} />
@@ -20,6 +26,9 @@ function App() {
         <Switch>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path="/">  
+            <GetAllSpts/>
           </Route>
         </Switch>
       )}

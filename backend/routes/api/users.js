@@ -2,7 +2,6 @@
 // backend/routes/api/users.js
 const express = require('express')
 const { setTokenCookie } = require('../../utils/auth');
-const { requireAuth, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
