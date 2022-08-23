@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 //DEFINE TYPES
 const READ = '/spots/read'
+const GETSPOTINFO = '/spots/getspotinfo'
 const CREATE = '/spots/create'
 const UPDATE = '/spots/update'
 const DELETE = '/spots/delete'
@@ -14,6 +15,12 @@ export const GetAllTheSpots = (spots) => {
         spots,
     };
 };
+export const getCurrentSpot = (spot) => {
+    return {
+        type: GETSPOTINFO,
+        spot
+    }
+}
 export const createTheSpot = (spot) => {
     return {
         type: CREATE,
@@ -48,8 +55,21 @@ export const getAllSpotsThunk = () => async (dispatch) => {
     return response
 };
 
-export const CreateSpotThunk = payload => async dispatch => {
-    const response = await csrfFetch(`/api/currentUser/spots`, {
+export const getCurrSpotThunk = (id) => async (dispatch) => {
+    // console.log('id-----:',id)
+    const response = await csrfFetch(`/api/spots/${id}`);
+    if (response.ok) {
+      const spot = await response.json();
+      // console.log('after spot---:',spot)
+      dispatch(getCurrentSpot(spot))
+      // console.log('after dispatch spot---:',spot)
+      return spot
+    }
+    return response
+  };
+
+export const createSpotThunk = payload => async dispatch => {
+    const response = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: {
         "Content-Type": "application/json"
@@ -60,8 +80,11 @@ export const CreateSpotThunk = payload => async dispatch => {
     if (response.ok) {
         const data = await response.json()
         dispatch(createTheSpot(data))
-        return data.id
-    } else throw response
+        return data
+    } 
+
+  const errors = await response.json()
+  return errors
 };
 
 export const updateSpotThunk = payload => async dispatch => {
@@ -94,14 +117,20 @@ export const DeleteSpotThunk = id => async dispatch => {
 
 const spotsReducer = (state = {}, action)  => {
 
-    
+    let newState
     switch(action.type) {
+        
         case READ:
-            let newState = { ...state }
+            newState = { ...state }
             action.spots.forEach(spot => { 
               newState[spot.id] = spot
             })
             return newState
+            case GETSPOTINFO:
+                newState = { ...state }
+                newState.spotDetails ={}
+                newState.spotDetails[action.spot.id] = action.spot
+                return newState
         // case DELETE:
         //     newState = {...state}
         //     delete newState[action.id]
@@ -110,10 +139,10 @@ const spotsReducer = (state = {}, action)  => {
         //     newState = {...state}
         //     newState[action.spot.id] = action.spot
         //     return newState
-        // case CREATE:
-        //     newState = {...state}
-        //     newState[action.spot.id] = action.spot
-        //     return newState
+        case CREATE:
+            newState = {...state}
+            newState[action.spot.id] = action.spot
+            return newState
         default:
             return state
     }
