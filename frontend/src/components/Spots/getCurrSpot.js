@@ -1,23 +1,23 @@
-import { useParams, useHistory } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import {useEffect, useState} from 'react'
 import { getCurrSpotThunk } from "../../store/spots"
 
 
 //Get One Spot
-export default function getSingleSpot () {
+export default function GetSingleSpot () {
+    const [isLoaded , setIsLoaded] = useState(false)
     
     const {spotId} = useParams();
-    const [isLoaded , setIsLoaded] = useState(false)
-    console.log('spotId', spotId)
-    const currSpot = useSelector(state => state.spots.spotDetails?.[spotId])
-    console.log('currSpot',currSpot )
+    // console.log('spotId', spotId) //take out after working
+    const currSpot = useSelector(state => state.spots[spotId])
+    // console.log('currSpot',currSpot ) //take out after working
   
   
   
     const dispatch = useDispatch();
     useEffect(() => {
-      dispatch(getCurrSpotThunk(spotId)).then((res) => setIsLoaded(true))
+      dispatch(getCurrSpotThunk(spotId)).then(() => setIsLoaded(true))
       },[dispatch])
 
 
@@ -26,7 +26,7 @@ export default function getSingleSpot () {
             <>
             <div>Current Spot</div>
             <div>
-                <ul>{oneSpot.address}</ul>
+                <ul>{currSpot.address}</ul>
             </div>
             </>
         )

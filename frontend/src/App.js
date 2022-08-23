@@ -7,7 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import GetAllSpts from "./components/Spots/GetAllSpts";
 import CreateSpotForm from "./components/Spots/CreateSpot";
-// import CreateSpot from "./components/Spots/CreateSpot";
+import GetSingleSpot from "./components/Spots/GetCurrSpot"
 
 
 function App() {
@@ -18,26 +18,24 @@ function App() {
   }, [dispatch]);
 
 
-  // useEffect(() => {
-  //   dispatch(spotActions.getAllSpotsThunk())
-  // },[dispatch])
+
 
   return (
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/signup">
+          <Route exact path="/spots/create">
+            <CreateSpotForm />
+          </Route>
+            <Route exact path="/spots/:spotId">
+              <GetSingleSpot/>
+            </Route>
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
           <Route exact path="/">  
             <GetAllSpts/>
-            <Route path='spots/:spotId'>
-              <getSingleSpot/>
-            </Route>
-          </Route>
-          <Route path="/spots/create">
-            <CreateSpotForm />
           </Route>
         </Switch>
       )}

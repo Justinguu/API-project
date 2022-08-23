@@ -166,10 +166,10 @@ router.post("/", requireAuth, async (req, res) => {
         price: "Price per day is required",
       },
     });
+    
   }
-  res.json(createSpot);
+  // res.json(createSpot);  // commented out bc of bill
 });
-
 
 
 //### Add an Image to a Spot based on the Spot's id - COMPLETE
@@ -292,7 +292,7 @@ router.post('/:spotId/reviews',requireAuth, restoreUser,async (req, res) => {
           statusCode: 403
         })
       }
-  
+          
       // //* Error Response: Body validation errors - COMPLETE
       //console.log(stars) //0
       else if (stars < 1 || stars > 5) {

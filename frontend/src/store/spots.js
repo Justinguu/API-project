@@ -60,21 +60,21 @@ export const getCurrSpotThunk = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${id}`);
     if (response.ok) {
       const spot = await response.json();
-      // console.log('after spot---:',spot)
+      console.log('after spot---:',spot)
       dispatch(getCurrentSpot(spot))
-      // console.log('after dispatch spot---:',spot)
+      console.log('after dispatch spot---:',spot)
       return spot
     }
     return response
   };
 
-export const createSpotThunk = payload => async dispatch => {
+export const createSpotThunk = spot => async dispatch => {
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: {
         "Content-Type": "application/json"
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(spot)
     })
 
     if (response.ok) {
@@ -82,9 +82,8 @@ export const createSpotThunk = payload => async dispatch => {
         dispatch(createTheSpot(data))
         return data
     } 
-
-  const errors = await response.json()
-  return errors
+//   const errors = await response.json()
+//   return errors
 };
 
 export const updateSpotThunk = payload => async dispatch => {
@@ -127,18 +126,18 @@ const spotsReducer = (state = {}, action)  => {
             })
             return newState
             case GETSPOTINFO:
-                newState = { ...state }
-                newState.spotDetails ={}
-                newState.spotDetails[action.spot.id] = action.spot
+                newState= {...state }
+                // newState.spotDetails = {}
+                newState[action.spot.id] = action.spot
                 return newState
         // case DELETE:
         //     newState = {...state}
         //     delete newState[action.id]
         //     return newState
-        // case UPDATE:
-        //     newState = {...state}
-        //     newState[action.spot.id] = action.spot
-        //     return newState
+        case UPDATE:
+            newState = {...state}
+            newState[action.spot.id] = action.spot
+            return newState
         case CREATE:
             newState = {...state}
             newState[action.spot.id] = action.spot
