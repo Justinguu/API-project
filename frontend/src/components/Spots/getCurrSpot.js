@@ -8,7 +8,7 @@ import EditSpotForm from './EditForm'
 
 const GetSpotDetails = () => {
     const [showUpdate, setShowUpdate] = useState(false);
-    const [hasUdpated, setHasUpdate] = useState(false);
+
 
     const [isLoaded, setIsLoaded] = useState(false)
 
@@ -29,7 +29,7 @@ const GetSpotDetails = () => {
                 <div>Current Spot:</div>
                 <div>
                     <li>{currSpot.address}</li>
-                    console.log(currSpot.address)
+                
                 </div>
                 <EditSpotForm spotId={spotId} setShowUpdate={setShowUpdate} />
             </>
