@@ -176,7 +176,10 @@ return(
             value={previewImage}
           />
         </div>
-                <button>Create Spot</button>
+                <button
+                className='create-spot-bttn'
+                type="submit"
+                >Create Spot</button>
 
     </form>
     )
