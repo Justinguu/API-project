@@ -7,7 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import GetAllSpts from "./components/Spots/GetAllSpts";
 import CreateSpotForm from "./components/Spots/CreateSpot";
-import GetSingleSpot from "./components/Spots/GetCurrSpot"
+import GetSpotDetails from "./components/Spots/GetCurrSpot"
 
 
 
@@ -30,7 +30,7 @@ function App() {
             <CreateSpotForm />
           </Route>
             <Route exact path="/spots/:spotId">
-              <GetSingleSpot />
+              <GetSpotDetails />
             </Route>
           <Route exact path="/signup">
             <SignupFormPage />
