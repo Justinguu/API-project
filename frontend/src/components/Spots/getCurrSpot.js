@@ -1,36 +1,41 @@
-import { useParams } from "react-router-dom"
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {useEffect, useState} from 'react'
-import { getCurrSpotThunk } from "../../store/spots"
+import { useParams } from "react-router-dom"
+import { getCurrSpotThunk } from '../../store/spots'
+import EditSpotForm from './EditForm'
 
 
-//Get One Spot
-export default function GetSingleSpot () {
-    const [isLoaded , setIsLoaded] = useState(false)
-    
-    const {spotId} = useParams();
-    // console.log('spotId', spotId) //take out after working
+
+const GetSpotDetails = () => {
+    const [showUpdate, setShowUpdate] = useState(false);
+    const [hasUdpated, setHasUpdate] = useState(false);
+
+    const [isLoaded, setIsLoaded] = useState(false)
+
+    const { spotId } = useParams()
+    // console.log('spotId', spotId)
     const currSpot = useSelector(state => state.spots[spotId])
-    // console.log('currSpot',currSpot ) //take out after working
-  
-  
-  
-    const dispatch = useDispatch();
+    // console.log('currSpot', currSpot)
+
+    const dispatch = useDispatch()
+
     useEffect(() => {
-      dispatch(getCurrSpotThunk(spotId)).then(() => setIsLoaded(true))
-      },[dispatch])
+        dispatch(getCurrSpotThunk(spotId)).then(() => setIsLoaded(true))
+    }, [dispatch])
 
-
-    return(
+    return (
         isLoaded && (
             <>
-            <div>Current Spot</div>
-            <div>
-                <ul>{currSpot.address}</ul>
-            </div>
+                <div>Current Spot:</div>
+                <div>
+                    <li>{currSpot.address}</li>
+                </div>
+                <EditSpotForm spotId={spotId} setShowUpdate={setShowUpdate} />
             </>
         )
     )
-       
-    }
- 
+
+}
+
+
+export default GetSpotDetails

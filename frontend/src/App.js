@@ -10,6 +10,7 @@ import CreateSpotForm from "./components/Spots/CreateSpot";
 import GetSingleSpot from "./components/Spots/GetCurrSpot"
 
 
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -29,7 +30,7 @@ function App() {
             <CreateSpotForm />
           </Route>
             <Route exact path="/spots/:spotId">
-              <GetSingleSpot/>
+              <GetSingleSpot />
             </Route>
           <Route exact path="/signup">
             <SignupFormPage />

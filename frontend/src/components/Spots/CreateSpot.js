@@ -1,7 +1,8 @@
 
 import {createSpotThunk} from '../../store/spots'
-import {useState, useEffect, Redirect} from 'react';
+import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {Redirect} from 'react-router-dom'
 
 
 export default function CreateSpotForm() {
@@ -175,7 +176,7 @@ return(
             value={previewImage}
           />
         </div>
-                <button>CreateSpot</button>
+                <button>Create Spot</button>
 
     </form>
     )

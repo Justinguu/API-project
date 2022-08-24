@@ -60,9 +60,9 @@ export const getCurrSpotThunk = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${id}`);
     if (response.ok) {
       const spot = await response.json();
-      console.log('after spot---:',spot)
+    //   console.log('after spot---:',spot)
       dispatch(getCurrentSpot(spot))
-      console.log('after dispatch spot---:',spot)
+    //   console.log('after dispatch spot---:',spot)
       return spot
     }
     return response
@@ -87,7 +87,7 @@ export const createSpotThunk = spot => async dispatch => {
 };
 
 export const updateSpotThunk = payload => async dispatch => {
-    const response = await csrfFetch(`/api/currentUser/spots/${payload.id}`, {
+    const response = await csrfFetch(`/api/spots/${payload.id}`, {
         method: 'PUT',
         headers: {
         "Content-Type": "application/json"
@@ -125,15 +125,14 @@ const spotsReducer = (state = {}, action)  => {
               newState[spot.id] = spot
             })
             return newState
-            case GETSPOTINFO:
+        case GETSPOTINFO:
                 newState= {...state }
-                // newState.spotDetails = {}
                 newState[action.spot.id] = action.spot
                 return newState
-        // case DELETE:
-        //     newState = {...state}
-        //     delete newState[action.id]
-        //     return newState
+        case DELETE:
+            newState = {...state}
+            delete newState[action.id]
+            return newState
         case UPDATE:
             newState = {...state}
             newState[action.spot.id] = action.spot
