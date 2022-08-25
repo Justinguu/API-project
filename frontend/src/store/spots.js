@@ -56,34 +56,28 @@ export const getAllSpotsThunk = () => async (dispatch) => {
 };
 
 export const getCurrSpotThunk = (id) => async (dispatch) => {
-    // console.log('id-----:',id)
+  
     const response = await csrfFetch(`/api/spots/${id}`);
     if (response.ok) {
       const spot = await response.json();
-    //   console.log('after spot---:',spot)
       dispatch(getCurrentSpot(spot))
-    //   console.log('after dispatch spot---:',spot)
+    
       return spot
     }
-    return response
   };
 
 export const createSpotThunk = spot => async dispatch => {
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
-        headers: {
-        "Content-Type": "application/json"
-        },
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify(spot)
     })
-
     if (response.ok) {
         const data = await response.json()
         dispatch(createTheSpot(data))
         return data
     } 
-//   const errors = await response.json()
-//   return errors
+return response
 };
 
 export const updateSpotThunk = payload => async dispatch => {
@@ -100,8 +94,8 @@ export const updateSpotThunk = payload => async dispatch => {
     };
 };
 
-export const DeleteSpotThunk = id => async dispatch => {
-    const response = await csrfFetch(`/api/currentUser/spots/${id}`, {
+export const deleteSpotThunk = id => async dispatch => {
+    const response = await csrfFetch(`api/spots/${id}`, {
         method: 'DELETE'
     })
 
@@ -109,13 +103,11 @@ export const DeleteSpotThunk = id => async dispatch => {
         const data = response.json()
         dispatch(deleteTheSpot(id))
         return data
-    } else throw response
+    } 
 }
 
 
-
 const spotsReducer = (state = {}, action)  => {
-
     let newState
     switch(action.type) {
         
@@ -129,18 +121,18 @@ const spotsReducer = (state = {}, action)  => {
                 newState= {...state }
                 newState[action.spot.id] = action.spot
                 return newState
-        case DELETE:
-            newState = {...state}
-            delete newState[action.id]
-            return newState
-        case UPDATE:
-            newState = {...state}
-            newState[action.spot.id] = action.spot
-            return newState
-        case CREATE:
-            newState = {...state}
-            newState[action.spot.id] = action.spot
-            return newState
+                case CREATE:
+                    newState = {...state}
+                    newState[action.spot.id] = action.spot
+                    return newState
+                    case UPDATE:
+                        newState = {...state}
+                        newState[action.spot.id] = action.spot
+                        return newState
+                        case DELETE:
+                            newState = {...state}
+                            delete newState[action.id]
+                            return newState
         default:
             return state
     }

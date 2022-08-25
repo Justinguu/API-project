@@ -8,6 +8,8 @@ import Navigation from "./components/Navigation";
 import GetAllSpts from "./components/Spots/GetAllSpts";
 import CreateSpotForm from "./components/Spots/CreateSpot";
 import GetSpotDetails from "./components/Spots/GetCurrSpot"
+import CreateReviewForm from "./components/Reviews/SpotsReview";
+
 
 
 
@@ -26,6 +28,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+           <Route exact path="/spots/:id/review">
+                <CreateReviewForm />
+              </Route>
           <Route exact path="/spots/create">
             <CreateSpotForm />
           </Route>

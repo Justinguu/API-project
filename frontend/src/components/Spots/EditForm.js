@@ -7,7 +7,6 @@ import { getCurrSpotThunk, updateSpotThunk } from "../../store/spots";
 function EditSpotForm({ setShowUpdate }) {
 
   const user = useSelector(state => state.session.user)
-
   const { spotId } = useParams()
 
   const [name, setName] = useState('')
