@@ -19,7 +19,7 @@ const SpotDelete = ({spotId, setShowDelete}) => {
   return (
     <>
       <div className='delete-container'>
-      <p>Are you sure you want to Delete </p>
+      <p>Are you sure you want to Delete the Spot </p>
       <button className="delete-button" onClick={() => deleteHandle()}>YES</button>
       <button className="delete-button" onClick={() => setShowDelete(false)}>NO</button>
       </div>

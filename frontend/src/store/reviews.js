@@ -22,37 +22,39 @@ const deleteReview = (id) => ({
 
 //thunks
 export const getCurrReviewsThunk = (spotId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/reviews/spots/${spotId}`);
-
+  const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
   if (response.ok) {
     const reviews = await response.json();
     dispatch(getSpotReviews(reviews));
-    return reviews;
+
   }
+  return response
 };
 
 export const createReviewThunk = (review) => async (dispatch) => {
-  const response = await csrfFetch('/api/reviews/spots', {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(review),
-  });
+    const response = await csrfFetch(`/api/spots/${review.spotId}/reviews`, {
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(review)
+    });
+  
+    if (response.ok) {
+      const spotReview = await response.json();
+     return dispatch(createReview(spotReview));
+    }
+    return response;
+  };
 
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(createReview(data));
-    return data;
-  }
-};
-
-export const deleteReviewThunk = (id) => async (dispatch) => {
-  const response = await csrfFetch(`/api/reviews/${id}`, {
+export const deleteReviewThunk = (reviewId) => async (dispatch) => {
+  const response = await csrfFetch(`api/spots/${reviewId}/reviews`, {
     method: "DELETE",
   });
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(deleteReview(id));
+    dispatch(deleteReview(reviewId));
     return data;
   }
 };
@@ -65,14 +67,18 @@ const reviewReducer = (state = {}, action) => {
     
         case LOADSPOTREVIEWS: 
     newState = {...state }
+    //  console.log('action-------',action)
       action.reviews.forEach(review => {
         newState[review.id] = review
       })
+    
       return newState
+      
         case CREATEREVIEW: 
     newState = {...state}
-    newState[action.spot.id] = action.spot
+    newState[action.review.id] = action.review
     return newState
+
         case DELETEREVIEW: {
         newState = {...state}
         delete newState[action.id]

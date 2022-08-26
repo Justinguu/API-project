@@ -1,0 +1,26 @@
+a {
+    color: black;
+    text-decoration: none;
+}
+div{
+    font-family: Circular, -apple-system, "system-ui", Roboto, Helvetica Neue,
+    sans-serif;
+    text-decoration: underline;
+}
+.div > individual-spot-info{
+    display: flex;
+    justify-content: space-evenly;
+    /* border: 2px solid red; */
+    flex-wrap: wrap;
+    margin: 3%;
+    gap: 1%;
+
+}
+
+.allSpots-stuff{
+    display: inline-flex;
+    height: 400px;
+    width:320px;
+    padding: 3px;
+    margin: 1px
+}

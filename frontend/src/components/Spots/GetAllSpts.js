@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import { getAllSpotsThunk } from '../../store/spots'
 
 
+
+
 const GetAllSpots = () => {
 
     const [isLoaded, setIsLoaded] = useState(false)
@@ -25,12 +27,20 @@ const GetAllSpots = () => {
         isLoaded && (
             <>
             <div>All Spots</div>
-                <div>
-                    <ul>
+                <div className='allSpots-stuff'>
+                    <div>
                         {allSpotsArr.map((spot) => (
-                            <li key={spot.id}>{spot.name}</li>
+                            <div className='individual-spot-info' key={spot.id}>
+                                {spot.name}
+                                {spot.city}
+                                {spot.state}
+                                {spot.avgRating}
+                                {}
+
+                            </div>
+                            
                         ))}
-                    </ul>
+                    </div>
                 </div>
             </>
         )
@@ -38,22 +48,3 @@ const GetAllSpots = () => {
 }
 
 export default GetAllSpots
-// import { useEffect } from "react";
-// import { useSelector, useDispatch } from "react-redux";
-// import { GetAllSpotsThunk } from "../../store/spots";
-
-
-// const GetAllSpts = () => {
-//     const hSpots = useSelector((state) => state.spots)
-//     const ModSpots = Object.values(hSpots)
-//     const dispatch = useDispatch();
-
-//     useEffect(() => {
-//         dispatch(GetAllSpotsThunk());
-//     }, [dispatch])
-//     if (!ModSpots){
-//         return null
-//     }
-// }
-
-// export default GetAllSpts
