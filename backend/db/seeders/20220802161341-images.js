@@ -5,21 +5,21 @@ module.exports = {
     
      await queryInterface.bulkInsert('Images', [
       {
-      url: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+      url: 'https://cdn.pixabay.com/photo/2016/06/24/10/47/house-1477041__340.jpg',
       previewImage: true,
       spotId: 2,
       reviewId: null,
       userId: 1
      },
      {
-      url: 'www.HouseForRent1.com',
+      url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
       previewImage: true,
       spotId: null,
       reviewId: 2,
       userId: 2
      },
      {
-      url: 'www.HouseForRent2.com',
+      url: 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
       previewImage: true,
       spotId: 3,
       reviewId: null,
