@@ -39,7 +39,7 @@ module.exports = {
           lng: -111.4730327,
           name: "The benelovent",
           description: "Place where dreams are created",
-          price: 200
+          price: 250
         },
         
      
