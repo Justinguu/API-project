@@ -27,19 +27,27 @@ const GetAllSpots = () => {
         isLoaded && (
             <>
             <div>All Spots</div>
-                <div className='allSpots-stuff'>
+            <div>
+              <div>
+                {allSpotsArr.map((spot) => (
+                  <ul key={spot.id}>
                     <div>
-                        {allSpotsArr.map((spot) => (
-                            <div className='individual-spot-info' key={spot.id}>
-                                {spot.name}
-                                {spot.city}
-                                {spot.state}
-                                {spot.avgRating}
-                                {}
-
-                            </div>
-                            
-                        ))}
+                      <img src={spot.previewImage}/>
+                    </div>
+                    <div>
+                      {spot.name}
+                    </div>
+                    <div>
+                      {spot.city}, {spot.state}
+                    </div>
+                    <div>
+                      {Number(spot.avgRating).toFixed(2)}
+                    </div>
+                    <div>
+                      {`$${spot.price} night`}
+                    </div>
+                  </ul>
+                ))}
                     </div>
                 </div>
             </>

@@ -5,7 +5,7 @@ module.exports = {
     
      await queryInterface.bulkInsert('Images', [
       {
-      url: 'www.HouseForRent.com',
+      url: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
       previewImage: true,
       spotId: 2,
       reviewId: null,
