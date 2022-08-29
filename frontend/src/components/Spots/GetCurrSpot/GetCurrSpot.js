@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from "react-router-dom"
-import { getCurrSpotThunk } from '../../store/spots'
-import { Modal } from '../../context/Modal'
-import EditSpotForm from './EditForm'
-import SpotDelete from './SpotDelete/deleteSpot'
-import ReviewGetComponent from "../../components/Reviews/ReviewGet"
-import ReviewDelete from '../Reviews/DeleteReview/deleteReview'
-
+import { getCurrSpotThunk } from '../../../store/spots'
+import { Modal } from '../../../context/Modal'
+import EditSpotForm from '../EditForm/EditForm'
+import SpotDelete from '../SpotDelete/deleteSpot'
+import ReviewGetComponent from "../../Reviews/ReviewGet"
+import "./GetCurrSpot.css"
 
 
 const GetSpotDetails = () => {
@@ -19,15 +18,20 @@ const GetSpotDetails = () => {
     const [showReviewDelete, setShowReviewDelete] = useState(false);
 
     const { spotId, reviewId } = useParams()
-    
+    const reviewss = useSelector(state => state.reviews) // added this reviewss
     const user = useSelector(state => state.session.user)
     const currSpot = useSelector(state => state.spots[spotId])
+
+    // const deleteReview = (e, id => { // added function
+    //     e.preventDefault()
+    //     dispatch(deleteReviewThunk(id))
+    // })
 
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getCurrSpotThunk(spotId)).then(() => setIsLoaded(true))
-    }, [dispatch])
+    }, [dispatch, spotId]) //added spotId
 
     const rating = currSpot?.avgStarRating == 0 ? "New" : currSpot?.avgStarRating
 
@@ -41,12 +45,15 @@ const GetSpotDetails = () => {
                     <p>Rating: {rating}</p>
                     <p>{currSpot.city}, {currSpot.state} {currSpot.country}</p>
                 </div>
+                {/* <div>
+                    {sessionUser.id === reviewId.userId && <button> onClick={(e) => deleteReview(e, reviewId)}</button>} 
+                </div> */}
                 <div>
                     {currSpot.ownerId === user?.id && (
                         <div>
                             <button onClick={() => setShowUpdate(true)}>Edit Spot</button>
                             <button onClick={() => setShowDelete(true)}>Delete Spot</button>
-                            <button onClick={() => setShowReviewDelete(true)}>Delete Review</button>
+                            {/* <button onClick={() => setShowReviewDelete(true)}>Delete Review</button> */}
                             {showUpdate && (
                                 <Modal onClose={() => setShowUpdate(false)}>
                                     <EditSpotForm spotId={spotId} setShowUpdate={setShowUpdate} />
@@ -57,11 +64,11 @@ const GetSpotDetails = () => {
                                     <SpotDelete spotId={spotId} setShowDelete={setShowDelete} />
                                 </Modal>
                             )}
-                            {showReviewDelete && (
+                            {/* {showReviewDelete && (
                                 <Modal onClose={() => setShowReviewDelete(false)} >
                                     <ReviewDelete reviewId={reviewId} setShowDelete={setShowReviewDelete} />
                                 </Modal>
-                            )}
+                            )} */}
                         </div>
                     )}
                     <ReviewGetComponent spotId={spotId} setReviews={setReviews} />

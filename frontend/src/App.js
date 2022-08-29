@@ -5,9 +5,9 @@ import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import GetAllSpts from "./components/Spots/GetAllSpts";
-import CreateSpotForm from "./components/Spots/CreateSpot";
-import GetSpotDetails from "./components/Spots/GetCurrSpot"
+import GetAllSpts from "./components/Spots/GetAllSpots/GetAllSpts";
+import CreateSpotForm from "./components/Spots/CreateSpot/CreateSpot"
+import GetSpotDetails from "./components/Spots/GetCurrSpot/GetCurrSpot"
 import CreateReviewForm from "./components/Reviews/CreateForm/createReview";
 
 

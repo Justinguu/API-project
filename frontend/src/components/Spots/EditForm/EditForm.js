@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { Redirect, useHistory, useParams } from "react-router-dom";
-import { getCurrSpotThunk, updateSpotThunk } from "../../store/spots";
+import { getCurrSpotThunk, updateSpotThunk } from '../../../store/spots'
+import './EditForm.css'
 
 
 function EditSpotForm({ setShowUpdate }) {
@@ -18,7 +19,8 @@ function EditSpotForm({ setShowUpdate }) {
   const [lng, setLng] = useState('')
   const [price, setPrice] = useState('')
   const [description, setDescription] = useState('')
-//   const [previewImage, setPreviewImage] = useState('')
+  const [previewImage, setPreviewImage] = useState('')
+
   const [errors, setErrors] = useState([])
   const [hasSubmitted, setHasSubmitted] = useState(false)
 
@@ -39,7 +41,7 @@ function EditSpotForm({ setShowUpdate }) {
 
     return setErrors(errors)
 
-  }, [name, address, city, state, country, lat, lng, price, description])
+  }, [name, address, city, state, country, lat, lng, price, description, previewImage])
 
   if (user === null) {
     alert("must be logged in to edit a spot")
@@ -53,7 +55,7 @@ function EditSpotForm({ setShowUpdate }) {
     if (errors.length > 0) return alert('cant submit')
 
     const updatedSpot = {
-      id: spotId, name, address, city, state, country, lat, lng, price, description
+      id: spotId, name, address, city, state, country, lat, lng, price, description, previewImage
     }
 
     const response = await dispatch(updateSpotThunk(updatedSpot))
@@ -64,6 +66,7 @@ function EditSpotForm({ setShowUpdate }) {
   return (
     <form
       onSubmit={onSubmit}
+      className="spot-form-update"
     >
       <div>
         <h3>Update Spot Form</h3>
@@ -148,15 +151,24 @@ function EditSpotForm({ setShowUpdate }) {
         <textarea
           type="text"
           value={description}
-          className="form-input last desc update"
+          className="form-input-description"
           placeholder="Description"
           maxLength='50'
           minLength='5'
           onChange={(e) => setDescription(e.target.value)}
           required
         />
+         <input
+          type="url"
+          name="preview-image"
+          className="form-input none update"
+          placeholder="Image URL"
+          value={previewImage}
+          onChange={(e) => setPreviewImage(e.target.value)}
+          required
+        />
       </div>
-      <button type="submit">Update Spot</button>
+      <button className="submit-button-update" type="submit">Update Spot</button>
     </form>
   )
 }

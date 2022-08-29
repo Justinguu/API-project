@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { getAllSpotsThunk } from '../../store/spots'
+import { getAllSpotsThunk } from '../../../store/spots'
+import "./Allspots.css"
 
 
 
@@ -8,6 +9,8 @@ import { getAllSpotsThunk } from '../../store/spots'
 const GetAllSpots = () => {
 
     const [isLoaded, setIsLoaded] = useState(false)
+
+
 
     const dispatch = useDispatch();
 
@@ -19,9 +22,7 @@ const GetAllSpots = () => {
         dispatch(getAllSpotsThunk()).then(setIsLoaded(true));
     }, [dispatch])
 
-    if (!allSpotsArr.length) {
-        return null
-    }
+ 
 
     return (
         isLoaded && (
@@ -31,8 +32,8 @@ const GetAllSpots = () => {
               <div>
                 {allSpotsArr.map((spot) => (
                   <ul key={spot.id}>
-                    <div>
-                      <img src={spot.previewImage}/>
+                    <div className="spot-display-image">
+                   <img className="preview-image" src={spot.previewImage} alt=""/>
                     </div>
                     <div>
                       {spot.name}
@@ -41,7 +42,8 @@ const GetAllSpots = () => {
                       {spot.city}, {spot.state}
                     </div>
                     <div>
-                      {Number(spot.avgRating).toFixed(2)}
+                    {spot.avgRating && (<span className="star-rating-container"> {spot.avgRating.toFixed(2)}<img className="star-icon" src={'https://i.pinimg.com/736x/1e/26/44/1e26444b739863fdf4b0ad49d163ff95.jpg'} alt="" />  </span>)}
+                   
                     </div>
                     <div>
                       {`$${spot.price} night`}

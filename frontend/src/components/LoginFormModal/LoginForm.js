@@ -22,42 +22,42 @@ function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <label>
-        Username or Email
+    <form className="login-form" onSubmit={handleSubmit}>
+      <div className="form-input-wrapper">
+        <div className="login-title-container">
+          <h3 id="login-title">Log in</h3>
+        </div>
         <input
           type="text"
+          autoComplete="false"
+          id="login-email-input"
+          className="login-input"
+          placeholder={'email'}
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Password
         <input
           type="password"
+          id="login-pw-input"
           value={password}
+          className="login-input"
+          placeholder={'password'}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-      </label>
-      <button type="submit">Log In</button>
-
-      <button
-      className='demo-bttn'
-      type='submit'
-      onClick={(e) => {
-        setCredential('Demo-lition')
-        setPassword('password')
-      }}
-      >Demo User</button>
+      </div>
+      <div className="login-errors-container">
+      {errors.length > 0 && (
+        <ul className="errors-list">
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+      )}
+      </div>
+      <button className="login-button" type="submit">Continue</button>
     </form>
-    
   );
 }
 

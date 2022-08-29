@@ -32,61 +32,71 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
-      First Name
-        <input
-          type="text"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          required
-        />
-         Last Name
-        <input
-          type="text"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          required
-        />
-      <label>
-        Email
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Username
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Confirm Password
-        <input
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Sign Up</button>
+    <form className="signup-form" onSubmit={handleSubmit}>
+      <div className="signup-form-wrapper">
+        <div className="signup-title">
+          <h4 className="signup-h3">Sign up</h4>
+        </div>
+        <div className="signup-welcome">
+          <h3 className="signup-welcome-h3">Welcome to JustinBnB</h3>
+        </div>
+        <div className="signup-input-wrapper">
+          <input
+            type="text"
+            value={firstName}
+            placeholder='First Name'
+            className='form-input first'
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            value={lastName}
+            placeholder='Last Name'
+            className='form-input none'
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            value={email}
+            className='form-input none'
+            placeholder='Email'
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            value={username}
+            className='form-input none'
+            placeholder='Username'
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            value={password}
+            className='form-input none'
+            placeholder='Password'
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            value={confirmPassword}
+            className='form-input last'
+            placeholder='Confirmed Password'
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+          <div className="signup-form-errors">
+            <ul className="errors-list">
+              {errors.length > 0 && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+        <button className="signup submit-button" type="submit">Continue</button>
     </form>
   );
 }

@@ -16,11 +16,15 @@ div{
     gap: 1%;
 
 }
+.star-icon {
+    height: 18px;
+    width: 18px;
+}
 
-.allSpots-stuff{
-    display: inline-flex;
+.preview-image {
+    /* display:flex;
+    justify-content:flex-start; */
+    place-self: center;
     height: 400px;
-    width:320px;
-    padding: 3px;
-    margin: 1px
+    width: 800px
 }

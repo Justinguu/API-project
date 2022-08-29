@@ -21,7 +21,7 @@
   height: 2.6em;
   border-radius: .5em;
   cursor: pointer;
-
+  transition: all 0.2s ease-in-out;
 }
 
 .login-button:active {
@@ -35,8 +35,15 @@
   padding-left: 1rem;
 }
 
+input.login-input:placeholder-shown {
+  padding-left: 1rem;
+}
 
-
+input:focus {
+  outline: none !important;
+  border: 10px solid black;
+  box-shadow: 0 0 5px #719ECE;
+}
 
 #login-email-input {
   border-radius: .5em .5em 0px 0px;
@@ -70,26 +77,21 @@
   min-height: 1.7em;
   border-bottom: 1px solid rgb(224, 219, 219);
   margin-top: -1.8em;
-  font-weight: 550;
+  font-weight: 500;
   font-size: large;
 }
-#Welcome-title {
-    text-align: left;
-    top: -0.5em;
-    min-width: 115%;
-    min-height: 1.7em;
-    margin-left: 3.0em;
-    margin-bottom: -3em;
-    font-weight: 500;
-    font-size: 20px
+
+.login-errors-container{
+  padding: 0;
+  margin: 0;
+  min-height: .6em;
 }
 
-.demo-bttn {
-  background: linear-gradient(0.25turn, #E61E4D, #D70666);
-  color: white;
-  border: none;
-  height: 2.6em;
-  border-radius: .5em;
-  cursor: pointer;
+.errors-list {
+  list-style: none;
+  padding-left: 1rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0;
+  color: rgb(212, 24, 24)
 }
-
