@@ -1,19 +1,25 @@
-// frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
+import { NavLink } from "react-router-dom";
 import * as sessionActions from '../../store/session';
-import {NavLink } from "react-router-dom"
-import './ProfileButton.css'
+import { useHistory } from 'react-router-dom';
+
+import './Navigation.css';
+
+const StyledNavLink2 = (props) => {
+  return <NavLink {...props} className={`${props.className} navlink-style-div`}/>
+}
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  
+  const history = useHistory();
+
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
   };
-  
+
   useEffect(() => {
     if (!showMenu) return;
 
@@ -22,29 +28,49 @@ function ProfileButton({ user }) {
     };
 
     document.addEventListener('click', closeMenu);
-  
+
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    history.push('/')
   };
 
   return (
     <>
-    <div className='host-hover-border'>
-        <NavLink to="/spots/create">Become a Host</NavLink>
-      </div>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
+      <li className="li-host">
+        <StyledNavLink2 to='/spots/new'>Become a host</StyledNavLink2>
+      </li>
+      <li>
+        <button onClick={openMenu} className="button-user">
+          <i className="fas fa-user-circle" />
+        </button>
+      </li>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout}>Log Out</button>
+          <li className="profile-content">{user.username}</li>
+          <li className="profile-content">{user.email}</li>
+          <li className="profile-content">
+
+            <button className="button-style">
+              <StyledNavLink2 to={`/spots/:spotId/review`}>
+                Create Reviews
+              </StyledNavLink2>
+            </button>
+          </li>
+          <li className="profile-content">
+
+            <button className="button-style">
+              <StyledNavLink2 to={`/spots/current`}>
+                My Spots
+              </StyledNavLink2>
+            </button>
+
+          </li>
+          <li className="profile-content">
+            <button onClick={logout} className="button-style">Log Out</button>
           </li>
         </ul>
       )}
