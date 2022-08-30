@@ -1,35 +1,27 @@
-// frontend/src/components/Navigation/index.js
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
+import logo from './Images/Logo.png'
 
-function Navigation({ isLoaded }){
+
+
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
-
-  let sessionLinks;
-  if (sessionUser) {
-    sessionLinks = (
-      <ProfileButton user={sessionUser} />
-    );
-  } else {
-    sessionLinks = (
-      <>
-        <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
-      </>
-    );
-  }
+  const history = useHistory()
 
   return (
-    
     <nav className='main-navbar'>
-      <div> <NavLink exact to="/"><img className='img' src={"https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png"}/></NavLink></div>
-       
-       <div>{isLoaded && sessionLinks}</div> 
-    
+      <div className='svg-container' onClick={() => history.push('/')}>
+        <img className='logo' src={logo} />
+      </div>
+      {isLoaded && (
+        <div className='right-profile-container'>
+          <ProfileButton user={sessionUser} isLoaded={isLoaded} />
+        </div>
+      )}
     </nav>
   );
 }

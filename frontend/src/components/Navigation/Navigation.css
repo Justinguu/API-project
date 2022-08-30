@@ -10,9 +10,9 @@ nav.main-navbar {
     height: 5em;
 }
 
-.img {
-    max-height: 100px;
-    max-width: 100px;
+.logo {
+    max-height: 160px;
+    max-width: 160px;
 }
 .entire-header {
     display: flex;

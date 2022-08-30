@@ -1,55 +1,61 @@
-import { useParams } from "react-router-dom"
-import { useSelector, useDispatch } from 'react-redux'
-import {useEffect} from 'react'
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 import { deleteReviewThunk, getCurrReviewsThunk } from "../../../store/reviews";
 
-
-
-export default function GetSpotReviews({sessionUser}){
-  const {spotId} = useParams();
-  const allReviews = useSelector(state => state.reviews)
+const GetSpotReviews = () => {
+  const { spotId } = useParams();
+  const spotIdParsed = parseInt(spotId);
+  const spot = useSelector((state) => state.spots[spotIdParsed]);
+ const [isLoaded, setIsLoaded] = useState(false);
+  const sessionUser = useSelector((state) => state.session.user);
   
-   
-    const releventReviews = Object.values(allReviews).map((review)=> {
-      // console.log(review)
-        // take all review and map obj, ask a question does review.id === spot.id
-        // return review.id === spot.id ? (
-        //     <div key={`review.id`}>
-        //         {review.review}
-        //     </div>
-        // ): null
-        return(
-          <div >
-            <div key={review.id}>{review.review} </div>
-            <div>{review.stars}</div>
-            
-        </div>
-        )
-    })
-     const deleteReview = (e, id) => {
-      e.preventDefault()
-      dispatch(deleteReviewThunk(id))
-     }
+  const allReviews = useSelector((state) => state.reviews);
+  const getAllReviewArr = Object.values(allReviews).map((review) => {
+    return (
+      <div key={review.id}>
+        {review.review}
+        {sessionUser.id === review.userId && (
+          <button onClick={(e) => deleteReview(e, review.id)}>
+            DeleteReview
+          </button>
+        )}
+      </div>
+    );
+  })
+
+ 
+
+
+
+
 
 
   const dispatch = useDispatch();
+
+  const deleteReview = (e, id) => {
+    e.preventDefault();
+    dispatch(deleteReviewThunk(id));
+  };
+
   useEffect(() => {
-    dispatch(getCurrReviewsThunk(spotId))
-    }, [dispatch,spotId])
+    dispatch(getCurrReviewsThunk(spotId)).then(() => setIsLoaded(true));
+  }, [dispatch, spotId]);
 
-    if(!allReviews.length){
-      return null
-    }
-
-  
+  if (!getAllReviewArr.length) {
+    return null;
+  }
 
   return (
+    isLoaded && (
+      <div>
+        <h2>Reviews: </h2>
+        <ul>
+         {getAllReviewArr}
+        </ul>
+      </div>
+    )
+  );
+};
 
-    <div>
-    <h1>Reviews </h1>
-    {releventReviews}
-    
-    
-    </div>
-  )
-}
+export default GetSpotReviews;
