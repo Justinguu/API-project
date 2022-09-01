@@ -5,7 +5,7 @@ a {
 div{
     font-family: Circular, -apple-system, "system-ui", Roboto, Helvetica Neue,
     sans-serif;
-    text-decoration: underline;
+   
 }
 .div > individual-spot-info{
     display: flex;
@@ -17,14 +17,16 @@ div{
 
 }
 .star-icon {
-    height: 18px;
-    width: 18px;
+    display:inline-flex;
+    height: 21px;
+    width: 21px;
+   
 }
 
 .preview-image {
-    /* display:flex;
-    justify-content:flex-start; */
-    place-self: center;
+    display:flex;
+    justify-content: center;
+    /* place-self: center; */
     height: 400px;
     width: 800px
 }

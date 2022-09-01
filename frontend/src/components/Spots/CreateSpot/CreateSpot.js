@@ -1,12 +1,13 @@
 
 import {createSpotThunk, getAllSpotsThunk} from '../../../store/spots'
 import {useState, useEffect} from 'react';
-import {useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux';
+import {useHistory, Redirect} from 'react-router-dom'
 import './createSpot.css'
 
 
 export default function CreateSpotForm() {
+    const user = useSelector(state => state.session.user);
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [address, setAddress] = useState('');
@@ -22,7 +23,6 @@ export default function CreateSpotForm() {
     const dispatch = useDispatch();
     const history = useHistory()
     
-
 
     useEffect(() => {
         const errors = [];
@@ -43,21 +43,25 @@ export default function CreateSpotForm() {
 
     }, [name,price,address,city,state,country,lat,lng,description, previewImage])
 
+   
+
+
     useEffect(() => {
       dispatch(getAllSpotsThunk())
     },[dispatch])
-  
+    
+   if(user === null) {
+      alert("You must be logged in to make a spot")
+      return <Redirect to='/' />
+    }
     async function onSubmit(e){
       e.preventDefault();
+        setHasSubmitted(true);
+      if(errors.length > 0){
+        return alert('There was an error with your submit, Please Recheck your inputs')
+      } 
 
-      setHasSubmitted(true);
-      if(errors.length) return alert('cant submit')
-
-      // if(errors.length > 0){
-      //   history.push('/spots/create')
-      //   return
-      // }
-
+      
       
       const payload = {
           name,
@@ -73,9 +77,9 @@ export default function CreateSpotForm() {
       
       }
       
-      await dispatch(createSpotThunk(payload))
+     const response = await dispatch(createSpotThunk(payload))
       history.push('/')
-}
+    }
 
 
     

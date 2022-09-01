@@ -21,6 +21,7 @@ const GetSpotDetails = () => {
     const reviewss = useSelector(state => state.reviews) // added this reviewss
     const user = useSelector(state => state.session.user)
     const currSpot = useSelector(state => state.spots[spotId])
+    console.log(currSpot)
 
     // const deleteReview = (e, id => { // added function
     //     e.preventDefault()
@@ -35,14 +36,19 @@ const GetSpotDetails = () => {
 
     const rating = currSpot?.avgStarRating == 0 ? "New" : currSpot?.avgStarRating
 
+    
     return (
         isLoaded && (
             <>
+    <div>
+        <img src={`${currSpot.Images[0].url}`} />
+        
+    </div>
                 <div>
                     <h2>{currSpot.name}</h2>
                 </div>
                 <div>
-                    <p>Rating: {rating}</p>
+                    <p>Rating: <img className="star-icon" src={'https://i.pinimg.com/736x/1e/26/44/1e26444b739863fdf4b0ad49d163ff95.jpg'} alt="" />{rating}</p>
                     <p>{currSpot.city}, {currSpot.state} {currSpot.country}</p>
                 </div>
                 {/* <div>
@@ -64,21 +70,17 @@ const GetSpotDetails = () => {
                                     <SpotDelete spotId={spotId} setShowDelete={setShowDelete} />
                                 </Modal>
                             )}
-                            {/* {showReviewDelete && (
-                                <Modal onClose={() => setShowReviewDelete(false)} >
-                                    <ReviewDelete reviewId={reviewId} setShowDelete={setShowReviewDelete} />
-                                </Modal>
-                            )} */}
+                            
                         </div>
                     )}
                     <ReviewGetComponent spotId={spotId} setReviews={setReviews} />
                 </div>
                 <div>
-                    {currSpot && (
-                        <div>
-                            {/* <img src={`${currSpot.previewImage}`} /> */}
-                        </div>
-                    )}
+                    <div>
+                    
+                    </div>
+                    
+                    
                 </div >
             </>
         )

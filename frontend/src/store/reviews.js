@@ -26,7 +26,6 @@ export const getCurrReviewsThunk = (spotId) => async (dispatch) => {
   if (response.ok) {
     const reviews = await response.json();
     dispatch(getSpotReviews(reviews));
-
   }
   return response
 };

@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import {login} from "../../store/session"
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../store/session";
 import { NavLink } from "react-router-dom";
-import * as sessionActions from '../../store/session';
-import { useHistory } from 'react-router-dom';
+import * as sessionActions from "../../store/session";
+import { useHistory } from "react-router-dom";
 import LoginFormModal from "../LoginFormModal";
-import SignUpFormModal from "../LoginFormModal"
-import icon from './Images/icon.svg'
-import hamburger from './Images/hamburgerIcon.svg'
-import './ProfileButton.css';
-
+import SignUpFormModal from "../LoginFormModal";
+import icon from "./Images/icon.svg";
+import hamburger from "./Images/hamburgerIcon.svg";
+import "./ProfileButton.css";
 
 export default function ProfileButton({ user, isLoaded }) {
   const dispatch = useDispatch();
@@ -24,12 +23,11 @@ export default function ProfileButton({ user, isLoaded }) {
   };
 
   const handleDemo = () => {
-    const user = { credential: 'demo@user.io', password: 'password' }
-    dispatch(login(user))
-      .then(() => {
-        setShowLoginModal(false)
-        history.push('/')
-      })
+    const user = { credential: "demo@user.io", password: "password" };
+    dispatch(login(user)).then(() => {
+      setShowLoginModal(false);
+      history.push("/");
+    });
   };
 
   useEffect(() => {
@@ -39,35 +37,41 @@ export default function ProfileButton({ user, isLoaded }) {
       setShowMenu(false);
     };
 
-    document.addEventListener('click', closeMenu);
+    document.addEventListener("click", closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
-  const sessionUser = useSelector(state => state.session.user)
+  const sessionUser = useSelector((state) => state.session.user);
 
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
-    history.push('/')
+    history.push("/");
   };
 
-  // const logout = (e) => {
-  //   e.preventDefault();
-  //   dispatch(sessionActions.logout());
-  //   history.push('/')
-  // };
 
   return (
     <>
-     {showLoginModal && (<LoginFormModal showLoginModal={showLoginModal} setShowLoginModal={setShowLoginModal} />)}
-      {showSignUpModal && (<SignUpFormModal showSignUpModal={showSignUpModal} setShowSignUpModal={setShowSignUpModal} />)}
-        <div className='right-profile-container'>
-        <div className='host-hover-border'>
-          <NavLink className='become-host-link' to="/spots/create">Become a Host</NavLink>
-        </div>
+      {showLoginModal && (
+        <LoginFormModal
+          showLoginModal={showLoginModal}
+          setShowLoginModal={setShowLoginModal}
+        />
+      )}
+      {showSignUpModal && (
+        <SignUpFormModal
+          showSignUpModal={showSignUpModal}
+          setShowSignUpModal={setShowSignUpModal}
+        />
+      )}
+      <div className="right-profile-container">
+        <span className="host-hover-border">
+          <NavLink className="become-host-link" to="/spots/create">
+           Become a Host 
+          </NavLink>
+        </span>
       </div>
-      <div className="profile-button-border"
-        onClick={openMenu}>
+      <div className="profile-button-border" onClick={openMenu}>
         <img className="triple-icon" src={hamburger} />
         <img className="profile-icon" src={icon} />
       </div>
@@ -75,25 +79,47 @@ export default function ProfileButton({ user, isLoaded }) {
         <div className="dropdown-menu">
           {isLoaded && sessionUser && (
             <ul className="profile-list">
-              <li className="profile-list-item user-name-li">{user.username}</li>
-              <li className="profile-list-item hover-link" onClick={logout}>Log Out</li>
+              <li className="profile-list-item user-name-li">
+                {user.username}
+              </li>
+              <li className="profile-list-item hover-link" onClick={logout}>
+                Log Out
+              </li>
             </ul>
           )}
-             {isLoaded && !sessionUser && (
+          {isLoaded && !sessionUser && (
             <ul className="profile-list">
               <li className="hover-link">
-                <NavLink className='profile-list-item' onClick={() => setShowLoginModal(true)} to=''>Login</NavLink>
+                <NavLink
+                  className="profile-list-item"
+                  onClick={() => setShowLoginModal(true)}
+                  to=""
+                >
+                  Login
+                </NavLink>
               </li>
               <li className="hover-link">
-                <NavLink className='profile-list-item' onClick={() => handleDemo()} to=''>Demo Login</NavLink>
+                <NavLink
+                  className="profile-list-item"
+                  onClick={() => handleDemo()}
+                  to=""
+                >
+                  Demo Login
+                </NavLink>
               </li>
-              <li className="hover-link"><NavLink onClick={() => setShowSignUpModal(true)} className='profile-list-item' to='/signup'>Sign Up</NavLink></li>
+              <li className="hover-link">
+                <NavLink
+                  onClick={() => setShowSignUpModal(true)}
+                  className="profile-list-item"
+                  to="/signup"
+                >
+                  Sign Up
+                </NavLink>
+              </li>
             </ul>
           )}
-          </div>
+        </div>
       )}
-     
     </>
-
-  )
-      }
+  );
+}

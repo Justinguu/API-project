@@ -77,7 +77,6 @@ export const createSpotThunk = spot => async dispatch => {
         dispatch(createTheSpot(data))
         return data
     } 
-return response
 };
 
 export const updateSpotThunk = payload => async dispatch => {

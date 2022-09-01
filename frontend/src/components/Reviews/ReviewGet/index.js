@@ -6,29 +6,13 @@ import { deleteReviewThunk, getCurrReviewsThunk } from "../../../store/reviews";
 const GetSpotReviews = () => {
   const { spotId } = useParams();
   const spotIdParsed = parseInt(spotId);
-  const spot = useSelector((state) => state.spots[spotIdParsed]);
- const [isLoaded, setIsLoaded] = useState(false);
-  const sessionUser = useSelector((state) => state.session.user);
-  
+  // const spot = useSelector((state) => state.spots[spotIdParsed]);
+
   const allReviews = useSelector((state) => state.reviews);
-  const getAllReviewArr = Object.values(allReviews).map((review) => {
-    return (
-      <div key={review.id}>
-        {review.review}
-        {sessionUser.id === review.userId && (
-          <button onClick={(e) => deleteReview(e, review.id)}>
-            DeleteReview
-          </button>
-        )}
-      </div>
-    );
-  })
+  const getAllReviewArr = Object.values(allReviews);
 
- 
-
-
-
-
+  const [isLoaded, setIsLoaded] = useState(false);
+  const sessionUser = useSelector((state) => state.session.user);
 
 
   const dispatch = useDispatch();
@@ -51,7 +35,18 @@ const GetSpotReviews = () => {
       <div>
         <h2>Reviews: </h2>
         <ul>
-         {getAllReviewArr}
+          {getAllReviewArr.map((review) => {
+            return (
+              <div key={review.id}>
+                {review.review}
+                {sessionUser.id === review.userId && (
+                  <button onClick={(e) => deleteReview(e, review.id)}>
+                    DeleteReview
+                  </button>
+                )}
+              </div>
+            );
+          })}
         </ul>
       </div>
     )

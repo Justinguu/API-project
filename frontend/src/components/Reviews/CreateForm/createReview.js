@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { createReviewThunk} from "../../../store/reviews"
+import "./createReview.css"
 
 function CreateReviewForm() {
   const history = useHistory();

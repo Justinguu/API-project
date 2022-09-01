@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
+import {Link } from 'react-router-dom'
 import { getAllSpotsThunk } from '../../../store/spots'
 import "./Allspots.css"
 
@@ -9,8 +10,6 @@ import "./Allspots.css"
 const GetAllSpots = () => {
 
     const [isLoaded, setIsLoaded] = useState(false)
-
-
 
     const dispatch = useDispatch();
 
@@ -25,19 +24,23 @@ const GetAllSpots = () => {
  
 
     return (
-        isLoaded && (
+        isLoaded &&  (
             <>
             <div>All Spots</div>
             <div>
               <div>
                 {allSpotsArr.map((spot) => (
                   <ul key={spot.id}>
-                    <div className="spot-display-image">
-                   <img className="preview-image" src={spot.previewImage} alt=""/>
-                    </div>
+                 
+                    <span className="desc-info">
                     <div>
                       {spot.name}
                     </div>
+                    <p className="spot-display-image">
+                <a className="spot-display-image" href={`/spots/${spot.id}`}>
+                  <img src={spot.previewImage}></img>
+                </a>
+              </p>
                     <div>
                       {spot.city}, {spot.state}
                     </div>
@@ -48,9 +51,12 @@ const GetAllSpots = () => {
                     <div>
                       {`$${spot.price} night`}
                     </div>
+                    </span>
                   </ul>
                 ))}
+                
                     </div>
+                    
                 </div>
             </>
         )

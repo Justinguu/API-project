@@ -4,21 +4,24 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import "./LoginForm.css"
 
-function LoginForm() {
+function LoginForm({setShowLoginModal}) {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).catch(
+    return dispatch(sessionActions.login({ credential, password }))
+    .then(()=> setShowLoginModal(false))
+    .catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
-    );
+      );
   };
 
   return (
@@ -56,8 +59,8 @@ function LoginForm() {
         </ul>
       )}
       </div>
-      <button className="login-button" type="submit">Continue</button>
-     
+      <button className="login-button" type="submit" >Submit</button>
+      
     </form>
   );
 }
