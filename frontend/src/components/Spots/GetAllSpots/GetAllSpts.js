@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
-import {Link } from 'react-router-dom'
+
 import { getAllSpotsThunk } from '../../../store/spots'
 import "./Allspots.css"
 
@@ -38,7 +38,7 @@ const GetAllSpots = () => {
                     </div>
                     <p className="spot-display-image">
                 <a className="spot-display-image" href={`/spots/${spot.id}`}>
-                  <img src={spot.previewImage}></img>
+                  <img src={spot.previewImage} alt="true"></img>
                 </a>
               </p>
                     <div>

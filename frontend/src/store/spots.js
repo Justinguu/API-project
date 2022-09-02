@@ -21,10 +21,10 @@ export const getCurrentSpot = (spot) => {
         spot
     }
 }
-export const createTheSpot = (spot) => {
+export const createTheSpot = (payload) => {
     return {
         type: CREATE,
-        spot
+        payload
     };
 };
 export const updateTheSpot = (spot) => {
@@ -66,16 +66,27 @@ export const getCurrSpotThunk = (id) => async (dispatch) => {
     }
   };
 
-export const createSpotThunk = spot => async dispatch => {
+export const createSpotThunk = payload => async dispatch => {
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(spot)
+        body: JSON.stringify(payload)
     })
     if (response.ok) {
         const data = await response.json()
-        dispatch(createTheSpot(data))
-        return data
+        const imageResponse = await csrfFetch(`/api/spots/${data.id}/images`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              url: payload.url,
+              previewImage: payload.previewImage,
+            }),
+          });
+          if (imageResponse.ok) {
+            const imageData = await imageResponse.json();
+            data.previewImage = imageData.url;
+            dispatch(createSpotThunk(data))
+          }
     } 
 };
 

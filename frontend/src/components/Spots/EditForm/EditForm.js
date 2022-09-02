@@ -19,7 +19,7 @@ function EditSpotForm({ setShowUpdate }) {
   const [lng, setLng] = useState('')
   const [price, setPrice] = useState('')
   const [description, setDescription] = useState('')
-  const [previewImage, setPreviewImage] = useState('')
+  const [url, setUrl] = useState('')
 
   const [errors, setErrors] = useState([])
   const [hasSubmitted, setHasSubmitted] = useState(false)
@@ -41,7 +41,7 @@ function EditSpotForm({ setShowUpdate }) {
 
     return setErrors(errors)
 
-  }, [name, address, city, state, country, lat, lng, price, description, previewImage])
+  }, [name, address, city, state, country, lat, lng, price, description, url])
 
   if (user === null) {
     alert("must be logged in to edit a spot")
@@ -55,7 +55,7 @@ function EditSpotForm({ setShowUpdate }) {
     if (errors.length > 0) return alert('cant submit')
 
     const updatedSpot = {
-      id: spotId, name, address, city, state, country, lat, lng, price, description, previewImage
+      id: spotId, name, address, city, state, country, lat, lng, price, description, url
     }
 
     const response = await dispatch(updateSpotThunk(updatedSpot))
@@ -163,8 +163,8 @@ function EditSpotForm({ setShowUpdate }) {
           name="preview-image"
           className="form-input none update"
           placeholder="Image URL"
-          value={previewImage}
-          onChange={(e) => setPreviewImage(e.target.value)}
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
           required
         />
       </div>

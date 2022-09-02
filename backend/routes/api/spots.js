@@ -131,7 +131,7 @@ router.get('/:spotId', async (req, res) => {
 //CREATE A SPOT
 
 router.post("/", requireAuth, async (req, res) => {
-  let { address, city, state, country, lat, lng, name, description, price } =
+  let { address, city, state, country, lat, lng, name, description, price, previewImage } =
     req.body; //destructure the body
   //console.log(req.user)
   let userId = req.user.dataValues.id; 
@@ -146,6 +146,7 @@ router.post("/", requireAuth, async (req, res) => {
     name,
     description,
     price,
+   
   });
   if (createSpot) {
     res.json(createSpot);
@@ -164,6 +165,7 @@ router.post("/", requireAuth, async (req, res) => {
         name: "Name must be less than 50 characters",
         description: "Description is required",
         price: "Price per day is required",
+       
       },
     });
     
@@ -200,7 +202,6 @@ router.post('/:spotId/images', restoreUser, async (req, res, next) => {
     })
   }
 
-
   const image = await Image.create({ url, previewImage, spotId, userId: user.id})
 
   //DEFINE AN OBJECT IN ORDER TO MAKE THE ASSOCIATION
@@ -234,6 +235,7 @@ router.put("/:spotId", requireAuth,restoreUser, async (req, res) => {
       name,
       description,
       price,
+     
     });
     await editTheSpot.save();
     res.json(editTheSpot);
@@ -252,6 +254,7 @@ router.put("/:spotId", requireAuth,restoreUser, async (req, res) => {
         name: "Name must be less than 50 characters",
         description: "Description is required",
         price: "Price per day is required",
+      
       },
     });
   }

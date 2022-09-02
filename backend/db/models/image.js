@@ -19,10 +19,11 @@ module.exports = (sequelize, DataTypes) => {
     url: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+     
     },
     previewImage: {
       type: DataTypes.BOOLEAN,
+      defaultValue: true,
     
     },
     spotId: {

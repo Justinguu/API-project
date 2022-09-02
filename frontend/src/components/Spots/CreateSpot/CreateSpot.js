@@ -18,11 +18,11 @@ export default function CreateSpotForm() {
     const [lng, setLng] = useState('')
     const [description, setDescription] = useState('')
     const [errors, setErrors] = useState([])
-    const [previewImage, setPreviewImage] = useState("")
+    const [url , setUrl] = useState("")
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory()
-    
+
 
     useEffect(() => {
         const errors = [];
@@ -36,12 +36,12 @@ export default function CreateSpotForm() {
         if (!lat) errors.push("Please provide a lat")
         if (!lng) errors.push("Please provide a lng")
         if (!description) errors.push("Please provide a description")
-        if (!previewImage) errors.push("Please provide a previewImage")
+        if (!url) errors.push("Please provide a previewImage")
         
 
         return setErrors(errors);
 
-    }, [name,price,address,city,state,country,lat,lng,description, previewImage])
+    }, [name,price,address,city,state,country,lat,lng,description, url])
 
    
 
@@ -73,12 +73,21 @@ export default function CreateSpotForm() {
           lng,
           lat,
           description,
-          previewImage
+          previewImage: true,
+          url
       
       }
+
+
+    function isImg(url) {
+      return /\.(jpg|png|jpeg|svg|gif)$/.test(url);
+    }
+    
       
-     const response = await dispatch(createSpotThunk(payload))
+     if(isImg(url)){
+       dispatch(createSpotThunk(payload)).then(() => dispatch(getAllSpotsThunk()))
       history.push('/')
+     } 
     }
 
 
@@ -180,8 +189,8 @@ return (
             name="preview-image"
             className="form-input none create"
             placeholder="Image URL"
-            value={previewImage}
-            onChange={(e) => setPreviewImage(e.target.value)}
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
             required
           />
           <textarea

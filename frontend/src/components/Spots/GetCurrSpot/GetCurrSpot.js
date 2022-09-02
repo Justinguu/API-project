@@ -18,21 +18,16 @@ const GetSpotDetails = () => {
     const [showReviewDelete, setShowReviewDelete] = useState(false);
 
     const { spotId, reviewId } = useParams()
-    const reviewss = useSelector(state => state.reviews) // added this reviewss
+    const reviewss = useSelector(state => state.reviews) 
     const user = useSelector(state => state.session.user)
     const currSpot = useSelector(state => state.spots[spotId])
-    console.log(currSpot)
-
-    // const deleteReview = (e, id => { // added function
-    //     e.preventDefault()
-    //     dispatch(deleteReviewThunk(id))
-    // })
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getCurrSpotThunk(spotId)).then(() => setIsLoaded(true))
-    }, [dispatch, spotId]) //added spotId
+        dispatch(getCurrSpotThunk(spotId))
+        .then(() => setIsLoaded(true))
+    }, [dispatch, spotId]) 
 
     const rating = currSpot?.avgStarRating == 0 ? "New" : currSpot?.avgStarRating
 
@@ -41,7 +36,46 @@ const GetSpotDetails = () => {
         isLoaded && (
             <>
     <div>
-        <img src={`${currSpot.Images[0].url}`} />
+    {currSpot &&
+          currSpot?.Images?.map((image, index) => (
+            <div className="imgParentContainer">
+              <div className="mainImgContainer">
+                <img
+                  className="Big"
+                  src={image.url}
+                  key={"imageId: " + JSON.stringify(index) + "big"}
+                  alt="NOT FOUND"
+                />
+              </div>
+              <div className="secondaryImgContainer">
+                <img
+                  className="oneSpot-Image small"
+                  src={image.url}
+                  key={"imageId: " + JSON.stringify(index) + "topleft"}
+                  alt="NOT FOUND"
+                />
+
+                <img
+                  className="oneSpot-Image small corner-top"
+                  src={image.url}
+                  key={"imageId: " + JSON.stringify(index) + "topright"}
+                  alt="NOT FOUND"
+                />
+                <img
+                  className="oneSpot-Image small"
+                  src={image.url}
+                  key={"imageId: " + JSON.stringify(index) + "bottomleft"}
+                  alt="NOT FOUND"
+                />
+                <img
+                  className="oneSpot-Image small corner-bottom"
+                  src={image.url}
+                  key={"imageId: " + JSON.stringify(index) + "bottomright"}
+                  alt="NOT FOUND"
+                />
+              </div>
+            </div>
+          ))}
         
     </div>
                 <div>
