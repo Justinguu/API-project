@@ -79,12 +79,12 @@ export default function CreateSpotForm() {
       }
 
 
-    function isImg(url) {
-      return /\.(jpg|png|jpeg|svg|gif)$/.test(url);
+    function loadImage(url) {
+      return url
     }
     
       
-     if(isImg(url)){
+     if(loadImage(url)){
        dispatch(createSpotThunk(payload)).then(() => dispatch(getAllSpotsThunk()))
       history.push('/')
      } 
