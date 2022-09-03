@@ -5,7 +5,7 @@ module.exports = {
     
      await queryInterface.bulkInsert('Images', [
       {
-      url: 'https://cdn.pixabay.com/photo/2016/06/24/10/47/house-1477041__340.jpg',
+      url: 'https://cdn.pixabay.com/photo/2016/06/24/10/47/house-1477041__340.jpg',  
       previewImage: true,
       spotId: 1,
       reviewId: null,
