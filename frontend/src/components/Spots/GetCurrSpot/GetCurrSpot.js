@@ -35,49 +35,6 @@ const GetSpotDetails = () => {
     return (
         isLoaded && (
             <>
-    <div>
-    {currSpot &&
-          currSpot?.Images?.map((image, index) => (
-            <div className="imgParentContainer">
-              <div className="mainImgContainer">
-                <img
-                  className="Big"
-                  src={image.url}
-                  key={"imageId: " + JSON.stringify(index) + "big"}
-                  alt="NOT FOUND"
-                />
-              </div>
-              <div className="secondaryImgContainer">
-                <img
-                  className="oneSpot-Image small"
-                  src={image.url}
-                  key={"imageId: " + JSON.stringify(index) + "topleft"}
-                  alt="NOT FOUND"
-                />
-
-                <img
-                  className="oneSpot-Image small corner-top"
-                  src={image.url}
-                  key={"imageId: " + JSON.stringify(index) + "topright"}
-                  alt="NOT FOUND"
-                />
-                <img
-                  className="oneSpot-Image small"
-                  src={image.url}
-                  key={"imageId: " + JSON.stringify(index) + "bottomleft"}
-                  alt="NOT FOUND"
-                />
-                <img
-                  className="oneSpot-Image small corner-bottom"
-                  src={image.url}
-                  key={"imageId: " + JSON.stringify(index) + "bottomright"}
-                  alt="NOT FOUND"
-                />
-              </div>
-            </div>
-          ))}
-        
-    </div>
                 <div>
                     <h2>{currSpot.name}</h2>
                 </div>
