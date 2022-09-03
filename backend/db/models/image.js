@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     previewImage: {
       type: DataTypes.BOOLEAN,
-      defaultValue: true,
+  
     
     },
     spotId: {
