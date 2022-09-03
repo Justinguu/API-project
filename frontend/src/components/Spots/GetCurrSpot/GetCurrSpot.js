@@ -39,6 +39,7 @@ const GetSpotDetails = () => {
                     <h2>{currSpot.name}</h2>
                 </div>
                 <div>
+                                    <img src={currSpot.Images[0].url} />
                     <p>Rating: <img className="star-icon" src={'https://i.pinimg.com/736x/1e/26/44/1e26444b739863fdf4b0ad49d163ff95.jpg'} alt="" />{rating}</p>
                     <p>{currSpot.city}, {currSpot.state} {currSpot.country}</p>
                 </div>
