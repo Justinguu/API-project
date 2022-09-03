@@ -74,7 +74,7 @@ export default function CreateSpotForm() {
           lat,
           description,
           previewImage: true,
-          url
+          url,
       
       }
 
