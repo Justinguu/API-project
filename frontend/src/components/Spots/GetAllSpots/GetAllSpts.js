@@ -45,7 +45,7 @@ const GetAllSpots = () => {
                       {spot.city}, {spot.state}
                     </div>
                     <div>
-                    {spot.avgRating && (<span className="star-rating-container"> {spot.avgRating.toFixed(2)}<img className="star-icon" src={'https://i.pinimg.com/736x/1e/26/44/1e26444b739863fdf4b0ad49d163ff95.jpg'} alt="" />  </span>)}
+                    {spot.avgRating && (<span className="star-rating-container"> {Number(spot.avgRating).toFixed(2)}<img className="star-icon" src={'https://i.pinimg.com/736x/1e/26/44/1e26444b739863fdf4b0ad49d163ff95.jpg'} alt="" />  </span>)}
                    
                     </div>
                     <div>
