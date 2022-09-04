@@ -38,6 +38,7 @@ function EditSpotForm({ setShowUpdate }) {
     if (!lng) errors.push("Please provide a lng")
     if (price <= 0) errors.push("Please set a valid price");
     if (!description) errors.push("Please provide a description")
+    if (!url) errors.push("Please provide a url")
 
     return setErrors(errors)
 
@@ -52,14 +53,14 @@ function EditSpotForm({ setShowUpdate }) {
     e.preventDefault()
 
     setHasSubmitted(true)
-    if (errors.length > 0) return alert('cant submit')
+    if (errors.length > 0) return alert('There was an error submitting your form.')
 
     const updatedSpot = {
       id: spotId, name, address, city, state, country, lat, lng, price, description, url
     }
 
-    const response = await dispatch(updateSpotThunk(updatedSpot))
-    await dispatch(getCurrSpotThunk(spotId))
+   dispatch(updateSpotThunk(updatedSpot))
+   dispatch(getCurrSpotThunk(spotId))
     setShowUpdate(false)
     history.push(`/spots/${spotId}`)
   }
@@ -79,39 +80,41 @@ function EditSpotForm({ setShowUpdate }) {
         </ul>
       )}
       <div>
-        <label htmlFor="name">Name:</label>
+        {/* <label htmlFor="name">Name:</label> */}
         <input
-          id='name'
           type="text"
+          className="form-input none update"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <label htmlFor="address">Adress:</label>
+        {/* <label htmlFor="address">Address:</label> */}
         <input
-          id="address"
           type="text"
+          className="form-input none update"
           placeholder="Address"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
         />
-        <label htmlFor="city">City:</label>
+        {/* <label htmlFor="city">City:</label> */}
         <input
-          id='city'
           type="text"
+          className="form-input none update"
           placeholder="City"
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
-        <label htmlFor="state">State:</label>
+        {/* <label htmlFor="state">State:</label> */}
         <input
           type="text"
+          className="form-input none update"
           placeholder="State"
           value={state}
           onChange={(e) => setState(e.target.value)}
         />
         <input
           type="text"
+          className="form-input none update"
           placeholder="Country"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
@@ -120,9 +123,6 @@ function EditSpotForm({ setShowUpdate }) {
           type="number"
           className="form-input none update"
           value={lat}
-          min='-90'
-          max='90'
-          step="0.01"
           placeholder="Latitude"
           onChange={(e) => setLat(e.target.value)}
         />
@@ -130,9 +130,6 @@ function EditSpotForm({ setShowUpdate }) {
           type="number"
           className="form-input none update"
           value={lng}
-          min='-180'
-          max='180'
-          step="0.01"
           placeholder="Longitude"
           onChange={(e) => setLng(e.target.value)}
           required
@@ -141,32 +138,28 @@ function EditSpotForm({ setShowUpdate }) {
           type="number"
           className="form-input none update"
           value={price}
-          pattern="^\d+(?:\.\d{1,2})?$"
-          min="0.00"
-          step="0.01"
           placeholder="Price"
           onChange={(e) => setPrice(e.target.value)}
           required
         />
-        <textarea
-          type="text"
-          value={description}
-          className="form-input-description"
-          placeholder="Description"
-          maxLength='50'
-          minLength='5'
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-         <input
-          type="url"
-          name="preview-image"
+        <input
+          type="string"
           className="form-input none update"
+          name="preview-image"
           placeholder="Image URL"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
+        
+        />
+        <textarea
+          type="text"
+          className="form-input-description"
+          placeholder="Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           required
         />
+         
       </div>
       <button className="submit-button-update" type="submit">Update Spot</button>
     </form>

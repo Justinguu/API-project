@@ -3,3 +3,15 @@ h2 {
     font-family: Circular, -apple-system, "system-ui", Roboto, Helvetica Neue,
     sans-serif;
 }
+
+.getCurr-star-icon{
+ display:inline-flex;
+    height: 14px;
+    width: 14px;
+    padding-right: 4px;   
+}
+
+.img-currSpots{
+    height: 400px;
+    width: 700px
+}

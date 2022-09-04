@@ -7,6 +7,7 @@ import { Modal } from "../../../context/Modal";
 import EditSpotForm from "../EditForm/EditForm";
 import SpotDelete from "../SpotDelete/deleteSpot";
 import ReviewGetComponent from "../../Reviews/ReviewGet";
+import starIcon from "../GetAllSpots/starIcon.png"
 import "./GetCurrSpot.css";
 
 const GetSpotDetails = () => {
@@ -49,15 +50,14 @@ const GetSpotDetails = () => {
         <div>
           <h2>{currSpot.name}</h2>
         </div>
-        <div>
-          <img src={currSpot.Images[0].url} alt="" />
+        <div >
+          <img className="img-currSpots" src={currSpot.Images[0].url} alt="" />
           <p>
             Rating:
+            {currSpot.review}
             <img
-              className="star-icon"
-              src={
-                "https://i.pinimg.com/736x/1e/26/44/1e26444b739863fdf4b0ad49d163ff95.jpg"
-              }
+              className="getCurr-star-icon"
+              src={starIcon}
               alt=""
             />
             {rating}
@@ -87,7 +87,6 @@ const GetSpotDetails = () => {
           <ReviewGetComponent spotId={spotId} user={user} setReviews={setReviews} />
         </div>
         <div>
-          <div></div>
         </div>
       </>
     )
