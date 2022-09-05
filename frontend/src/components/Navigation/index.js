@@ -5,7 +5,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import logo from './Images/Logo.png'
-
+import textLogo from './Images/text.png'
 
 
 function Navigation({ isLoaded }) {
@@ -15,7 +15,7 @@ function Navigation({ isLoaded }) {
   return (
     <nav className='main-navbar'>
       <div className='svg-container' onClick={() => history.push('/')}>
-        <img className='logo' src={logo} />
+        <img className='logo' src={logo} />   <img className='textLogo' src={textLogo} />
       </div>
       {isLoaded && (
         <div className='right-profile-container'>

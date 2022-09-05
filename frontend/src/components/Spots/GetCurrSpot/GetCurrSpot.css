@@ -8,10 +8,11 @@ h2 {
  display:inline-flex;
     height: 14px;
     width: 14px;
-    padding-left: 4px;   
+    padding-right: 4px;
 }
 
 .img-currSpots{
     height: 400px;
     width: 700px
 }
+
