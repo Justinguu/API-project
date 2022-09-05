@@ -68,7 +68,7 @@ const GetAllSpots = () => {
                         src={starIcon}
                         alt=""
                       />
-                      {Number(spot.avgRating).toFixed(2)}
+                      {Number(spot.avgRating).toFixed(1)}
                     </div>
                   </div>
                 </div>

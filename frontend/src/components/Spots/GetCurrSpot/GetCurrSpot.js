@@ -54,13 +54,15 @@ const GetSpotDetails = () => {
           <img className="img-currSpots" src={currSpot.Images[0].url} alt="" />
           <p>
             Rating:
-            {currSpot.review}
+            {
+                 parseFloat(currSpot.avgStarRating).toFixed(1)
+               }
             <img
               className="getCurr-star-icon"
               src={starIcon}
               alt=""
             />
-            {rating}
+  
           </p>
           <p>
             {currSpot.city}, {currSpot.state} {currSpot.country}
