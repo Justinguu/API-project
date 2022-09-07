@@ -37,7 +37,7 @@ module.exports = {
           country: "Indoneisa",
           lat: 50.7645358,
           lng: -111.4730327,
-          name: "The benelovent",
+          name: "The Benelovent",
           description: "Place where dreams are created",
           price: 250
         },

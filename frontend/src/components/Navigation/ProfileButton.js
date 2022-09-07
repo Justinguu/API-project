@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import LoginFormModal from "../LoginFormModal";
 import SignUpFormModal from "../LoginFormModal";
 import icon from "./Images/icon.svg";
-import hamburger from "./Images/hamburgerIcon.svg";
+import lineLogo from "./Images/lineLogo.svg";
 import "./ProfileButton.css";
 
 export default function ProfileButton({ user, isLoaded }) {
@@ -72,7 +72,7 @@ export default function ProfileButton({ user, isLoaded }) {
         </span>
       </div>
       <div className="profile-button-border" onClick={openMenu}>
-        <img className="triple-icon" src={hamburger} />
+        <img className="triple-icon" src={lineLogo} />
         <img className="profile-icon" src={icon} />
       </div>
       {showMenu && (

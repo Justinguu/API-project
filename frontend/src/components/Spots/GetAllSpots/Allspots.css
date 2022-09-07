@@ -45,8 +45,8 @@ div.spots-container {
 
 img.spot-img {
     object-fit: cover;
-    width: 325px;
-    height: 325px;
+    width: 300px;
+    height: 300px;
     border-radius: .7em;
     margin-right: 2em;
 
@@ -60,9 +60,9 @@ div.spot-card-container {
 }
 
 div.spot-info-container {
+    display: flex;
     margin-top: .5em;
     min-height: 90px;
-    display: flex;
     justify-content: space-between;
     margin-bottom: 2em;
 }

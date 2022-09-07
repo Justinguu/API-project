@@ -9,6 +9,18 @@
   .signup-form-input {
     min-width: 100%;
   }
+    
+  .signup-welcome {
+    min-width: 100%;
+  }
+  
+  .signup-sign {
+    font-weight: 600;
+  }
+  h3.signup-welcome-h3 {
+    text-align: start;
+    font-weight: 500;
+  }
   
   .signup-form-wrapper {
     display: flex;
@@ -27,18 +39,7 @@
     border-bottom: 1px solid rgb(224, 219, 219);
     margin-top: -1.8em;
   }
-  
-  .signup-welcome {
-    min-width: 100%;
-  }
-  
-  .signup-h3 {
-    font-weight: 499;
-  }
-  h3.signup-welcome-h3 {
-    text-align: start;
-    font-weight: 500;
-  }
+
   
   .submit-button.signup {
     background: linear-gradient(0.25turn, #E61E4D, #D70666);
@@ -46,13 +47,9 @@
     border: none;
     height: 2.6em;
     border-radius: .5em;
-    min-width: 39em;
+    min-width: 37em;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
-  }
   
-  .submit-button.signup:active {
-    transform: scale(.97);
   }
   
   .form-input {
@@ -64,26 +61,26 @@
   
   .form-input.first {
     border-radius: .5em .5em 0px 0px;
-    border-left: 1px solid #d1cfcf;
-    border-right: 1px solid #d1cfcf;
-    border-top: 1px solid #d1cfcf;
+    border-left: 1px solid #e3d5d5;
+    border-right: 1px solid #e3d5d5;
+    border-top: 1px solid #e3d5d5;
     border-bottom: none;
   }
-  
+
+    .form-input.mid {
+    border-left: 1.5px solid #d1cfcf;
+    border-right: 1.5px solid #d1cfcf;
+    border-bottom: none;
+    border-top: 1.5px solid #d1cfcf;
+  }
+
   .form-input.last {
     border-radius: 0px 0px .5em .5em ;
-    border-left: 1px solid #d1cfcf;
-    border-right: 1px solid #d1cfcf;
-    border-bottom: 1px solid #d1cfcf;
-    border-top: 1px solid #d1cfcf;
-    margin-bottom: 0;
-  }
+    border-left: 1.5px solid #e3d5d5;
+    border-right: 1.5px solid #e3d5d5;
+    border-bottom: 1.5px solid #e3d5d5;
+    border-top: 1.5px solid #e3d5d5;
   
-  .form-input.none {
-    border-left: 1px solid #d1cfcf;
-    border-right: 1px solid #d1cfcf;
-    border-bottom: none;
-    border-top: 1px solid #d1cfcf;
   }
   
   .signup-form-errors{

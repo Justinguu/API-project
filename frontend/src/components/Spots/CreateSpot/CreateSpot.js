@@ -93,12 +93,12 @@ export default function CreateSpotForm() {
 
     
 return (
-  <div className="Page-Container">
-    <div className="Purple-Background-Container">
-      <h1 className="welcome-message">What kind of place will you host?</h1>
+  <div className="Spot-Container">
+    <div className="Purple-Background">
+      <h1 className="container-message">What kind of place will you host?</h1>
     </div>
-    <div className="right-page-container">
-      <div className="create-errors-container">
+    <div className="right-container">
+      <div className="show-errors">
         {hasSubmitted && errors.length > 0 && (
           <ul className="errors-list">
             {errors.map(error => (
@@ -111,25 +111,21 @@ return (
         onSubmit={onSubmit}
         className="create-spot-form"
       >
-        <div className="create-spot-title-container">
-          <h3 className="create-spot-title">Host your Spot!</h3>
-        </div>
+        
 
-        <div className="create-spot-input-wrapper">
+        <div>
           <input
+            className="form-input first"
             type="text"
             placeholder="Name of Spot"
-            className="form-input first create"
-            maxLength='50'
-            minLength='1'
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
           <input
+            className="form-input mid create"
             type="text"
             placeholder="Address"
-            className="form-input none create"
             maxLength='50'
             minLength='1'
             value={address}
@@ -137,66 +133,66 @@ return (
             required
           />
           <input
+            className="form-input mid create"
             type="text"
             placeholder="City"
-            className="form-input none create"
             value={city}
             onChange={(e) => setCity(e.target.value)}
             required
           />
           <input
+            className="form-input mid create"
             type="text"
-            placeholder="State"
-            className="form-input none create"
+            placeholder="State / territory"
             value={state}
             onChange={(e) => setState(e.target.value)}
             required
           />
           <input
+            className="form-input mid create"
             type="text"
             placeholder="Country"
-            className="form-input none create"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             required
           />
           <input
+            className="form-input mid create"
             type="number"
             placeholder="Latitude"
-            className="form-input none create"
             value={lat}
             onChange={(e) => setLat(e.target.value)}
             required
           />
           <input
+            className="form-input mid create"
             type="number"
             placeholder="Logitude"
-            className="form-input none create"
             value={lng}
             onChange={(e) => setLng(e.target.value)}
             required
           />
           <input
+            className="form-input mid create"
             type="number"
             placeholder="Price"
-            className="form-input none create"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             required
           />
           <input
+            className="form-input mid create"
             type="url"
             name="preview-image"
-            className="form-input none create"
             placeholder="Image URL"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             required
           />
-          <textarea
+          <input
+            className="form-input last create"
             type="text"
             placeholder="Description"
-            className="form-input last desc create"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required

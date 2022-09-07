@@ -50,8 +50,16 @@ const GetSpotDetails = () => {
         <div>
           <h2>{currSpot.name}</h2>
         </div>
-        <div >
+        <div>
+          <p>
+            {currSpot.city}, {currSpot.state} {currSpot.country}
+          </p>
+          <p>Price: ${currSpot.price}</p>
           <img className="img-currSpots" src={currSpot.Images[0].url} alt="" />
+        </div>
+        <div>Spot hosted by {currSpot.Owner.firstName}</div>
+        <div >
+          
           <p>
             Rating:
             <img
@@ -65,9 +73,7 @@ const GetSpotDetails = () => {
             
   
           </p>
-          <p>
-            {currSpot.city}, {currSpot.state} {currSpot.country}
-          </p>
+          
         </div>
         <div>
         {currSpot.ownerId !== user?.id && !userIds.includes(user?.id) && <button onClick={(e) => addReview(e, currSpot.id)}>Review Spot</button>}

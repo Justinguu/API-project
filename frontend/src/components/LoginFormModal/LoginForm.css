@@ -40,7 +40,6 @@ input.login-input:placeholder-shown {
 }
 
 input:focus {
-  outline: none !important;
   box-shadow: 0 0 5px #719ECE;
 }
 

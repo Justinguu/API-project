@@ -1,0 +1,27 @@
+.review-form {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+.review-submit-container {
+    padding-top: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+   
+}
+
+.review-input {
+    box-shadow: rgb(156, 156, 241);
+    padding: 10px;
+}
+.create-review-submit-button {
+    background: linear-gradient(0.25turn, #E61E4D, #D70666);
+    color: white;
+    border: none;
+    width: 11.5em;
+    height: 2.6em;
+    border-radius: .5em;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}

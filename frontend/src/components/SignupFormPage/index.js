@@ -37,8 +37,8 @@ function SignupFormPage() {
         <div className="signup-title">
           <h4 className="signup-h3">Sign up</h4>
         </div>
-        <div className="signup-welcome">
-          <h3 className="signup-welcome-h3">Welcome to JustinBnB</h3>
+        <div className="welcome">
+          <h3 className="welcome-h3">Welcome to Justbnb</h3>
         </div>
         <div className="signup-input-wrapper">
           <input
@@ -53,14 +53,14 @@ function SignupFormPage() {
             type="text"
             value={lastName}
             placeholder='Last Name'
-            className='form-input none'
+            className='form-input mid'
             onChange={(e) => setLastName(e.target.value)}
             required
           />
           <input
             type="text"
             value={email}
-            className='form-input none'
+            className='form-input mid'
             placeholder='Email'
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -68,7 +68,7 @@ function SignupFormPage() {
           <input
             type="text"
             value={username}
-            className='form-input none'
+            className='form-input mid'
             placeholder='Username'
             onChange={(e) => setUsername(e.target.value)}
             required
@@ -76,7 +76,7 @@ function SignupFormPage() {
           <input
             type="password"
             value={password}
-            className='form-input none'
+            className='form-input mid'
             placeholder='Password'
             onChange={(e) => setPassword(e.target.value)}
             required

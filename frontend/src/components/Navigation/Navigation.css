@@ -5,7 +5,7 @@ nav.main-navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgb(234, 229, 229);
+    border-bottom: 1px solid rgb(235, 228, 228);
     margin-bottom: 2em;
     height: 5em;
 }
@@ -21,13 +21,12 @@ nav.main-navbar {
     max-width: 85px;
     padding-bottom: 12px;
 }
-.entire-header {
+/* .entire-header {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 1px solid lightgrey;
-    background-color: white;
-    top: 0;
+    border-bottom: 1px solid rgb(234, 229, 229);
+    background-color: rgb(248, 244, 244);
     height: 80px;
     position: sticky;
-}
+} */

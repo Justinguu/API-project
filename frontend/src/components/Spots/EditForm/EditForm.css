@@ -8,23 +8,25 @@
 }
 
 
-.submit-button-update {
-    background: linear-gradient(0.25turn, #E61E4D, #D70666);
+.submit-button-edit {
+  background: linear-gradient(0.25turn, #E61E4D, #D70666);
     color: white;
     border: none;
     height: 2.6em;
     border-radius: .5em;
-    margin-top: 2em;
-    min-width: 39.4em;
+    min-width: 39em;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
-  }
-
-  .submit-button-update:active {
-    transform: scale(.97);
+ 
   }
 
   .form-input-description {
   min-width: 35rem;
-  box-shadow: 0 0 5px #719ECE;
+  
   }
+
+  .edit-errors {
+    color:#ea1547
+  }
+
+
+ 

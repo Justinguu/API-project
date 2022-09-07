@@ -36,7 +36,7 @@ function EditSpotForm({ setShowUpdate }) {
     if (!country.length) errors.push("Please provide a country")
     if (!lat) errors.push("Please provide a lat")
     if (!lng) errors.push("Please provide a lng")
-    if (price <= 0) errors.push("Please set a valid price");
+    if (price <= 0) errors.push("Please set a higher price");
     if (!description) errors.push("Please provide a description")
     if (!url) errors.push("Please provide a url")
 
@@ -70,81 +70,80 @@ function EditSpotForm({ setShowUpdate }) {
       className="spot-form-update"
     >
       <div>
-        <h3>Update Spot Form</h3>
+        <h3>Edit Spot Form</h3>
       </div>
       {hasSubmitted && errors.length > 0 && (
-        <ul>
+        <ul className="edit-errors">
           {errors.map(error => (
             <li key={error}>{error}</li>
           ))}
         </ul>
       )}
       <div>
-        {/* <label htmlFor="name">Name:</label> */}
         <input
+          className="form-input mid edit"
           type="text"
-          className="form-input none update"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        {/* <label htmlFor="address">Address:</label> */}
+        
         <input
+          className="form-input mid edit"
           type="text"
-          className="form-input none update"
           placeholder="Address"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
         />
-        {/* <label htmlFor="city">City:</label> */}
+     
         <input
+          className="form-input mid edit"
           type="text"
-          className="form-input none update"
           placeholder="City"
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
-        {/* <label htmlFor="state">State:</label> */}
+      
         <input
+          className="form-input mid edit"
           type="text"
-          className="form-input none update"
           placeholder="State"
           value={state}
           onChange={(e) => setState(e.target.value)}
         />
         <input
+          className="form-input mid edit"
           type="text"
-          className="form-input none update"
           placeholder="Country"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
         />
         <input
+          className="form-input mid edit"
           type="number"
-          className="form-input none update"
           value={lat}
           placeholder="Latitude"
           onChange={(e) => setLat(e.target.value)}
         />
         <input
+          className="form-input mid edit"
           type="number"
-          className="form-input none update"
           value={lng}
           placeholder="Longitude"
           onChange={(e) => setLng(e.target.value)}
           required
         />
         <input
+          className="form-input mid edit"
           type="number"
-          className="form-input none update"
           value={price}
           placeholder="Price"
           onChange={(e) => setPrice(e.target.value)}
           required
         />
         <input
+          className="form-input mid edit"
           type="string"
-          className="form-input none update"
           name="preview-image"
           placeholder="Image URL"
           value={url}
@@ -153,7 +152,7 @@ function EditSpotForm({ setShowUpdate }) {
         />
         <textarea
           type="text"
-          className="form-input-description"
+          className="form-input last edit"
           placeholder="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
@@ -161,7 +160,7 @@ function EditSpotForm({ setShowUpdate }) {
         />
          
       </div>
-      <button className="submit-button-update" type="submit">Update Spot</button>
+      <button className="submit-button-edit" type="submit">Edit Spot</button>
     </form>
   )
 }

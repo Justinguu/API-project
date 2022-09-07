@@ -39,7 +39,7 @@ const GetAllSpots = () => {
                         fontWeight: "500",
                       }}
                     >
-                      {" "}
+                      
                       {spot.name}
                     </div>
                     <div
@@ -57,7 +57,7 @@ const GetAllSpots = () => {
                         }}
                       >
                         ${spot.price}
-                      </div>{" "}
+                      </div>
                       &nbsp;night
                     </div>
                   </div>

@@ -20,7 +20,7 @@ div.profile-button-border {
 }
 
 div.profile-button-border:hover{
-  box-shadow: 1px 5px 5px rgb(195, 195, 195) !important;
+  box-shadow: 1px 5px 5px rgb(195, 195, 195);
 }
 
 
@@ -33,9 +33,6 @@ div.profile-button-border:hover{
   border-radius: 2em;
 }
 
-.host-hover-border:hover {
-  background-color: rgb(247, 243, 243);
-}
 
 img.triple-icon{
   max-width: .9em;
@@ -69,9 +66,9 @@ div.dropdown-menu {
   box-shadow: 1px -2px 4px rgb(195, 195, 195);
   border-radius: .4em;
   position: absolute;
-  top: 85%;
-  right: 6%;
-  z-index: 1;
+  top: 90%;
+  right: 1%;
+
 }
 .hover-link {
   margin-left: -2em;
@@ -79,16 +76,15 @@ div.dropdown-menu {
 
 .hover-link:hover {
   margin-left: -1.5em;
-  background-color: rgb(216, 207, 207);
+  background-color: rgb(227, 214, 214);
 }
 
 .user-name-li {
   margin-left: -1.5em;
 }
 .become-host-link {
-  color: black;
-  text-decoration: none;
-  font-size: .9rem;
+  color: rgb(8, 8, 8);
+  font-size: 15px;
   
 }
 
@@ -97,7 +93,7 @@ div.profile-dropdown {
   flex-direction: column;
   width: 14em;
   background-color: white;
-  box-shadow: 1px -2px 4px rgb(195, 195, 195);
+  box-shadow: 1px -2px 4px rgb(218, 216, 216);
   border-radius: .5em;
   position: absolute;
   top: 89%;
