@@ -2,10 +2,12 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { deleteReviewThunk, getCurrReviewsThunk } from "../../../store/reviews";
+import icon from "../../Navigation/Images/icon.svg";
+import "./reviewGet.css";
 
 const GetSpotReviews = () => {
   const { spotId } = useParams();
-  const spotIdParsed = parseInt(spotId);
+  // const spotIdParsed = parseInt(spotId);
   // const spot = useSelector((state) => state.spots[spotIdParsed]);
 
   const allReviews = useSelector((state) => state.reviews);
@@ -13,7 +15,6 @@ const GetSpotReviews = () => {
 
   const [isLoaded, setIsLoaded] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
-
 
   const dispatch = useDispatch();
 
@@ -33,17 +34,32 @@ const GetSpotReviews = () => {
   return (
     isLoaded && (
       <div>
-        <h2>Reviews: </h2>
-        <ul>
+        <ul className="review-border">
           {getAllReviewArr.map((review) => {
             return (
-              <div key={review.id}>
-                {review.review}
-                {sessionUser.id === review.userId && (
-                  <button onClick={(e) => deleteReview(e, review.id)}>
-                    DeleteReview
-                  </button>
-                )}
+              <div className="review-box" key={review.id}>
+                <div
+                  className="reviewe-box"
+                  style={{ fontSize: "16px", fontWeight: "800px" }}
+                >
+                  <div>
+                    <img className="review-icon" src={icon} alt="" />
+                  </div>{" "}
+                  &nbsp;&nbsp;{review.User.firstName}
+                </div>
+                <div>
+                  {review.review} &nbsp; &nbsp;
+                 
+                  {!sessionUser ? null : sessionUser.id === review.userId && (  // even if not session user still be able to access spots
+
+                    <button
+                      className="deleteButton"
+                      onClick={(e) => deleteReview(e, review.id)}
+                    >
+                      DeleteReview
+                    </button>
+                  )}
+                </div>
               </div>
             );
           })}

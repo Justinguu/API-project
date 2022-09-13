@@ -39,7 +39,6 @@ const GetAllSpots = () => {
                         fontWeight: "500",
                       }}
                     >
-                      
                       {spot.name}
                     </div>
                     <div

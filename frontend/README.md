@@ -1,76 +1,47 @@
+# Justbnb
 
-# Create React App Template
+## About Justbnb
 
-A no-frills template from which to create React + Redux applications with
-[Create React App](https://github.com/facebook/create-react-app).
+Justbnb is a full-stack-application clone of Airbnb deployed on heroku. The App Uses React & Redux in the Front-end and for the backend we use Express.js & an ORM called Sequelize.
 
-```sh
-npx create-react-app my-app --template @appacademy/react-redux-v17 --use-npm
-```
+Live Link: https://git.heroku.com/airbnb-justingu.git
 
-## Available Scripts
+## Site Information
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technologies Used
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### This application was built with:
+- Javascript
+- React
+- Redux
+- HTML
+- CSS
+- Express
+- Sequelize
+- PostgresSQL
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Locally
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+If you would like to launch this site locally please follow these instructions:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- You can also have the same result by just going to the repository link and downloading zip file and extract it to a folder on your device.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Clone this repo by using your terminal by going to a directory of where you would want the file stored and type in `git clone https://github.com/Justinguu/API-project.git`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. change directories (cd) into the 'backend' directory and run the command in the CLI: `npm install` what this command does is grab all the dependencies needed for the application.
+3. In the same directory(backend) create a .env file and add your own values to these variables: PORT, DB_FILE (location of the database), JWT_SECRET, and JWT_EXPIRES_IN
+4. In the same directory(backend) load the migrations database by running the command in the CLI `npx dotenv sequelize db:migrate`
+5. In the same directory(backend) load the seeder data into your database by running the command in the CLI `npx dotenv sequelize db:seed:all`
+6. Now run the command in the CLI `npm start` to turn your backend server on.
+7. Now run the command in another terminal in the CLI `npm start` If you have Google Chrome this should have started the React Application for you. If this fails you can just go to to the url of `localhost:3000`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Both frontend & backend should be running in order for you to see the application.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+8. Great news you are locked in and ready to check the application out, You have successfully launched the app.

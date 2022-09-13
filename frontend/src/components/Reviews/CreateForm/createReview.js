@@ -27,7 +27,7 @@ function CreateReviewForm() {
       newErrors.push("Please write a review.");
     }
     if (stars < 1 || stars > 5) {
-      newErrors.push("Rating must be an integer from 1 to 5.");
+      newErrors.push("Rating must be an number from 1 to 5.");
     }
     setErrors(newErrors);
   }, [review, stars]);

@@ -35,7 +35,7 @@ function LoginForm({setShowLoginModal}) {
           autoComplete="false"
           id="login-email-input"
           className="login-input"
-          placeholder={'email'}
+          placeholder={'Username'}
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required

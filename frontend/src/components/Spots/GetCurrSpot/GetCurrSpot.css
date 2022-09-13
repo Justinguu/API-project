@@ -2,7 +2,27 @@
 h2 {
     font-family: Circular, -apple-system, "system-ui", Roboto, Helvetica Neue,
     sans-serif;
+    font-weight:450 
 }
+div.currSpot-header {
+    height: 45px
+}
+
+div.whole-page-container{
+    display: flex;
+    justify-content: center;
+    min-width: 100vh;
+    padding-right: 30%;
+   
+    
+}
+div.whole-page-wrapper{
+    display: flex;
+    flex-direction: column;
+    font-family: Circular, -apple-system, "system-ui", Roboto, Helvetica Neue,
+    sans-serif;
+}
+
 
 .getCurr-star-icon{
  display:inline-flex;
@@ -14,5 +34,34 @@ h2 {
 .img-currSpots{
     height: 400px;
     width: 700px
+
 }
 
+div.spot-hosted-by {
+    font-size: 20px;
+    font-weight: 500;
+    padding-top: 20px;
+}
+
+img.img-currSpots {
+    display: flex;
+    align-items: center;
+    border-radius: .8em;
+
+    }
+
+    p.numReview-star {
+    display:flex;
+    border-top: 1px solid rgb(235, 228, 228);
+    padding-top: 10px;
+    
+    font-size: 20px;
+    font-weight: 500;
+    }
+    .review-star-icon{
+    display:inline-flex;
+    padding-top: 2px;
+    height: 18px;
+    width: 16px;
+    padding-right: 4px;
+    }

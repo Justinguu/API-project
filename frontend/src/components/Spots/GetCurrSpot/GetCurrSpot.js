@@ -8,13 +8,14 @@ import EditSpotForm from "../EditForm/EditForm";
 import SpotDelete from "../SpotDelete/deleteSpot";
 import ReviewGetComponent from "../../Reviews/ReviewGet";
 import starIcon from "../GetAllSpots/starIcon.png"
+
 import "./GetCurrSpot.css";
 
 const GetSpotDetails = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
-  const [setReviews] = useState(false);
+  const [showReviewModal,setReviews] = useState(false);
 
   const { spotId } = useParams();
   const user = useSelector((state) => state.session.user);
@@ -47,39 +48,49 @@ const GetSpotDetails = () => {
   return (
     isLoaded && (
       <>
-        <div>
+      <div className="whole-page-container">
+        <div className="whole-page-wrapper">
+        <div className="currSpot-header">
           <h2>{currSpot.name}</h2>
         </div>
         <div>
+          <div></div>
           <p>
-            {currSpot.city}, {currSpot.state} {currSpot.country}
+          <img className="getCurr-star-icon"src={starIcon}alt=""/>{Number(rating).toFixed(1)}
+          &nbsp;· {currSpot.reviewss} reviews &nbsp;·
+                &nbsp; {currSpot.city}, {currSpot.state}, {currSpot.country}
           </p>
-          <p>Price: ${currSpot.price}</p>
+          <p>Price: ${currSpot.price} night</p>
           <img className="img-currSpots" src={currSpot.Images[0].url} alt="" />
         </div>
-        <div>Spot hosted by {currSpot.Owner.firstName}</div>
+        <div className="spot-hosted-by">Spot hosted by {currSpot.Owner.firstName}</div>
         <div >
           
-          <p>
+          {/* <p>
             Rating:
             <img
               className="getCurr-star-icon"
               src={starIcon}
               alt=""
             />
-            {
-                 parseFloat(currSpot.avgStarRating).toFixed(1)
-               }
-            
-  
+            {Number(rating).toFixed(1)}
+          </p> */}
+          <p className="numReview-star">
+          <img className="review-star-icon"src={starIcon}alt=""/> {Number(rating).toFixed(1)} · {currSpot.reviewss} reviews
           </p>
-          
         </div>
         <div>
-        {currSpot.ownerId !== user?.id && !userIds.includes(user?.id) && <button onClick={(e) => addReview(e, currSpot.id)}>Review Spot</button>}
+        {!user ? null: currSpot.ownerId !== user?.id && !userIds.includes(user?.id) && <button onClick={(e) => addReview(e, currSpot.id)}>Review Spot</button>}
+        {/* {showReview && (
+                <Modal onClose={() => setReviews(false)}>
+                  <SpotDelete spotId={spotId} setReviews={setReviews} />
+                </Modal>
+              )} */}
+
+
           {currSpot.ownerId === user?.id && (
             <div>
-              <button onClick={() => setShowUpdate(true)}>Edit Spot</button>
+              <button onClick={() => setShowUpdate(true)}>Edit Spot</button> 
               <button onClick={() => setShowDelete(true)}>Delete Spot</button>
               {showUpdate && (
                 <Modal onClose={() => setShowUpdate(false)}>
@@ -96,6 +107,8 @@ const GetSpotDetails = () => {
           <ReviewGetComponent spotId={spotId} user={user} setReviews={setReviews} />
         </div>
         <div>
+        </div>
+        </div>
         </div>
       </>
     )

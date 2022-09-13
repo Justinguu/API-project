@@ -82,9 +82,9 @@ export default function ProfileButton({ user, isLoaded }) {
               <li className="profile-list-item user-name-li">
                 {user.username}
               </li>
-              <li className="profile-list-item hover-link" onClick={logout}>
+              <NavLink className="profile-list-item hover-link" onClick={logout} to="">
                 Log Out
-              </li>
+              </NavLink>
             </ul>
           )}
           {isLoaded && !sessionUser && (
