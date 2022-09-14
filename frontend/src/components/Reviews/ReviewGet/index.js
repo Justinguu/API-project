@@ -10,8 +10,9 @@ const GetSpotReviews = () => {
   // const spotIdParsed = parseInt(spotId);
   // const spot = useSelector((state) => state.spots[spotIdParsed]);
 
-  const allReviews = useSelector((state) => state.reviews);
-  const getAllReviewArr = Object.values(allReviews);
+  const allReviews = useSelector((state) => Object.values(state.reviews))
+  const getAllReviewArr = allReviews.filter((review) => review.spotId === parseInt(spotId))
+  // const getAllReviewArr = Object.values(allReviews);
 
   const [isLoaded, setIsLoaded] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
@@ -27,15 +28,15 @@ const GetSpotReviews = () => {
     dispatch(getCurrReviewsThunk(spotId)).then(() => setIsLoaded(true));
   }, [dispatch, spotId]);
 
-  if (!getAllReviewArr.length) {
-    return null;
-  }
+  // if (getAllReviewArr.length) {
+  //   return null;
+  // }
 
   return (
     isLoaded && (
       <div>
         <ul className="review-border">
-          {getAllReviewArr.map((review) => {
+          {Object.values(getAllReviewArr).map((review) => {
             return (
               <div className="review-box" key={review.id}>
                 <div

@@ -16,6 +16,7 @@ const GetSpotDetails = () => {
   const [showUpdate, setShowUpdate] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [showReviewModal,setReviews] = useState(false);
+  const [disabled, setDisabled] = useState(true)
 
   const { spotId } = useParams();
   const user = useSelector((state) => state.session.user);
@@ -24,17 +25,23 @@ const GetSpotDetails = () => {
   const allReviews = useSelector((state) => state.reviews);
 
   const getAllReviewsArr = Object.values(allReviews);
-  const [userIds, setUserIds] = useState(false);
+  // const [userIds, setUserIds] = useState(false);
   const history = useHistory();
+
+  const sessionReview = !user ? null : getAllReviewsArr.find(review => 
+    review.userId === user.id)
+  useEffect(() => {
+    setDisabled(!!sessionReview)
+  })
 
   const addReview = (e, spotId) => {
     e.preventDefault();
     history.push(`/spots/${spotId}/review`);
   };
 
-  useEffect(() => {
-    setUserIds(getAllReviewsArr.map((review) => review.userId));
-  }, [allReviews]);
+  // useEffect(() => {
+  //   setUserIds(getAllReviewsArr.map((review) => review.userId));
+  // }, [allReviews]);
 
   const dispatch = useDispatch();
 
@@ -80,7 +87,10 @@ const GetSpotDetails = () => {
           </p>
         </div>
         <div>
-        {!user ? null: currSpot.ownerId !== user?.id && !userIds.includes(user?.id) && <button onClick={(e) => addReview(e, currSpot.id)}>Review Spot</button>}
+        {!user ? null :currSpot.ownerId !== user?.id &&  <button disabled={disabled} onClick={(e) => addReview(e, currSpot.id) 
+        }>Review Spot</button>}
+        
+
         {/* {showReview && (
                 <Modal onClose={() => setReviews(false)}>
                   <SpotDelete spotId={spotId} setReviews={setReviews} />

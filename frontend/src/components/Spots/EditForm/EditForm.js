@@ -7,17 +7,18 @@ import "./EditForm.css";
 function EditSpotForm({ setShowUpdate }) {
   const user = useSelector((state) => state.session.user);
   const { spotId } = useParams();
+  const spotPlacement = useSelector((state) => state.spots[spotId]);
 
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [country, setCountry] = useState("");
-  const [lat, setLat] = useState("");
-  const [lng, setLng] = useState("");
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
-  const [url, setUrl] = useState("");
+  const [name, setName] = useState(spotPlacement.name);
+  const [address, setAddress] = useState(spotPlacement.address);
+  const [city, setCity] = useState(spotPlacement.city);
+  const [state, setState] = useState(spotPlacement.state);
+  const [country, setCountry] = useState(spotPlacement.country);
+  const [lat, setLat] = useState(spotPlacement.lat);
+  const [lng, setLng] = useState(spotPlacement.lng);
+  const [price, setPrice] = useState(spotPlacement.price);
+  const [description, setDescription] = useState(spotPlacement.description);
+  const [url, setUrl] = useState(spotPlacement.Images[0].url);
 
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -77,7 +78,7 @@ function EditSpotForm({ setShowUpdate }) {
     } 
    
 
-    dispatch(updateSpotThunk(updatedSpot));
+    // dispatch(updateSpotThunk(updatedSpot));
     dispatch(getCurrSpotThunk(spotId));
     setShowUpdate(false);
     history.push(`/spots/${spotId}`);

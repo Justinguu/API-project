@@ -86,32 +86,48 @@ export const createSpotThunk = (payload) => async (dispatch) => {
   }
 };
 
-export const updateSpotThunk = (payload) => async (dispatch) => {
-  const response = await csrfFetch(`/api/spots/${payload.id}`, {
+// export const updateSpotThunk = (payload) => async (dispatch) => {
+//   const response = await csrfFetch(`/api/spots/auth/${payload.id}`, {
+//     method: "PUT",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(payload),
+//   });
+//   if (response.ok) {
+//     const data = await response.json();
+//     const imageResponse = await csrfFetch(`/api/spots/${data.id}/images `, {
+//       method: "PUT",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({
+//         url: payload.url,
+//         previewImage: payload.previewImage,
+//       }),
+//     })
+//     if(imageResponse.ok){
+//         const imageData = await imageResponse.json()
+//         data.previewImage = imageData.url
+//          dispatch(updateSpotThunk(data));
+//          return imageData
+
+//     }
+//   }
+// };
+export const updateSpotThunk = (spotId, payload) => async(dispatch) => {
+  const response = await csrfFetch((`/api/spots/${spotId}`), {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
   if (response.ok) {
-    const data = await response.json();
-    const imageResponse = await csrfFetch(`/api/spots/${data.id}/images`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        url: payload.url,
-        previewImage: payload.previewImage,
-      }),
-    })
-    if(imageResponse.ok){
-        const imageData = await imageResponse.json()
-        data.previewImage = imageData.url
-         dispatch(updateSpotThunk(data));
-
-    }
+    const data = await response.json()
+    dispatch(updateTheSpot(data))
+    return response
   }
-};
+}
+
+
+
 
 
 export const deleteSpotThunk = (id) => async (dispatch) => {

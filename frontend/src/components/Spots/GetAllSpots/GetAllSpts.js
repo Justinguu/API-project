@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllSpotsThunk } from "../../../store/spots";
+import { NavLink } from "react-router-dom";
 import starIcon from "./starIcon.png";
 import "./Allspots.css";
 
@@ -24,13 +25,13 @@ const GetAllSpots = () => {
           <div className="spots-cards-container">
             {allSpotsArr.map((spot) => (
               <div key={spot.id}>
-                <a href={`/spots/${spot.id}`}>
+                <NavLink to={`/spots/${spot.id}`}>
                   <img
                     className="spot-img"
                     src={spot.previewImage}
                     alt="true"
                   ></img>
-                </a>
+                </NavLink>
                 <div className="spot-info-container">
                   <div className="spot-info-left">
                     <div

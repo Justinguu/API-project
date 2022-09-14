@@ -219,7 +219,7 @@ router.post('/:spotId/images', restoreUser, async (req, res, next) => {
 router.put("/:spotId", requireAuth,restoreUser, async (req, res) => {
   console.log(req);
   const { spotId } = req.params;
-  const { address, city, state, country, lat, lng, name, description, price } =
+  const { address, city, state, country, lat, lng, name, description, price, url } =
     req.body;
 
   const editTheSpot = await Spot.findByPk(spotId);
@@ -235,12 +235,13 @@ router.put("/:spotId", requireAuth,restoreUser, async (req, res) => {
       name,
       description,
       price,
+      url
      
     });
     await editTheSpot.save();
     res.json(editTheSpot);
   } else {
-    res.status(400); // Missing Error handler here:
+    res.status(400);
     res.json({
       message: "Validation Error",
       statusCode: 400,
@@ -254,6 +255,7 @@ router.put("/:spotId", requireAuth,restoreUser, async (req, res) => {
         name: "Name must be less than 50 characters",
         description: "Description is required",
         price: "Price per day is required",
+        url: "url is required"
       
       },
     });
