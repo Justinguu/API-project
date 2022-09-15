@@ -62,19 +62,22 @@ const GetSpotDetails = () => {
       <div className="whole-page-container">
         <div className="whole-page-wrapper">
         <div className="currSpot-header">
-          <h2>{currSpot.name}</h2>
+          <h2 className="currSpot-name">{currSpot.name}</h2>
         </div>
         <div>
           <div></div>
           <p>
-          <img className="getCurr-star-icon"src={starIcon}alt=""/>{Number(rating).toFixed(1)}
+          <img className="getCurr-star-icon"src={starIcon}alt=""/>{Number(rating).toFixed(2)}
           &nbsp;· {currSpot.reviewss} reviews &nbsp;·
                 &nbsp; {currSpot.city}, {currSpot.state}, {currSpot.country}
           </p>
-          <p>Price: ${currSpot.price} night</p>
+          <p className="price-text"> ${currSpot.price} night</p>
           <img className="img-currSpots" src={currSpot.Images[0].url} alt="" />
         </div>
         <div className="spot-hosted-by">Spot hosted by {currSpot.Owner.firstName}</div>
+    
+
+        
         <div >
           
           {/* <p>
@@ -91,7 +94,7 @@ const GetSpotDetails = () => {
           </p>
         </div>
         <div>
-        {!user ? null :currSpot.ownerId !== user?.id &&  <button disabled={disabled} onClick={(e) => addReview(e, currSpot.id) 
+        {!user ? null :currSpot.ownerId !== user?.id &&  <button className="review-spot-button" disabled={disabled} onClick={(e) => addReview(e, currSpot.id) 
         }>Review Spot</button>}
         
 
@@ -104,8 +107,8 @@ const GetSpotDetails = () => {
 
           {currSpot.ownerId === user?.id && (
             <div>
-              <button onClick={() => setShowUpdate(true)}>Edit Spot</button> 
-              <button onClick={() => setShowDelete(true)}>Delete Spot</button>
+              <button className="EditSpot-button" onClick={() => setShowUpdate(true)}>Edit Spot </button> &nbsp;&nbsp;&nbsp;
+              <button className="DeleteSpot-button" onClick={() => setShowDelete(true)}>Delete Spot</button>
               {showUpdate && (
                 <Modal onClose={() => setShowUpdate(false)}>
                   <EditSpotForm spotId={spotId} setShowUpdate={setShowUpdate} />

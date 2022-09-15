@@ -31,6 +31,8 @@ const GetSpotReviews = () => {
   // if (getAllReviewArr.length) {
   //   return null;
   // }
+  // const DATE_OPTIONS = { weekday: 'short', year: 'numeric', month: 'short'};
+  // let date = new Date(review.createdAt)
 
   return (
     isLoaded && (
@@ -45,10 +47,11 @@ const GetSpotReviews = () => {
                 >
                   <div>
                     <img className="review-icon" src={icon} alt="" />
-                  </div>{" "}
-                  &nbsp;&nbsp;{review.User.firstName}
+                  </div>{" "} <div className="review-name">&nbsp;&nbsp;{review.User.firstName}</div>
+                  {/* <div className="spot-date">{review.createdAt}</div> */}
+                  
                 </div>
-                <div>
+                <div className="review-text">
                   {review.review} &nbsp; &nbsp;
                  
                   {!sessionUser ? null : sessionUser.id === review.userId && (  // even if not session user still be able to access spots

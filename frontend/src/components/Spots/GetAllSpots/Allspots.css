@@ -7,15 +7,12 @@ div{
     sans-serif;
    
 } 
-.div > individual-spot-info{
-    display: flex;
-    justify-content: space-evenly;
-     border: 2px solid red; 
-    flex-wrap: wrap;
-    margin: 3%;
-    gap: 1%;
 
-} 
+.mainpage-city-state {
+    font-size: 15.9px;
+    padding-bottom: 25px;
+    font-weight:450;
+}
 
 div.spots-cards-container {
     display: flex;

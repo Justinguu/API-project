@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getAllSpotsThunk } from "../../../store/spots";
 import { NavLink } from "react-router-dom";
 import starIcon from "./starIcon.png";
+import heart from "./heart.png"
 import "./Allspots.css";
 
 const GetAllSpots = () => {
@@ -31,21 +32,19 @@ const GetAllSpots = () => {
                     src={spot.previewImage}
                     alt="true"
                   ></img>
+                  
                 </NavLink>
                 <div className="spot-info-container">
                   <div className="spot-info-left">
                     <div
                       style={{
                         fontSize: "18px",
-                        fontWeight: "500",
+                        fontWeight: "550",
                       }}
                     >
                       {spot.name}
                     </div>
-                    <div
-                      style={{
-                        fontSize: "16px",
-                      }}
+                    <div className="mainpage-city-state"
                     >
                       {spot.city}, {spot.state}
                     </div>
@@ -68,7 +67,7 @@ const GetAllSpots = () => {
                         src={starIcon}
                         alt=""
                       />
-                      {Number(spot.avgRating).toFixed(1)}
+                      {Number(spot.avgRating).toFixed(2)}
                     </div>
                   </div>
                 </div>

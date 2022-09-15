@@ -20,3 +20,11 @@ div.review-box {
 ul.review-border{
     padding: 0px 0px 0px 0px
 }
+
+div.review-name{
+    padding-bottom: 25px;
+    font-weight: 450;
+}
+div.review-text {
+    font-weight: 320;
+}
