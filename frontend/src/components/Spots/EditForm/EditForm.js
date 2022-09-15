@@ -67,6 +67,7 @@ function EditSpotForm({ setShowUpdate }) {
       price,
       description,
       url,
+      imageId:spotPlacement.Images[0].id
     };
 
     function loadImage(url){
@@ -74,14 +75,13 @@ function EditSpotForm({ setShowUpdate }) {
     }
     
     if(loadImage(url)){
-      dispatch(updateSpotThunk(updatedSpot)).then(() => dispatch(getCurrSpotThunk()))
+      dispatch(updateSpotThunk(updatedSpot))
+      // .then(() => dispatch(getCurrSpotThunk(spotId)))
     } 
-   
-
     // dispatch(updateSpotThunk(updatedSpot));
-    dispatch(getCurrSpotThunk(spotId));
+    
     setShowUpdate(false);
-    history.push(`/spots/${spotId}`);
+    // history.push(`/spots/${spotId}`);
   }
   return (
     <form onSubmit={onSubmit} className="spot-form-update">

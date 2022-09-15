@@ -44,12 +44,16 @@ const GetSpotDetails = () => {
   // }, [allReviews]);
 
   const dispatch = useDispatch();
-
+ 
   useEffect(() => {
     dispatch(getCurrReviewsThunk(spotId));
     dispatch(getCurrSpotThunk(spotId)).then(() => setIsLoaded(true));
   }, [dispatch, spotId]);
 
+ if(isLoaded && currSpot.Owner === undefined){
+    dispatch(getCurrSpotThunk(spotId)) 
+    return (<div>Loading...</div>)
+  }
   const rating = currSpot?.avgStarRating == 0 ? "New" : currSpot?.avgStarRating;
 
   return (

@@ -184,7 +184,7 @@ router.post('/:spotId/images', restoreUser, async (req, res, next) => {
   const { user } = req
   const { url, previewImage } = req.body
 
-
+  
   //IF USER DOESN'T EXIST - THROW ERROR
   if (!user) return res.status(401).json({ "message": "You need to be logged in to make any changes", "statusCode": 401 })
 
@@ -201,9 +201,9 @@ router.post('/:spotId/images', restoreUser, async (req, res, next) => {
       "statusCode": 404
     })
   }
-
+  console.log('are we reaching it?')
   const image = await Image.create({ url, previewImage, spotId, userId: user.id})
-
+  console.log("images that we get",image )
   //DEFINE AN OBJECT IN ORDER TO MAKE THE ASSOCIATION
   const obj = {}
   obj.id = image.id

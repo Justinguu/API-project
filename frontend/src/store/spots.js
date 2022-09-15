@@ -7,6 +7,8 @@ const CREATE = "/spots/create";
 const UPDATE = "/spots/update";
 const DELETE = "/spots/delete";
 
+const UPDATEIMAGE = "/spots/updateImage";
+
 // ACTION CREATORS
 export const GetAllTheSpots = (spots) => {
   return {
@@ -38,6 +40,14 @@ export const deleteTheSpot = (id) => {
     id,
   };
 };
+
+// export const updateImage = (image, spotId) => {
+//   return {
+//     type: UPDATEIMAGE,
+//     image,
+//     spotId,
+//   };
+// };
 
 // THUNKS
 
@@ -86,49 +96,57 @@ export const createSpotThunk = (payload) => async (dispatch) => {
   }
 };
 
-// export const updateSpotThunk = (payload) => async (dispatch) => {
-//   const response = await csrfFetch(`/api/spots/auth/${payload.id}`, {
+export const updateSpotThunk = (payload) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${payload.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+  let imageResponse;
+
+  let spot;
+  if (response.ok) {
+    spot = await response.json();
+    imageResponse = await csrfFetch(`/api/images/${payload.imageId} `, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+  let responseUpdate;
+  if (imageResponse.ok) {
+    responseUpdate = await csrfFetch(`/api/spots/${payload.id}/images`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        url: payload.url,
+        previewImage: true,
+      }),
+    });
+  }
+  let updateData;
+  if (responseUpdate.ok) {
+    updateData = await responseUpdate.json();
+    payload.previewImage = updateData;
+    spot.Images = [updateData]
+    dispatch(updateTheSpot(spot))
+      // dispatch(updateImage(updateData, payload.id))
+  }
+};
+
+// export const updateSpotThunk = (spotId, payload) => async(dispatch) => {
+//   const response = await csrfFetch((`/api/spots/${spotId}`), {
 //     method: "PUT",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
+//     headers: { "Content-Type": "application/json" },
 //     body: JSON.stringify(payload),
 //   });
 //   if (response.ok) {
-//     const data = await response.json();
-//     const imageResponse = await csrfFetch(`/api/spots/${data.id}/images `, {
-//       method: "PUT",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         url: payload.url,
-//         previewImage: payload.previewImage,
-//       }),
-//     })
-//     if(imageResponse.ok){
-//         const imageData = await imageResponse.json()
-//         data.previewImage = imageData.url
-//          dispatch(updateSpotThunk(data));
-//          return imageData
-
-//     }
+//     const data = await response.json()
+//     dispatch(updateTheSpot(data))
+//     return response
 //   }
-// };
-export const updateSpotThunk = (spotId, payload) => async(dispatch) => {
-  const response = await csrfFetch((`/api/spots/${spotId}`), {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-  if (response.ok) {
-    const data = await response.json()
-    dispatch(updateTheSpot(data))
-    return response
-  }
-}
-
-
-
-
+// }
 
 export const deleteSpotThunk = (id) => async (dispatch) => {
   const response = await csrfFetch(`api/spots/${id}`, {
@@ -163,6 +181,13 @@ const spotsReducer = (state = {}, action) => {
       newState = { ...state };
       newState[action.spot.id] = action.spot;
       return newState;
+
+    case UPDATEIMAGE: {
+      newState = { ...state };
+      newState[action.spotId].Images = [action.image];
+      return newState;
+    }
+
     case DELETE:
       newState = { ...state };
       delete newState[action.id];
