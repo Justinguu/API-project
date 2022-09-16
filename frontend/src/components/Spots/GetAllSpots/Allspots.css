@@ -7,6 +7,14 @@ div{
     sans-serif;
    
 } 
+.heart-icon{
+    display: inline-flex;
+    height: 13px;
+    width: 13px;
+    padding-right: 3px;
+    background-color: black;
+
+}
 
 .mainpage-city-state {
     font-size: 15.9px;

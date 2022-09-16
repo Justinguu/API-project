@@ -32,7 +32,11 @@ const GetAllSpots = () => {
                     src={spot.previewImage}
                     alt="true"
                   ></img>
-                  
+                   {/* <img
+                        className="star-icon"
+                        src={}
+                        alt=""
+                      /> */}
                 </NavLink>
                 <div className="spot-info-container">
                   <div className="spot-info-left">

@@ -21,7 +21,7 @@
   .Purple-Background{
     display: flex;
     min-width: 50%;
-    min-height: 100%;
+    padding-right: 40px;
     background: linear-gradient(#e31b7f, #4d11da);
     align-items: center;
   }
@@ -29,14 +29,14 @@
   .container-message {
     position: relative;
     bottom: 7%;
-    padding-left: 1.4em;
+    padding-left: 40px;
     color: white;
     font-size: 3rem;
   }
   
   .right-container{
     display: flex;
-    padding-top: 80px;
+    padding-top: 40px;
     width: 60%;
     height: 100%;
     justify-content: center;
@@ -55,6 +55,3 @@
     margin-top: 20px;
   }
   
-  /* .click-button-create {
-    transform: scale(.99);
-  } */
