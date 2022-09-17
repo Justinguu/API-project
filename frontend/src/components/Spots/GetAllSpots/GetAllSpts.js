@@ -6,7 +6,7 @@ import starIcon from "./starIcon.png";
 import heart from "./heart.png"
 import "./Allspots.css";
 
-const GetAllSpots = () => {
+const GetAllSpots = ({spotId}) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const GetAllSpots = () => {
   }, [dispatch]);
 
   if(state === undefined){
-    dispatch(deleteSpotThunk(spotId)).then(()=> setRender((prev) => !prev))
+    dispatch(getAllSpotsThunk(spotId)).then(()=> setRender((prev) => !prev))
   }
 
   return (
