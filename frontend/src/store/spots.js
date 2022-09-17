@@ -22,10 +22,10 @@ export const getCurrentSpot = (spot) => {
     spot,
   };
 };
-export const createTheSpot = (payload) => {
+export const createTheSpot = (spot) => {
   return {
     type: CREATE,
-    payload,
+    spot,
   };
 };
 export const updateTheSpot = (spot) => {
@@ -72,11 +72,11 @@ export const getCurrSpotThunk = (id) => async (dispatch) => {
   }
 };
 
-export const createSpotThunk = (payload) => async (dispatch) => {
+export const createSpotThunk = (spot) => async (dispatch) => {
   const response = await csrfFetch("/api/spots", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(spot)
   });
   if (response.ok) {
     const data = await response.json();
@@ -84,14 +84,14 @@ export const createSpotThunk = (payload) => async (dispatch) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        url: payload.url,
-        previewImage: payload.previewImage,
+        url: spot.url,
+        previewImage: spot.previewImage,
       }),
     });
     if (imageResponse.ok) {
       const imageData = await imageResponse.json();
       data.previewImage = imageData.url;
-      dispatch(createSpotThunk(data));
+      dispatch(createTheSpot(data));
     }
   }
 };
@@ -173,10 +173,12 @@ const spotsReducer = (state = {}, action) => {
       newState = { ...state };
       newState[action.spot.id] = action.spot;
       return newState;
+
     case CREATE:
       newState = { ...state };
       newState[action.spot.id] = action.spot;
       return newState;
+
     case UPDATE:
       newState = { ...state };
       newState[action.spot.id] = action.spot;

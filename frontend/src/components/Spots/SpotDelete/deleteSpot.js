@@ -12,7 +12,7 @@ const SpotDelete = ({spotId, setShowDelete}) => {
 
   const deleteHandle = async (e) => {
     history.push("/")
-    await dispatch(deleteSpotThunk(spotId))
+    dispatch(deleteSpotThunk(spotId))
     setShowDelete(false)
   }
 

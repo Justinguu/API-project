@@ -8,6 +8,7 @@ import "./Allspots.css";
 
 const GetAllSpots = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [,setRender] = useState(false)
 
   const dispatch = useDispatch();
 
@@ -16,7 +17,7 @@ const GetAllSpots = () => {
   const allSpotsArr = Object.values(allSpots);
 
   useEffect(() => {
-    dispatch(getAllSpotsThunk()).then(setIsLoaded(true));
+    dispatch(getAllSpotsThunk()).then(setIsLoaded(true)).then(() => setRender((prev) => !prev))
   }, [dispatch]);
 
   return (

@@ -131,7 +131,7 @@ router.get('/:spotId', async (req, res) => {
 //CREATE A SPOT
 
 router.post("/", requireAuth, async (req, res) => {
-  let { address, city, state, country, lat, lng, name, description, price, previewImage } =
+  let { address, city, state, country, lat, lng, name, description, price } =
     req.body; //destructure the body
   //console.log(req.user)
   let userId = req.user.dataValues.id; 
