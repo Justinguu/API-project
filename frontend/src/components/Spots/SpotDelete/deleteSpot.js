@@ -17,7 +17,7 @@ const SpotDelete = ({spotId, setShowDelete}) => {
     dispatch(deleteSpotThunk(spotId))
     setShowDelete(false)
   }
-  if(state === null){
+  if(state === undefined){
     dispatch(deleteSpotThunk(spotId)).then(()=> setRender((prev) => !prev))
   }
   return (
