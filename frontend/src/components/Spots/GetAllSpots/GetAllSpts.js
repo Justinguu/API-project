@@ -10,16 +10,21 @@ const GetAllSpots = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const dispatch = useDispatch();
-  // const [,setRender] = useState(false)
+  const [,setRender] = useState(false)
 
   const allSpots = useSelector((state) => state.spots);
-
+  
+  const state = useSelector(state => state.spots[spotId])
 
   const allSpotsArr = Object.values(allSpots);
 
   useEffect(() => {
     dispatch(getAllSpotsThunk()).then(setIsLoaded(true))
   }, [dispatch]);
+
+  if(state === undefined){
+    dispatch(deleteSpotThunk(spotId)).then(()=> setRender((prev) => !prev))
+  }
 
   return (
     isLoaded && (

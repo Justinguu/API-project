@@ -10,16 +10,16 @@ const SpotDelete = ({spotId, setShowDelete}) => {
 
   const dispatch = useDispatch()
   const history = useHistory()
-  const [,setRender] = useState(false)
-  const state = useSelector(state => state.spots[spotId])
+  // const [,setRender] = useState(false)
+  // const state = useSelector(state => state.spots[spotId])
   const deleteHandle = async (e) => {
     history.push("/")
     dispatch(deleteSpotThunk(spotId))
     setShowDelete(false)
   }
-  if(state === undefined){
-    dispatch(deleteSpotThunk(spotId)).then(()=> setRender((prev) => !prev))
-  }
+  // if(state === undefined){
+  //   dispatch(deleteSpotThunk(spotId)).then(()=> setRender((prev) => !prev))
+  // }
   return (
     <>
       <div className='delete-container'>
