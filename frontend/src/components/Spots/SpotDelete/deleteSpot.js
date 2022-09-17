@@ -11,7 +11,7 @@ const SpotDelete = ({spotId, setShowDelete}) => {
   const dispatch = useDispatch()
   const history = useHistory()
   const [,setRender] = useState(false)
-  const state = useSelector(state => state.spots)
+  const state = useSelector(state => state.spots[spotId])
   const deleteHandle = async (e) => {
     history.push("/")
     dispatch(deleteSpotThunk(spotId))

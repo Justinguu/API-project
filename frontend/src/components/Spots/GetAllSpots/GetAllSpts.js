@@ -10,8 +10,10 @@ const GetAllSpots = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const dispatch = useDispatch();
+  // const [,setRender] = useState(false)
 
   const allSpots = useSelector((state) => state.spots);
+
 
   const allSpotsArr = Object.values(allSpots);
 
