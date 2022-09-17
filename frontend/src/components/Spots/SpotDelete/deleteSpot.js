@@ -2,6 +2,7 @@
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteSpotThunk } from "../../../store/spots";
+
 import './DeleteSpot.css'
 
 
@@ -9,6 +10,7 @@ const SpotDelete = ({spotId, setShowDelete}) => {
 
   const dispatch = useDispatch()
   const history = useHistory()
+  
 
   const deleteHandle = async (e) => {
     history.push("/")
