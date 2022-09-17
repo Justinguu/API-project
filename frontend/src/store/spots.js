@@ -151,7 +151,11 @@ export const updateSpotThunk = (payload) => async (dispatch) => {
 export const deleteSpotThunk = (id) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${id}`, {
     method: "DELETE",
-  });
+  }).catch(async (e) => {
+    const errorMessage = await e.json() //catch error if 500 is thrown  ==> use in the future => .catch(async (e) => {const errorMessage = await e.json() console.log('error message---- spot store', errorMessage)
+    console.log('error message---- spot store', errorMessage)
+    throw errorMessage
+  })
 
   if (response.ok) {
     const data = response.json();
