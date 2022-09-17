@@ -77,9 +77,14 @@ export const createSpotThunk = (spot) => async (dispatch) => {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(spot)
-  });
+  }).catch(async (e) => {
+    const errorMessage = await e.json() //catch error if 500 is thrown  ==> use in the future => .catch(async (e) => {const errorMessage = await e.json() console.log('error message---- spot store', errorMessage)
+    console.log('error message---- spot store', errorMessage)
+    throw errorMessage
+  })
+  
   if (response.ok) {
-    const data = await response.json();
+    const data = await response.json()
     const imageResponse = await csrfFetch(`/api/spots/${data.id}/images`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -151,10 +156,6 @@ export const updateSpotThunk = (payload) => async (dispatch) => {
 export const deleteSpotThunk = (id) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${id}`, {
     method: "DELETE",
-  }).catch(async (e) => {
-    const errorMessage = await e.json() //catch error if 500 is thrown  ==> use in the future => .catch(async (e) => {const errorMessage = await e.json() console.log('error message---- spot store', errorMessage)
-    console.log('error message---- spot store', errorMessage)
-    throw errorMessage
   })
 
   if (response.ok) {

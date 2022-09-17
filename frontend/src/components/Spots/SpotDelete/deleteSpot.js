@@ -1,5 +1,5 @@
 //src/components/DeleteSpots/DeleteSpots.js
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteSpotThunk } from "../../../store/spots";
 import {useState} from 'react'
@@ -11,13 +11,15 @@ const SpotDelete = ({spotId, setShowDelete}) => {
   const dispatch = useDispatch()
   const history = useHistory()
   const [,setRender] = useState(false)
-
+  const state = useSelector(state => state.spots)
   const deleteHandle = async (e) => {
     history.push("/")
-    dispatch(deleteSpotThunk(spotId)).then(() => setRender(curr => !curr))
+    dispatch(deleteSpotThunk(spotId))
     setShowDelete(false)
   }
-
+  if(state === null){
+    dispatch(deleteSpotThunk(spotId)).then(()=> setRender((prev) => !prev))
+  }
   return (
     <>
       <div className='delete-container'>
