@@ -3,18 +3,18 @@ import { useEffect, useState } from "react";
 import { getAllSpotsThunk } from "../../../store/spots";
 import { NavLink } from "react-router-dom";
 import starIcon from "./starIcon.png";
-import heart from "./heart.png"
+
 import "./Allspots.css";
 
-const GetAllSpots = ({spotId}) => {
+const GetAllSpots = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const dispatch = useDispatch();
-  const [,setRender] = useState(false)
+  // const [,setRender] = useState(false)
 
   const allSpots = useSelector((state) => state.spots);
   
-  const state = useSelector(state => state.spots[spotId])
+  // const state = useSelector(state => state.spots[spotId])
 
   const allSpotsArr = Object.values(allSpots);
 
@@ -22,9 +22,9 @@ const GetAllSpots = ({spotId}) => {
     dispatch(getAllSpotsThunk()).then(setIsLoaded(true))
   }, [dispatch]);
 
-  if(state === undefined){
-    dispatch(getAllSpotsThunk(spotId)).then(()=> setRender((prev) => !prev))
-  }
+  // if(state === undefined){
+  //   dispatch(getAllSpotsThunk(spotId)).then(()=> setRender((prev) => !prev))
+  // }
 
   return (
     isLoaded && (

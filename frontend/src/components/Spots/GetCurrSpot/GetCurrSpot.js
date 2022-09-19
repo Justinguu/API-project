@@ -50,10 +50,13 @@ const GetSpotDetails = () => {
     dispatch(getCurrSpotThunk(spotId)).then(() => setIsLoaded(true));
   }, [dispatch, spotId]);
 
- if(isLoaded && currSpot.Owner === undefined){
+  useEffect(() => {
+     if(isLoaded && currSpot.Owner === undefined){
     dispatch(getCurrSpotThunk(spotId)) 
     return (<div>Loading...</div>)
   }
+  },[dispatch])
+
   const rating = currSpot?.avgStarRating == 0 ? "New" : currSpot?.avgStarRating;
 
   return (
