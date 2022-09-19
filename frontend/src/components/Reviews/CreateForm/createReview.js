@@ -14,13 +14,13 @@ function CreateReviewForm() {
 
   
   const [review, setReview] = useState("");
-  const [stars, setStars] = useState("");
+  const [stars, setStars] = useState(5);
   const [errors, setErrors] = useState([]);
 
 
 
 
-  useEffect(() => {
+  const validateForm = () => {
     const newErrors = [];
 
     if (review.length <= 0) {
@@ -30,15 +30,24 @@ function CreateReviewForm() {
       newErrors.push("Rating must be an number from 1 to 5.");
     }
     setErrors(newErrors);
-  }, [review, stars]);
+  }
+
 
   if (spot?.Owners?.id === currentUser.id) {
     <Redirect to={`/spots/${spot.id}`} />; //throw error
   }
+  let errorMessages = errors.map((error, i) => {
+    return <li key={i}>{error}</li>
+  })
+
+  useEffect(() => {
+    validateForm()
+  },[review,stars])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // history.push(`/spots/${spotId}`);
+   
 
     const payload = {
       spotId,
@@ -62,9 +71,8 @@ function CreateReviewForm() {
           <h3 className="create-review-header">How was your stay?</h3>
         </div>
         <div className="create-review-errors">
-          {errors.map((error) => (
-            <p key={error}>Error: {error}</p>
-          ))}
+          {errorMessages}
+         
         </div>
         <div className="modal-body">
           <label className="create-review-label">
@@ -76,7 +84,8 @@ function CreateReviewForm() {
                 placeholder="Write your review..."
                 required
                 value={review}
-                onChange={(e) => setReview(e.target.value)}
+                onChange={(e) => 
+                  setReview(e.target.value)}
               />
             </div>
           </label>
@@ -98,7 +107,7 @@ function CreateReviewForm() {
           <button
             className="create-review-submit-button"
             type="submit"
-            disabled={errors.length ? true : false}
+            
           >
             Submit Review
           </button>

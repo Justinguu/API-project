@@ -58,7 +58,7 @@ export default function CreateSpotForm() {
       e.preventDefault();
         setHasSubmitted(true);
       if(errors.length > 0){
-        return alert('There was an error with your submit, Please Recheck your inputs')
+        return alert('There was an error with your submit, Please recheck your inputs')
       } 
 
       

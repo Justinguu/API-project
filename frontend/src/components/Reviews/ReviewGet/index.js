@@ -57,7 +57,7 @@ const GetSpotReviews = () => {
                   {!sessionUser ? null : sessionUser.id === review.userId && (  // even if not session user still be able to access spots
 
                     <button
-                      className="deleteButton"
+                      className="deleteButtonReview"
                       onClick={(e) => deleteReview(e, review.id)}
                     >
                       DeleteReview

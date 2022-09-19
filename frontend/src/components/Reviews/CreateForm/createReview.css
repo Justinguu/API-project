@@ -25,3 +25,10 @@
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
+.create-review-input{
+width: 200px;
+height: 30px;
+}
+.create-review-label{
+    font-weight: 450;
+}

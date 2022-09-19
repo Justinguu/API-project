@@ -28,3 +28,17 @@ div.review-name{
 div.review-text {
     font-weight: 320;
 }
+
+.deleteButtonReview{
+    
+        background: linear-gradient(0.25turn, #E61E4D, #D70666);
+        color: white;
+        border: none;
+        height: 2.4em;
+        border-radius: .5em;
+        min-width: 8em;
+        cursor: pointer;
+        margin-right: 2em;
+    
+      
+}

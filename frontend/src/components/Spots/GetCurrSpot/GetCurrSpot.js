@@ -52,10 +52,10 @@ const GetSpotDetails = () => {
   }, [dispatch, spotId]);
 
   if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>;    // if not loaded, wait for it to load..
   }
 
-  if (currSpot === undefined) {
+  if (currSpot === undefined) {  // if stuck on curr page ,make it push to home
     return history.push("/");
   }
 
