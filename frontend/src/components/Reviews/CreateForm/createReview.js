@@ -24,7 +24,7 @@ function CreateReviewForm() {
     const newErrors = [];
 
     if (review.length <= 0) {
-      newErrors.push("Please write a review.");
+      newErrors.push("Please write a review");
     }
     if (stars < 1 || stars > 5) {
       newErrors.push("Rating must be an number from 1 to 5.");

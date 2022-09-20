@@ -32,3 +32,7 @@ height: 30px;
 .create-review-label{
     font-weight: 450;
 }
+
+.create-review-errors {
+    padding-bottom: 10px;
+}
