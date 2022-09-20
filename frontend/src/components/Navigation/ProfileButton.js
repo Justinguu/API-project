@@ -10,13 +10,11 @@ import icon from "./Images/icon.svg";
 import lineLogo from "./Images/lineLogo.svg";
 import "./ProfileButton.css";
 
-export default function ProfileButton({ user, isLoaded }) {
+export default function ProfileButton({ user, isLoaded, setShowLogin, setShowSignup }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [showMenu, setShowMenu] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [signUpFormModal, setSignUpFormModal] = useState(false);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -26,7 +24,7 @@ export default function ProfileButton({ user, isLoaded }) {
   const handleDemo = () => {
     const user = { credential: "demo@user.io", password: "password" };
     dispatch(login(user)).then(() => {
-      setShowLoginModal(false);
+      setShowLogin(false);
       history.push("/");
     });
   };
@@ -55,8 +53,8 @@ export default function ProfileButton({ user, isLoaded }) {
   }, [showMenu]);
 
 
-  console.log("signup",signUpFormModal)
-  console.log("login",showLoginModal)
+  // console.log("signup",signUpFormModal)
+  // console.log("login",showLoginModal)
 
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -68,7 +66,7 @@ export default function ProfileButton({ user, isLoaded }) {
 
   return (
     <>
-      {showLoginModal && ( <LoginFormModal showLoginModal={showLoginModal}
+      {/* {showLoginModal && ( <LoginFormModal showLoginModal={showLoginModal}
           setShowLoginModal={setShowLoginModal}
         />
       )}
@@ -76,7 +74,8 @@ export default function ProfileButton({ user, isLoaded }) {
       setSignUpFormModal={setSignUpFormModal}
        
         />
-      )}
+      )} */}
+      
       <div className="right-profile-container">
         <span className="host-hover-border">
           <NavLink className="become-host-link" to="/spots/create">
@@ -109,7 +108,7 @@ export default function ProfileButton({ user, isLoaded }) {
               <li className="hover-link">
                 <NavLink
                   className="profile-list-item"
-                  onClick={() => setShowLoginModal(true)}
+                  onClick={() => setShowLogin(true)}
                   to=""
                 >
                   Login
@@ -126,7 +125,7 @@ export default function ProfileButton({ user, isLoaded }) {
               </li>
               <li className="hover-link">
                 <NavLink
-                  onClick={() => setSignUpFormModal(true)}
+                  onClick={() => setShowSignup(true)}
                   className="profile-list-item"
                   to=""
                 >

@@ -5,15 +5,15 @@ import SignupFormPage from './index';
 
 
 
-  function SignUpFormModal({signUpFormModal, setSignUpFormModal}) {
+  function SignUpFormModal({showSignup, setShowSignup}) {
     // const [signUpFormModal, setSignUpFormModal] = useState(false);
     
 
     return (
       <>  
-        {signUpFormModal && (
-          <Modal  onClose={() => setSignUpFormModal(false)}>
-            <SignupFormPage setSignUpFormModal={setSignUpFormModal}/>
+        {showSignup && (
+          <Modal  onClose={() => setShowSignup(false)}>
+            <SignupFormPage setSignUpFormModal={setShowSignup}/>
           </Modal>
         )}
         

@@ -1,16 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-// import LoginFormModal from '../LoginFormModal';
+import LoginFormModal from '../LoginFormModal';
+import SignUpFormModal from '../SignupFormPage/SignUpModal';
 import './Navigation.css';
 import logo from './Images/Logo.png'
 import textLogo from './Images/text.png'
 
 
+
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
   const history = useHistory()
+  const [showLogin, setShowLogin] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
+
 
   return (
     <nav className='main-navbar'>
@@ -19,8 +24,20 @@ function Navigation({ isLoaded }) {
       </div>
       {isLoaded && (
         <div className='right-profile-container'>
-          <ProfileButton user={sessionUser} isLoaded={isLoaded} />
+          <ProfileButton user={sessionUser} isLoaded={isLoaded}
+          setShowLogin={setShowLogin}
+          setShowSignup={setShowSignup}
+        
+          />
         </div>
+      )}
+       {showLogin && ( <LoginFormModal showLogin={showLogin} setShowLogin={setShowLogin}
+         
+        />
+      )}
+      {showSignup && ( <SignUpFormModal showSignup={showSignup} setShowSignup={setShowSignup}
+       
+        />
       )}
     </nav>
   );
