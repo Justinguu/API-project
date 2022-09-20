@@ -117,8 +117,8 @@ function SignupFormPage({setSignUpFormModal}) {
               )}
           </div>
         </div>
-      
-        <button className="signup submit-button" type="submit">Continue</button>
+        <div className="signupbttndiv"><button className="signup submit-button" type="submit">Continue</button></div>
+        
    </div> 
    </form>
   );
