@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import { deleteReviewThunk, getCurrReviewsThunk } from "../../../store/reviews";
 import icon from "../../Navigation/Images/icon.svg";
 import "./reviewGet.css";
+import { getCurrSpotThunk } from "../../../store/spots";
 
-const GetSpotReviews = () => {
-  const { spotId } = useParams();
+const GetSpotReviews = ({spotId}) => {
+  // const { spotId } = useParams();
   // const spotIdParsed = parseInt(spotId);
   // const spot = useSelector((state) => state.spots[spotIdParsed]);
 
@@ -21,7 +22,7 @@ const GetSpotReviews = () => {
 
   const deleteReview = (e, id) => {
     e.preventDefault();
-    dispatch(deleteReviewThunk(id));
+    dispatch(deleteReviewThunk(id)).then(() => dispatch(getCurrSpotThunk(spotId)))
   };
 
   useEffect(() => {
