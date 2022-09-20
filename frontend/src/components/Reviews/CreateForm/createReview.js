@@ -9,6 +9,7 @@ function CreateReviewForm() {
   const { spotId } = useParams();
   const currentUser = useSelector((state) => state.session.user);
   const spot = useSelector((state) => state.spots[spotId]);
+
   const dispatch = useDispatch();
 
 
@@ -37,7 +38,7 @@ function CreateReviewForm() {
     <Redirect to={`/spots/${spot.id}`} />; //throw error
   }
   let errorMessages = errors.map((error, i) => {
-    return <li key={i}>{error}</li>
+    return <div key={i}>{error}</div>
   })
 
   useEffect(() => {
@@ -68,17 +69,17 @@ function CreateReviewForm() {
     <section className="create-review-form-container">
       <form className="create-review-form" onSubmit={handleSubmit}>
         <div className="create-review-header-container">
-          <h3 className="create-review-header">How was your stay?</h3>
+          <h2 className="create-review-header">How was your stay?</h2>
         </div>
         <div className="create-review-errors">
           {errorMessages}
-         
         </div>
+
         <div className="modal-body">
           <label className="create-review-label">
             Review
             <div className="create-review-input-container">
-              <input
+              <textarea
                 className="create-review-input"
                 type="string"
                 placeholder="Write your review..."
@@ -90,12 +91,13 @@ function CreateReviewForm() {
             </div>
           </label>
           <label className="create-review-label">
-            Star Rating
+           <div className="starRating-space">Star Rating</div> 
             <div>
               <input
                 className="create-review-input"
                 type="integer"
                 placeholder="1 - 5"
+                step="1"
                 required
                 value={stars}
                 onChange={(e) => setStars(e.target.value)}

@@ -28,6 +28,7 @@
 .create-review-input{
 width: 200px;
 height: 30px;
+border: 1px solid #e8e5e5
 }
 .create-review-label{
     font-weight: 450;
@@ -35,4 +36,17 @@ height: 30px;
 
 .create-review-errors {
     padding-bottom: 10px;
+}
+
+.create-review-header {
+    font-size: 1000;
+}
+
+.starRating-space{
+   padding-bottom: 6px;
+}
+
+.review-Spot-image{
+    height: 400px;
+    width: 700px
 }

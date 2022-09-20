@@ -34,9 +34,10 @@ div.whole-page-wrapper{
 }
 
 div.spot-hosted-by {
-    font-size: 20px;
+    font-size: 23px;
     font-weight: 500;
     padding-top: 20px;
+    padding-bottom: 30px
 }
 
 img.img-currSpots {
@@ -103,4 +104,11 @@ img.img-currSpots {
         cursor: pointer;
         margin-top: 20px;
        
+    }
+
+    .currSpot-description{
+        border-top: 1px solid rgb(235, 228, 228);
+        font-size: 17px;
+        font-weight: 350;
+        padding-top: 20px;
     }

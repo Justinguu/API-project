@@ -91,18 +91,12 @@ const GetSpotDetails = () => {
             </div>
             <div className="spot-hosted-by">
               Spot hosted by {currSpot.Owner.firstName}
+              
             </div>
+            <div className="currSpot-description">{currSpot.description}</div>
 
             <div>
-              {/* <p>
-            Rating:
-            <img
-              className="getCurr-star-icon"
-              src={starIcon}
-              alt=""
-            />
-            {Number(rating).toFixed(1)}
-          </p> */}
+            
               <p className="numReview-star">
                 <img className="review-star-icon" src={starIcon} alt="" />{" "}
                 {Number(rating).toFixed(1)} · {currSpot.reviewss} reviews
