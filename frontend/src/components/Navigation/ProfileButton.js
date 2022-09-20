@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { useHistory } from "react-router-dom";
 import LoginFormModal from "../LoginFormModal";
-import SignUpFormModal from "../LoginFormModal";
+import SignUpFormModal from "../SignupFormPage";
 import icon from "./Images/icon.svg";
 import lineLogo from "./Images/lineLogo.svg";
 import "./ProfileButton.css";
@@ -13,9 +13,10 @@ import "./ProfileButton.css";
 export default function ProfileButton({ user, isLoaded }) {
   const dispatch = useDispatch();
   const history = useHistory();
+
   const [showMenu, setShowMenu] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showSignUpModal, setShowSignUpModal] = useState(false);
+  const [signUpFormModal, setSignUpFormModal] = useState(false);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -29,6 +30,17 @@ export default function ProfileButton({ user, isLoaded }) {
       history.push("/");
     });
   };
+// useEffect(() => {
+//     if(!showLoginModal) return;
+
+//     const closeSignUpModal = () => {
+//       setSignUpFormModal(false)
+//     }
+//     document.addEventListener("click",closeSignUpModal );
+
+//     return () => document.removeEventListener("click",closeSignUpModal )
+
+//   },[showLoginModal])
 
   useEffect(() => {
     if (!showMenu) return;
@@ -41,6 +53,11 @@ export default function ProfileButton({ user, isLoaded }) {
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
+
+
+  console.log("signup",signUpFormModal)
+  console.log("login",showLoginModal)
+
   const sessionUser = useSelector((state) => state.session.user);
 
   const logout = (e) => {
@@ -49,25 +66,21 @@ export default function ProfileButton({ user, isLoaded }) {
     history.push("/");
   };
 
-
   return (
     <>
-      {showLoginModal && (
-        <LoginFormModal
-          showLoginModal={showLoginModal}
+      {showLoginModal && ( <LoginFormModal showLoginModal={showLoginModal}
           setShowLoginModal={setShowLoginModal}
         />
       )}
-      {showSignUpModal && (
-        <SignUpFormModal
-          showSignUpModal={showSignUpModal}
-          setShowSignUpModal={setShowSignUpModal}
+      {signUpFormModal && ( <SignUpFormModal signUpFormModal={signUpFormModal} 
+      setSignUpFormModal={setSignUpFormModal}
+       
         />
       )}
       <div className="right-profile-container">
         <span className="host-hover-border">
           <NavLink className="become-host-link" to="/spots/create">
-           Become a Host 
+            Become a Host
           </NavLink>
         </span>
       </div>
@@ -82,7 +95,11 @@ export default function ProfileButton({ user, isLoaded }) {
               <li className="profile-list-item user-name-li">
                 {user.username}
               </li>
-              <NavLink className="profile-list-item hover-link" onClick={logout} to="">
+              <NavLink
+                className="profile-list-item hover-link"
+                onClick={logout}
+                to=""
+              >
                 Log Out
               </NavLink>
             </ul>
@@ -109,12 +126,13 @@ export default function ProfileButton({ user, isLoaded }) {
               </li>
               <li className="hover-link">
                 <NavLink
-                  onClick={() => setShowSignUpModal(true)}
+                  onClick={() => setSignUpFormModal(true)}
                   className="profile-list-item"
-                  to="/signup"
+                  to=""
                 >
                   Sign Up
                 </NavLink>
+               {/* <div><SignUpFormModal/></div>  */}
               </li>
             </ul>
           )}

@@ -1,11 +1,11 @@
 // frontend/src/components/SignupFormPage/index.js
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect  } from "react";
 import { Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
-function SignupFormPage() {
+function SignupFormPage({setSignUpFormModal}) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [firstName, setFirstName] = useState("")
@@ -15,15 +15,34 @@ function SignupFormPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  
+
+
+
+  // useEffect(() => {
+  //   if(!signUpFormModal) return;
+
+  //   const closeSignUpModal = () => {
+  //     setSignUpFormModal(false)
+  //   }
+  //   document.addEventListener("click",closeSignUpModal );
+
+  //   return () => document.removeEventListener("click",closeSignUpModal )
+
+  // },[signUpFormModal])
+
 
   if (sessionUser) return <Redirect to="/" />;
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(sessionActions.signup({firstName,lastName, email, username, password }))
-        .catch(async (res) => {
+      .then(()=> setSignUpFormModal(false))
+      .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
         });
@@ -32,11 +51,10 @@ function SignupFormPage() {
   };
 
   return (
-    <form className="signup-form" onSubmit={handleSubmit}>
-      <div className="signup-form-wrapper">
-        <div className="signup-title">
-          <h4 className="signup-h3">Sign up</h4>
-        </div>
+    
+    <form className="signup-modal" onSubmit={handleSubmit}>
+      <div className="signup-modal-wrapper">
+          <h3 className="signup-title">Sign up</h3>
         <div className="welcome">
           <h3 className="welcome-h3">Welcome to Justbnb</h3>
         </div>
@@ -90,14 +108,19 @@ function SignupFormPage() {
             required
           />
           <div className="signup-form-errors">
+              {errors.length > 0 && (
             <ul className="errors-list">
-              {errors.length > 0 && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+              {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+              ))}
             </ul>
+              )}
           </div>
         </div>
-      </div>
+      
         <button className="signup submit-button" type="submit">Continue</button>
-    </form>
+   </div> 
+   </form>
   );
 }
 
