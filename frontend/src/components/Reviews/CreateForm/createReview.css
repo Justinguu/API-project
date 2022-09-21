@@ -1,7 +1,8 @@
-.review-form {
+.create-review-form {
     display: flex;
     flex-direction: column;
     padding-bottom: 20px;
+    align-items: center;
 }
 
 .review-submit-container {
@@ -11,9 +12,9 @@
    
 }
 
-.review-input {
+.create-review-input {
     box-shadow: rgb(156, 156, 241);
-    padding: 10px;
+   
 }
 .create-review-submit-button {
     background: linear-gradient(0.25turn, #E61E4D, #D70666);
@@ -36,6 +37,7 @@ border: 1px solid #e8e5e5
 
 .create-review-errors {
     padding-bottom: 10px;
+    color:red;
 }
 
 .create-review-header {
@@ -47,6 +49,8 @@ border: 1px solid #e8e5e5
 }
 
 .review-Spot-image{
-    height: 400px;
-    width: 700px
+    display:flex;
+    align-content:flex-end;
+    height: 300px;
+    width: 500px
 }
