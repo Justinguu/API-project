@@ -24,10 +24,6 @@ Live Link: https://git.heroku.com/airbnb-justingu.git
 
 ## Features
 
-<<<<<<< HEAD:readme.md
-## Home Page
-
-=======
 ### Home Page
 ![Screen Shot 2022-09-20 at 6 51 18 PM](https://user-images.githubusercontent.com/99216902/191402623-b720f1b6-ed5b-461d-aaf5-debf3c3e0b1f.png)
 
@@ -36,7 +32,6 @@ Live Link: https://git.heroku.com/airbnb-justingu.git
 
 ### Review For Current Spot Page
 ![Screen Shot 2022-09-20 at 10 38 20 PM](https://user-images.githubusercontent.com/99216902/191402736-aab0cc60-946a-48ef-9769-965be7b18312.png)
->>>>>>> df6fd53b2cce71b7822ff2dc15cb21a88c6c26d4:README.md
 
 
 
