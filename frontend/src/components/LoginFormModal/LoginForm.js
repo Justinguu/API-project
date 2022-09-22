@@ -25,11 +25,13 @@ function LoginForm({setShowLoginModal}) {
   };
 
   return (
+    <div className="whole-login-container">
     <form className="login-form" onSubmit={handleSubmit}>
       <div className="form-input-wrapper">
         <div className="login-title-container">
           <h3 id="login-title">Log in</h3>
         </div>
+        <div className="Welcome-login-title">Welcome to Justbnb</div>
         <input
           type="text"
           autoComplete="false"
@@ -50,6 +52,7 @@ function LoginForm({setShowLoginModal}) {
           required
         />
       </div>
+      
       <div className="login-errors-container">
       {errors.length > 0 && (
         <ul className="errors-list">
@@ -62,6 +65,7 @@ function LoginForm({setShowLoginModal}) {
       <button className="login-button" type="submit" >Submit</button>
       
     </form>
+    </div>
   );
 }
 

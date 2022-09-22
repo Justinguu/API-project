@@ -27,12 +27,21 @@
     transition: all 0.2s ease-in-out;
 }
 .create-review-input{
-width: 200px;
+width: 500px;
 height: 30px;
-border: 1px solid #e8e5e5
+border: 1px solid #202020;
+border-radius: .6em
+}
+
+.create-star-input{
+    height: 20px;
+    width:80px;
+    border-radius: .6em;
+    border: 1px solid #202020;
 }
 .create-review-label{
     font-weight: 450;
+   
 }
 
 .create-review-errors {
@@ -45,12 +54,19 @@ border: 1px solid #e8e5e5
 }
 
 .starRating-space{
-   padding-bottom: 6px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
 }
 
 .review-Spot-image{
     display:flex;
     align-content:flex-end;
     height: 300px;
-    width: 500px
+    width: 500px;
+    border-radius: .6em;
+}
+.Review-text-review{
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

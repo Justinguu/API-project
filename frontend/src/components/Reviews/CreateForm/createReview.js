@@ -93,7 +93,7 @@ function CreateReviewForm() {
 
         <div className="modal-body">
           <label className="create-review-label">
-            Review
+           <div className="Review-text-review">Review</div> 
             <div className="create-review-input-container">
               <textarea
                 className="create-review-input"
@@ -110,7 +110,7 @@ function CreateReviewForm() {
            <div className="starRating-space">Star Rating</div> 
             <div>
               <input
-                className="create-review-input"
+                className="create-star-input"
                 type="integer"
                 placeholder="1 - 5"
                 step="1"

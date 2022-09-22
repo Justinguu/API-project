@@ -52,7 +52,7 @@ const GetSpotDetails = () => {
   }, [dispatch, spotId]);
 
   if (!isLoaded) {
-    return <div>Loading...</div>;    // if not loaded, wait for it to load..
+    return <div></div>;    // if not loaded, wait for it to load..
   }
 
   if (currSpot === undefined) {  // if stuck on curr page ,make it push to home
@@ -61,7 +61,7 @@ const GetSpotDetails = () => {
 
   if (isLoaded && currSpot.Owner === undefined) {
     dispatch(getCurrSpotThunk(spotId));
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   const rating = currSpot?.avgStarRating == 0 ? "New" : currSpot?.avgStarRating;
@@ -114,12 +114,9 @@ const GetSpotDetails = () => {
                       Review Spot
                     </button>
                   )}
-
-              {/* {showReview && (
-                <Modal onClose={() => setReviews(false)}>
-                  <SpotDelete spotId={spotId} setReviews={setReviews} />
-                </Modal>
-              )} */}
+                    {disabled && (
+                      <div className="review-text-disabled">Thanks for leaving a review for this spot</div>
+                    )}
 
               {currSpot.ownerId === user?.id && (
                 <div>

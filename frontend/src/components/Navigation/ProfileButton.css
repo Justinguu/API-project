@@ -9,7 +9,7 @@ div.profile-button-border {
   align-items: center;
   justify-content: space-evenly;
   border: 1px solid rgb(221, 221, 221);
-  border-radius: 2.8em;
+  border-radius: 5em;
   box-sizing: border-box;
   padding: 0;
   min-height: 39px;
@@ -52,6 +52,9 @@ ul.profile-list {
 .profile-list-item {
   color: black;
   text-decoration: none;
+  padding-top: 6px;
+  padding-bottom:6px;
+  padding-left:6px
 }
 
 
@@ -71,7 +74,7 @@ div.dropdown-menu {
   border-radius: .4em;
   position: absolute;
   top: 90%;
-  right: 1%;
+  right: 30px;
 
 }
 .hover-link {
@@ -105,7 +108,8 @@ div.profile-dropdown {
   z-index: 2;
 }
 .hover-link {
-  margin-left: -1.5em;
+  margin-left: -2em;
+  cursor:pointer;
 }
 
 .hover-link:hover {
@@ -114,8 +118,12 @@ div.profile-dropdown {
 }
 
 .user-name-li {
+  font-weight: 600;
   margin-left: -2em;
+  margin-bottom:5px;
 }
+
+
 div.right-profile-container {
   margin-left: 5em;
   display: flex;
@@ -125,5 +133,15 @@ div.right-profile-container {
   justify-content: space-around;
 }
 
+.logout-hover-link{
+  display:flex;
+  justify-content:left
+}
 
+.logout-drop-down{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: -1.5em;
+}
 
+/*     margin-left: -1.5em; */

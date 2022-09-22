@@ -9,6 +9,9 @@ nav.main-navbar {
     margin-bottom: 2em;
     height: 5em;
 }
+.svg-container{
+    cursor: pointer;
+}
 
 .logo {
     max-height: 40px;

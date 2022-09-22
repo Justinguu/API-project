@@ -31,14 +31,14 @@ div.review-text {
 
 .deleteButtonReview{
     
-        background: linear-gradient(0.25turn, #E61E4D, #D70666);
-        color: white;
-        border: none;
-        height: 2.4em;
-        border-radius: .5em;
-        min-width: 8em;
-        cursor: pointer;
-        margin-right: 2em;
-    
+    background: linear-gradient( #f6083f, #d42a79);
+    color:white;
+    border: none;
+    height: 1.9em;
+    width: 1.9em;
+    border-radius: .6em;
+    width: 100px;
+    cursor: pointer;
+    margin-top: 20px;
       
 }

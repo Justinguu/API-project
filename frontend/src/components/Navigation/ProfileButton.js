@@ -66,15 +66,6 @@ export default function ProfileButton({ user, isLoaded, setShowLogin, setShowSig
 
   return (
     <>
-      {/* {showLoginModal && ( <LoginFormModal showLoginModal={showLoginModal}
-          setShowLoginModal={setShowLoginModal}
-        />
-      )}
-      {signUpFormModal && ( <SignUpFormModal signUpFormModal={signUpFormModal} 
-      setSignUpFormModal={setSignUpFormModal}
-       
-        />
-      )} */}
       
       <div className="right-profile-container">
         <span className="host-hover-border">
@@ -91,46 +82,40 @@ export default function ProfileButton({ user, isLoaded, setShowLogin, setShowSig
         <div className="dropdown-menu">
           {isLoaded && sessionUser && (
             <ul className="profile-list">
-              <li className="profile-list-item user-name-li">
-                {user.username}
-              </li>
-              <NavLink
-                className="profile-list-item hover-link"
-                onClick={logout}
-                to=""
+              <li className="profile-list-item user-name-li">{user.username}</li>
+              <li className="hover-link Lout-list" onClick={logout}> 
+              <div
+                className="profile-list-item"
               >
                 Log Out
-              </NavLink>
+              </div>
+              </li>
             </ul>
           )}
           {isLoaded && !sessionUser && (
             <ul className="profile-list">
-              <li className="hover-link">
-                <NavLink
+              <li className="hover-link login-list" onClick={() => setShowLogin(true)}>
+                <div
                   className="profile-list-item"
-                  onClick={() => setShowLogin(true)}
-                  to=""
                 >
                   Login
-                </NavLink>
+                </div>
               </li>
-              <li className="hover-link">
-                <NavLink
+              <li className="hover-link" onClick={() => handleDemo()}>
+                <div
                   className="profile-list-item"
-                  onClick={() => handleDemo()}
-                  to=""
+                 
+                  
                 >
                   Demo Login
-                </NavLink>
+                </div>
               </li>
-              <li className="hover-link">
-                <NavLink
-                  onClick={() => setShowSignup(true)}
+              <li className="hover-link" onClick={() => setShowSignup(true)}>
+                <div
                   className="profile-list-item"
-                  to=""
                 >
                   Sign Up
-                </NavLink>
+                </div>
                {/* <div><SignUpFormModal/></div>  */}
               </li>
             </ul>
