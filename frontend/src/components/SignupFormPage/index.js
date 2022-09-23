@@ -55,9 +55,9 @@ function SignupFormPage({setSignUpFormModal}) {
     <form className="signup-modal" onSubmit={handleSubmit}>
       <div className="signup-modal-wrapper">
           <h3 className="signup-title">Sign up</h3>
-        <div className="welcome">
-          <h3 className="welcome-h3">Welcome to Justbnb</h3>
-        </div>
+        
+          <h3 className="signup-welcome-title">Welcome to Justbnb  </h3> 
+       
         <div className="signup-input-wrapper">
           <input
             type="text"

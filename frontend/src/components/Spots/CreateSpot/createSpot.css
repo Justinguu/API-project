@@ -47,6 +47,7 @@
   
   .create-spot-button {
     background: linear-gradient( #f6083f, #d42a79);
+    color:white;
     border: none;
     height: 3.0em;
     border-radius: .5em;
