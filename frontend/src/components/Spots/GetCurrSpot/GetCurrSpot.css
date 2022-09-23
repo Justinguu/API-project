@@ -118,6 +118,7 @@ img.img-currSpots {
         border-radius: .6em;
         width: 100px;
         margin-top: 20px;
+        pointer-events: none;
     }
     .review-text-disabled{
         font-size: small;
