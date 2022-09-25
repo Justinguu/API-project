@@ -165,7 +165,6 @@ function EditSpotForm({ setShowUpdate }) {
           value={price}
           placeholder="Price"
           onChange={(e) => setPrice(e.target.value)}
-          min="0.01"
           required  
         />
         <input
