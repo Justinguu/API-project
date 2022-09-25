@@ -16,6 +16,7 @@
     border-radius: .5em;
     min-width: 39em;
     cursor: pointer;
+    padding-bottom: -20px;
  
   }
 
@@ -28,6 +29,10 @@
     color:#ea1547;
     list-style: none;
     margin-left: -14px;
+  }
+
+  .edit-form-temp {
+    margin-bottom: 40px;
   }
 
 

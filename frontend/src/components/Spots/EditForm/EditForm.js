@@ -95,7 +95,7 @@ function EditSpotForm({ setShowUpdate }) {
           ))}
         </ul>
       )}
-      <div>
+      <div className="edit-form-temp">
         <input
           className="form-input mid edit"
           type="text"
