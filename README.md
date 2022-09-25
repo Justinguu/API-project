@@ -44,6 +44,7 @@ Live Link: https://git.heroku.com/airbnb-justingu.git
 
 <img width="639" alt="Screen Shot 2022-09-25 at 2 21 33 PM" src="https://user-images.githubusercontent.com/99216902/192159211-30f78bdd-e777-4b6e-90eb-ee7c9c55bc68.png">
 
+Allows a user to update the preview image. Due to not having a edit image, I had to make the store thunk edit the information input, delete the current preview image, create the new preview image, then replace the current image to allow functionality for this component.
 
 ## Locally
 
