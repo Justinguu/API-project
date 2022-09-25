@@ -162,6 +162,8 @@ return (
             placeholder="Latitude"
             value={lat}
             onChange={(e) => setLat(e.target.value)}
+            min="-90"
+            max="90"
             required
           />
           <input
@@ -170,6 +172,8 @@ return (
             placeholder="Logitude"
             value={lng}
             onChange={(e) => setLng(e.target.value)}
+            min="-180"
+            max="180"
             required
           />
           <input
