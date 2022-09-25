@@ -102,6 +102,7 @@ function EditSpotForm({ setShowUpdate }) {
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          required
         />
 
         <input
@@ -110,6 +111,7 @@ function EditSpotForm({ setShowUpdate }) {
           placeholder="Address"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
+          required
         />
 
         <input
@@ -118,6 +120,7 @@ function EditSpotForm({ setShowUpdate }) {
           placeholder="City"
           value={city}
           onChange={(e) => setCity(e.target.value)}
+          required
         />
 
         <input
@@ -126,6 +129,7 @@ function EditSpotForm({ setShowUpdate }) {
           placeholder="State"
           value={state}
           onChange={(e) => setState(e.target.value)}
+          required
         />
         <input
           className="form-input mid edit"
@@ -133,6 +137,7 @@ function EditSpotForm({ setShowUpdate }) {
           placeholder="Country"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
+          required
         />
         <input
           className="form-input mid edit"
@@ -140,7 +145,9 @@ function EditSpotForm({ setShowUpdate }) {
           value={lat}
           placeholder="Latitude"
           min= "-90"
+          max="90"
           onChange={(e) => setLat(e.target.value)}
+          required  
         />
         <input
           className="form-input mid edit"
@@ -148,7 +155,9 @@ function EditSpotForm({ setShowUpdate }) {
           value={lng}
           placeholder="Longitude"
           onChange={(e) => setLng(e.target.value)}
-      
+          min= "-180"
+          max="180"
+          required  
         />
         <input
           className="form-input mid edit"
@@ -156,7 +165,8 @@ function EditSpotForm({ setShowUpdate }) {
           value={price}
           placeholder="Price"
           onChange={(e) => setPrice(e.target.value)}
-         
+          min="0.01"
+          required  
         />
         <input
           className="form-input mid edit"
@@ -165,6 +175,7 @@ function EditSpotForm({ setShowUpdate }) {
           placeholder="Image URL"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
+          required  
         />
         <textarea
           type="text"
@@ -172,7 +183,7 @@ function EditSpotForm({ setShowUpdate }) {
           placeholder="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-        
+            required  
         />
       </div>
       <button className="submit-button-edit" type="submit">
