@@ -15,7 +15,7 @@ const GetSpotDetails = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
-  const [showReviewModal, setReviews] = useState(false);
+  const [setReviews] = useState(false);
   const [disabled, setDisabled] = useState(true);
 
   const { spotId } = useParams();
@@ -25,7 +25,7 @@ const GetSpotDetails = () => {
   const allReviews = useSelector((state) => state.reviews);
 
   const getAllReviewsArr = Object.values(allReviews);
-  // const [userIds, setUserIds] = useState(false);
+
   const history = useHistory();
 
   const sessionReview = !user
@@ -39,10 +39,6 @@ const GetSpotDetails = () => {
     e.preventDefault();
     history.push(`/spots/${spotId}/review`);
   };
-
-  // useEffect(() => {
-  //   setUserIds(getAllReviewsArr.map((review) => review.userId));
-  // }, [allReviews]);
 
   const dispatch = useDispatch();
 

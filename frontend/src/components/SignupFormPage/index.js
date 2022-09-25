@@ -1,5 +1,5 @@
 // frontend/src/components/SignupFormPage/index.js
-import React, { useState, useEffect  } from "react";
+import React, { useState  } from "react";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
@@ -16,24 +16,7 @@ function SignupFormPage({setSignUpFormModal}) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
   
-
-
-
-  // useEffect(() => {
-  //   if(!signUpFormModal) return;
-
-  //   const closeSignUpModal = () => {
-  //     setSignUpFormModal(false)
-  //   }
-  //   document.addEventListener("click",closeSignUpModal );
-
-  //   return () => document.removeEventListener("click",closeSignUpModal )
-
-  // },[signUpFormModal])
-
-
   if (sessionUser) return <Redirect to="/" />;
-
 
 
   const handleSubmit = (e) => {

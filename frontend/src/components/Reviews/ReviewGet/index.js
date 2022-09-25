@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { deleteReviewThunk, getCurrReviewsThunk } from "../../../store/reviews";
@@ -7,13 +7,11 @@ import "./reviewGet.css";
 import { getCurrSpotThunk } from "../../../store/spots";
 
 const GetSpotReviews = ({spotId}) => {
-  // const { spotId } = useParams();
-  // const spotIdParsed = parseInt(spotId);
-  // const spot = useSelector((state) => state.spots[spotIdParsed]);
+  
 
   const allReviews = useSelector((state) => Object.values(state.reviews))
   const getAllReviewArr = allReviews.filter((review) => review.spotId === parseInt(spotId))
-  // const getAllReviewArr = Object.values(allReviews);
+
 
   const [isLoaded, setIsLoaded] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
@@ -29,9 +27,6 @@ const GetSpotReviews = ({spotId}) => {
     dispatch(getCurrReviewsThunk(spotId)).then(() => setIsLoaded(true));
   }, [dispatch, spotId]);
 
-  // if (getAllReviewArr.length) {
-  //   return null;
-  // }
   // const DATE_OPTIONS = { weekday: 'short', year: 'numeric', month: 'short'};
   // let date = new Date(review.createdAt)
 
@@ -49,7 +44,7 @@ const GetSpotReviews = ({spotId}) => {
                   <div>
                     <img className="review-icon" src={icon} alt="" />
                   </div>{" "} <div className="review-name">&nbsp;&nbsp;{review.User.firstName}</div>
-                  {/* <div className="spot-date">{review.createdAt}</div> */}
+                
                   
                 </div>
                 <div className="review-text">

@@ -136,22 +136,10 @@ export const updateSpotThunk = (payload) => async (dispatch) => {
     payload.previewImage = updateData;
     spot.Images = [updateData]
     dispatch(updateTheSpot(spot))
-      // dispatch(updateImage(updateData, payload.id))
   }
 };
 
-// export const updateSpotThunk = (spotId, payload) => async(dispatch) => {
-//   const response = await csrfFetch((`/api/spots/${spotId}`), {
-//     method: "PUT",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(payload),
-//   });
-//   if (response.ok) {
-//     const data = await response.json()
-//     dispatch(updateTheSpot(data))
-//     return response
-//   }
-// }
+
 
 export const deleteSpotThunk = (id) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${id}`, {

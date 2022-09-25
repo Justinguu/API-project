@@ -43,8 +43,7 @@
     color: white;
     border: none;
     height: 2.6em;
-    border-radius: .20em;
-    /* min-width: 32em; */
+    border-radius: .5em;
     width: 370px;
     cursor: pointer;
   

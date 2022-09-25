@@ -35,9 +35,7 @@
   transition: all 0.2s ease-in-out;
 }
 
-.login-button:active {
-  transform: scale(.97);
-}
+
 
 .login-input {
   min-height: 3em;
@@ -46,9 +44,6 @@
   padding-left: 1rem;
 }
 
-input.login-input:placeholder-shown {
-  padding-left: 1rem;
-}
 
 input:focus {
   box-shadow: 0 0 5px #719ECE;
