@@ -25,7 +25,9 @@
   }
 
   .edit-errors {
-    color:#ea1547
+    color:#ea1547;
+    list-style: none;
+    margin-left: -14px;
   }
 
 

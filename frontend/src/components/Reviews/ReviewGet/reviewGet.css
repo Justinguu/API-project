@@ -41,3 +41,10 @@ div.review-text {
     margin-top: 20px;
       
 }
+
+.create-review-errors {
+    padding-top: 17px;
+}
+.single-error{
+    margin-bottom: 10px;
+}

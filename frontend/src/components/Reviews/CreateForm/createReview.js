@@ -42,7 +42,7 @@ function CreateReviewForm() {
     <Redirect to={`/spots/${spot.id}`} />; //throw error
   }
   let errorMessages = errors.map((error, i) => {
-    return <div key={i}>{error}</div>
+    return <div className = "single-error" key={i}>{error}</div>
   })
 
   useEffect(() => {

@@ -34,9 +34,9 @@ function EditSpotForm({ setShowUpdate }) {
     if (!city.length) errors.push("Please provide a city");
     if (!state.length) errors.push("Please provide a state");
     if (!country.length) errors.push("Please provide a country");
-    if (!lat) errors.push("Please provide a lat");
-    if (!lng) errors.push("Please provide a lng");
-    if (price <= 0) errors.push("Please set a higher price");
+    if (!lat || lat > 90 || lat < -90) errors.push("Please provide a valid lat");
+    if (!lng || lng > 90 || lng < -90) errors.push("Please provide a valid lng");
+    if (!price || price <= 0) errors.push("Please set a higher price");
     if (!description) errors.push("Please provide a description");
     if (!url) errors.push("Please provide a url");
 
@@ -139,6 +139,7 @@ function EditSpotForm({ setShowUpdate }) {
           type="number"
           value={lat}
           placeholder="Latitude"
+          min= "-90"
           onChange={(e) => setLat(e.target.value)}
         />
         <input
@@ -147,7 +148,7 @@ function EditSpotForm({ setShowUpdate }) {
           value={lng}
           placeholder="Longitude"
           onChange={(e) => setLng(e.target.value)}
-          required
+      
         />
         <input
           className="form-input mid edit"
@@ -155,7 +156,7 @@ function EditSpotForm({ setShowUpdate }) {
           value={price}
           placeholder="Price"
           onChange={(e) => setPrice(e.target.value)}
-          required
+         
         />
         <input
           className="form-input mid edit"
@@ -171,7 +172,7 @@ function EditSpotForm({ setShowUpdate }) {
           placeholder="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          required
+        
         />
       </div>
       <button className="submit-button-edit" type="submit">
