@@ -133,7 +133,6 @@ router.get('/:spotId', async (req, res) => {
 router.post("/", requireAuth, async (req, res) => {
   let { address, city, state, country, lat, lng, name, description, price } =
     req.body; //destructure the body
-  //console.log(req.user)
   let userId = req.user.dataValues.id; 
   let createSpot = await Spot.create({
     ownerId: userId, //want the ownerId to show the userId and following attributes
@@ -201,9 +200,9 @@ router.post('/:spotId/images', restoreUser, async (req, res, next) => {
       "statusCode": 404
     })
   }
-  console.log('are we reaching it?')
+ 
   const image = await Image.create({ url, previewImage, spotId, userId: user.id})
-  console.log("images that we get",image )
+ 
   //DEFINE AN OBJECT IN ORDER TO MAKE THE ASSOCIATION
   const obj = {}
   obj.id = image.id
@@ -217,7 +216,7 @@ router.post('/:spotId/images', restoreUser, async (req, res, next) => {
 //EDIT A SPOT
 
 router.put("/:spotId", requireAuth,restoreUser, async (req, res) => {
-  console.log(req);
+
   const { spotId } = req.params;
   const { address, city, state, country, lat, lng, name, description, price, url } =
     req.body;
@@ -299,7 +298,7 @@ router.post('/:spotId/reviews',requireAuth, restoreUser,async (req, res) => {
       }
           
       // //* Error Response: Body validation errors - COMPLETE
-      //console.log(stars) //0
+    
       else if (stars < 1 || stars > 5) {
         res.status(400)
         res.json({
@@ -601,7 +600,7 @@ router.get('/', async (req, res) => {
           raw: true //method to convert out from findByPk && findOne into raw data aka JS object... console.log(raw:true) excludes unneeded data to show what is needed from allSpots
          
       })
-              console.log(allSpots)
+          
       //Part 2 - Associate previewImage with Spots
       //Iterate through each spot in allSpots variable
       for (let spot of allSpots) {             //adding preview image
@@ -613,7 +612,7 @@ router.get('/', async (req, res) => {
               },
               raw: true
           })
-          console.log(spot)
+         
 
           //Determine if image contains a url link
           if (image) { // if image exists, set the url of the image equal to the value of previewImage
