@@ -10,6 +10,7 @@ module.exports = {
     typeValidation: true
   },
   production: {
+    
     use_env_variable: 'DATABASE_URL',
     dialect: 'postgres',
     seederStorage: 'sequelize',
@@ -18,6 +19,9 @@ module.exports = {
         require: true,
         rejectUnauthorized: false
       }
+    },
+    define: { 
+      schema: process.env.SCHEMA
     }
   }
 };
