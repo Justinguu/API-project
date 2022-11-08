@@ -53,7 +53,8 @@ export default function ProfileButton({ user, isLoaded, setShowLogin, setShowSig
   }, [showMenu]);
 
 
-
+  // console.log("signup",signUpFormModal)
+  // console.log("login",showLoginModal)
 
   const sessionUser = useSelector((state) => state.session.user);
 
