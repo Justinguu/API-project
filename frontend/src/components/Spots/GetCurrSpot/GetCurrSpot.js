@@ -21,9 +21,7 @@ const GetSpotDetails = () => {
   const { spotId } = useParams();
   const user = useSelector((state) => state.session.user);
   const currSpot = useSelector((state) => state.spots[spotId]);
-
   const allReviews = useSelector((state) => state.reviews);
-
   const getAllReviewsArr = Object.values(allReviews);
 
   const history = useHistory();
