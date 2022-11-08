@@ -9,7 +9,7 @@ const bcrypt = require("bcryptjs");
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     options.tableName = 'Users';  
-    return queryInterface.bulkInsert('options', [
+    return queryInterface.bulkInsert(options, [
       {
         firstName: 'Justin',
         lastName: 'Gu',
