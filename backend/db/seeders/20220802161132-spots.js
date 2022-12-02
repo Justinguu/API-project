@@ -179,6 +179,18 @@ module.exports = {
         description: "Place where dreams are created, memories are made",
         price: 215
       },
+      {
+        ownerId: 15,
+        address: "123 Mountain Drive",
+        city: "Atlanta",
+        state: "Georgia",
+        country: "United States of America",
+        lat: 32.7442329,
+        lng: 52.4122448,
+        name: "Mountain Point",
+        description: "Place where dreams are created, memories are made",
+        price: 355
+      },
       
      
      
