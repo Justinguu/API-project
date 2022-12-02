@@ -66,41 +66,41 @@ module.exports = {
           review: "The expierence could have been better!",
           stars: 3.8
         },
-        // {
+        {
         
-        //   userId: 10,
-        //   spotId: 12,
-        //   review: "The spot was great but the host was not very friendly!",
-        //   stars: 3.8
-        // },
-        // {
+          userId: 10,
+          spotId: 12,
+          review: "The spot was great but the host was not very friendly!",
+          stars: 3.8
+        },
+        {
         
-        //   userId: 10,
-        //   spotId: 11,
-        //   review: "The spot was great but the host was not very friendly!",
-        //   stars: 2.8
-        // },
-        // {
+          userId: 10,
+          spotId: 11,
+          review: "The spot was great but the host was not very friendly!",
+          stars: 2.8
+        },
+        {
         
-        //   userId: 11,
-        //   spotId: 12,
-        //   review: "The spot was great but the host was not very friendly!",
-        //   stars: 2.9
-        // },
-        // {
+          userId: 11,
+          spotId: 12,
+          review: "The spot was great but the host was not very friendly!",
+          stars: 2.9
+        },
+        {
         
-        //   userId: 12,
-        //   spotId: 13,
-        //   review: "The spot was great but the host was not very friendly!",
-        //   stars: 3.0
-        // },
-        // {
+          userId: 12,
+          spotId: 13,
+          review: "The spot was great but the host was not very friendly!",
+          stars: 3.0
+        },
+        {
         
-        //   userId: 13,
-        //   spotId: 12,
-        //   review: "The spot was great but the host was not very friendly!",
-        //   stars: 5.0
-        // },
+          userId: 13,
+          spotId: 12,
+          review: "The spot was great but the host was not very friendly!",
+          stars: 5.0
+        },
        
         
        
