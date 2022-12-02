@@ -119,6 +119,67 @@ module.exports = {
         description: "Place where dreams are created, memories are made",
         price: 435
       },
+      {
+        ownerId: 10,
+        address: "123 Pathway Street",
+        city: "Los Angeles",
+        state: "California",
+        country: "United States of America",
+        lat: 31.7645328,
+        lng: 52.4730427,
+        name: "Crown",
+        description: "Place where dreams are created, memories are made",
+        price: 542
+      },
+      {
+        ownerId: 11,
+        address: "123 Row River Drive",
+        city: "Denver",
+        state: "Colorado",
+        country: "United States of America",
+        lat: 31.7445328,
+        lng: 52.4720427,
+        name: "La Crema",
+        description: "Place where dreams are created, memories are made",
+        price: 642
+      },
+      {
+        ownerId: 12,
+        address: "123 Row River Drive",
+        city: "Denver",
+        state: "Colorado",
+        country: "United States of America",
+        lat: 31.7445328,
+        lng: 52.4720427,
+        name: "La Crema",
+        description: "Place where dreams are created, memories are made",
+        price: 645
+      },
+      {
+        ownerId: 13,
+        address: "123 Row River Drive",
+        city: "Denver",
+        state: "Colorado",
+        country: "United States of America",
+        lat: 31.7445328,
+        lng: 52.4720427,
+        name: "La Crema",
+        description: "Place where dreams are created, memories are made",
+        price: 645
+      },
+      {
+        ownerId: 14,
+        address: "321 Mountain Drive",
+        city: "Denver",
+        state: "Colorado",
+        country: "United States of America",
+        lat: 31.7442328,
+        lng: 52.4722427,
+        name: "Mountain Point",
+        description: "Place where dreams are created, memories are made",
+        price: 215
+      },
+      
      
      
       ],
