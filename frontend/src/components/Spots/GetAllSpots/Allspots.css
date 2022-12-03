@@ -18,7 +18,7 @@ div{
 
 .mainpage-city-state {
     font-size: 15.9px;
-    padding-bottom: 25px;
+    margin-top:-1rem;
     font-weight:450;
 }
 
@@ -43,6 +43,7 @@ div.spots-container {
 }
 
 .price-container {
+    margin-bottom: .4rem;
     display: inline-flex;
 }
 

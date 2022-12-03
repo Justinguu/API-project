@@ -1,13 +1,22 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
+
 import { getCurrSpotThunk } from "../../../store/spots";
 import { getCurrReviewsThunk } from "../../../store/reviews";
+
 import { Modal } from "../../../context/Modal";
+
 import EditSpotForm from "../EditForm/EditForm";
 import SpotDelete from "../SpotDelete/deleteSpot";
 import ReviewGetComponent from "../../Reviews/ReviewGet";
+import CreateBooking from "../../Bookings/CreateBookings.js";
+
 import starIcon from "../GetAllSpots/starIcon.png";
+import superHost from "../../icons/superHost.png";
+import airCover from "../../icons/airCover.png";
+import quality from "../../icons/qualityPicc.png";
+
 
 import "./GetCurrSpot.css";
 
@@ -16,6 +25,10 @@ const GetSpotDetails = () => {
   const [showUpdate, setShowUpdate] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [setReviews] = useState(false);
+  const todayDate = new Date().toISOString().slice(0, 10);
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+
   const [disabled, setDisabled] = useState(true);
 
   const { spotId } = useParams();
@@ -27,6 +40,21 @@ const GetSpotDetails = () => {
   const getAllReviewsArr = Object.values(allReviews);
 
   const history = useHistory();
+
+
+    // to dynamically render the price based on different dates
+
+    let dateInt;
+
+    if (
+      isNaN((new Date(endDate) - new Date(startDate)) / 86400000) ||
+      (new Date(endDate) - new Date(startDate)) / 86400000 < 0
+    ) {
+      dateInt = 0;
+    } else {
+      dateInt = (new Date(endDate) - new Date(startDate)) / 86400000;
+    }
+  
 
   const sessionReview = !user
     ? null
@@ -71,11 +99,11 @@ const GetSpotDetails = () => {
               <h2 className="currSpot-name">{currSpot.name}</h2>
             </div>
             <div>
-              <div></div>
               <p>
                 <img className="getCurr-star-icon" src={starIcon} alt="" />
-                {Number(rating).toFixed(2)}
-                &nbsp;· {currSpot.reviewss} reviews &nbsp;· &nbsp;{" "}
+                {Number(rating).toFixed(1)}
+                &nbsp;· {currSpot.reviewss} reviews &nbsp;·  &nbsp;{" "} 
+                {/* <span><img className="superhost" src={superHost} /> SuperHost</span> */}
                 {currSpot.city}, {currSpot.state}, {currSpot.country}
               </p>
               <p className="price-text"> ${currSpot.price} night</p>
@@ -86,10 +114,61 @@ const GetSpotDetails = () => {
               />
             </div>
             <div className="spot-hosted-by">
-              Spot hosted by {currSpot.Owner.firstName}
+              Spot hosted by {currSpot.Owner.firstName}&nbsp;{currSpot.Owner.lastName}
               
             </div>
+            <div className="description-checkin-container">
+          <div className="checkin-description">
+            <img  className="aircover "src={airCover}/>
+            <div className="aircover-text">Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</div>
             <div className="currSpot-description">{currSpot.description}</div>
+            <div><img className="qualityPic" src={quality}/></div>
+            
+          </div>
+          <div className="checkin">
+            <div className="checkin-star-price">
+              <div>{`$${currSpot.price} /night`}</div>
+              <span className="spancheckin">
+                <div>
+                <img className="getCurr-star-icon" src={starIcon} alt="" />
+                {Number(rating)}
+                  {currSpot.reviewss}
+                </div>
+                <div>·</div>
+                <span>{currSpot.reviewss} reviews</span>
+              </span>
+            </div>
+            <div className="spotDetailBoxTwo ">
+              <CreateBooking
+                setStartDate={setStartDate}
+                setEndDate={setEndDate}
+                todayDate={todayDate}
+                startDate={startDate}
+                endDate={endDate}
+                spotId={spotId}
+              />
+              <span className="you-wont-be-charged">
+                You won't be charged yet
+              </span>
+            </div>
+
+            <div className="checkin-star-price">
+              <div>Cleaning Fee</div>
+              <div>Free</div>
+            </div>
+            <div className="checkin-star-price">
+              <div>Service Fee</div>
+              <div>Free</div>
+            </div>
+            <div className="checkin-star-price total-price">
+              <div>Total before Taxes</div>
+              <div>${currSpot.price}</div>
+            </div>
+          </div>
+        </div>
+
+
+            {/* <div className="currSpot-description">{currSpot.description}</div> */}
 
             <div>
             

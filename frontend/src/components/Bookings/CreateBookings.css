@@ -1,0 +1,43 @@
+.CreateBookingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 5px;
+}
+
+.howManyGuestsLabel {
+  display: flex;
+  justify-content: center;
+}
+
+.createBookingInputContainer {
+  margin-bottom: 10px;
+}
+
+.CreateBookingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.BookingSubmit {
+  border-radius: 15px;
+  cursor: pointer;
+  color: rgb(228, 234, 240);
+  padding: 12px 40px;
+  font-size: 16px;
+  border: none;
+  background: linear-gradient(#f6083f, #d42a79);
+  width: 9rem;
+  margin-bottom: .5rem;
+}
+
+.errorMessageContainer {
+  display: flex;
+  color: red;
+}
+
+.point {
+  color: red;
+  margin-right: 5px;
+}

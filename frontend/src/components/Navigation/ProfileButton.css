@@ -52,6 +52,7 @@ ul.profile-list {
 .profile-list-item {
   color: black;
   text-decoration: none;
+  margin-top: .5rem;
   padding-top: 6px;
   padding-bottom:6px;
   padding-left:6px
@@ -69,6 +70,7 @@ div.dropdown-menu {
   display: flex;
   flex-direction: column;
   width: 14em;
+  height:8rem;
   background-color: white;
   box-shadow: 1px -2px 4px rgb(195, 195, 195);
   border-radius: .4em;
@@ -121,6 +123,8 @@ div.profile-dropdown {
   font-weight: 600;
   margin-left: -2em;
   margin-bottom:5px;
+  margin-top: -.2rem;
+  
 }
 
 
@@ -142,5 +146,19 @@ div.right-profile-container {
   margin-top: 50px;
   margin-bottom: 50px;
   margin-left: -1.5em;
+}
+
+/* .myBookings-dd:hover{
+
+} */
+.bookings-textt{
+  margin-left: -1.6rem;
+  cursor:pointer;
+
+}
+.bookings-textt:hover{
+  background-color: rgb(216, 207, 207);
+  padding: .5rem;
+  padding-left: .1rem;
 }
 

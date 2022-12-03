@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/session";
 import { NavLink } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import LoginFormModal from "../LoginFormModal";
 import SignUpFormModal from "../SignupFormPage";
 import icon from "./Images/icon.svg";
@@ -13,6 +13,7 @@ import "./ProfileButton.css";
 export default function ProfileButton({ user, isLoaded, setShowLogin, setShowSignup }) {
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
 
   const [showMenu, setShowMenu] = useState(false);
 
@@ -28,17 +29,17 @@ export default function ProfileButton({ user, isLoaded, setShowLogin, setShowSig
       history.push("/");
     });
   };
-// useEffect(() => {
-//     if(!showLoginModal) return;
+  // useEffect(() => {
+  //     if(!showLoginModal) return;
 
-//     const closeSignUpModal = () => {
-//       setSignUpFormModal(false)
-//     }
-//     document.addEventListener("click",closeSignUpModal );
+  //     const closeSignUpModal = () => {
+  //       setSignUpFormModal(false)
+  //     }
+  //     document.addEventListener("click",closeSignUpModal );
 
-//     return () => document.removeEventListener("click",closeSignUpModal )
+  //     return () => document.removeEventListener("click",closeSignUpModal )
 
-//   },[showLoginModal])
+  //   },[showLoginModal])
 
   useEffect(() => {
     if (!showMenu) return;
@@ -51,7 +52,6 @@ export default function ProfileButton({ user, isLoaded, setShowLogin, setShowSig
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
-
 
   // console.log("signup",signUpFormModal)
   // console.log("login",showLoginModal)
@@ -66,7 +66,6 @@ export default function ProfileButton({ user, isLoaded, setShowLogin, setShowSig
 
   return (
     <>
-      
       <div className="right-profile-container">
         <span className="host-hover-border">
           <NavLink className="become-host-link" to="/spots/create">
@@ -83,40 +82,34 @@ export default function ProfileButton({ user, isLoaded, setShowLogin, setShowSig
           {isLoaded && sessionUser && (
             <ul className="profile-list">
               <li className="profile-list-item user-name-li">{user.username}</li>
-              <li className="hover-link Lout-list" onClick={logout}> 
               <div
-                className="profile-list-item"
+                className="myBookings-dd"
+                onClick={() => {
+                  if (location.pathname === "/myBookings") {
+                    return;
+                  }
+                  history.push("/myBookings");
+                }}
               >
-                Log Out
+               <div className="bookings-textt">My Bookings</div> 
               </div>
+
+              <li className="hover-link Lout-list" onClick={logout}>
+                <div className="profile-list-item">Log Out</div>
               </li>
             </ul>
           )}
           {isLoaded && !sessionUser && (
             <ul className="profile-list">
               <li className="hover-link login-list" onClick={() => setShowLogin(true)}>
-                <div
-                  className="profile-list-item"
-                >
-                  Login
-                </div>
+                <div className="profile-list-item">Login</div>
               </li>
               <li className="hover-link" onClick={() => handleDemo()}>
-                <div
-                  className="profile-list-item"
-                 
-                  
-                >
-                  Demo Login
-                </div>
+                <div className="profile-list-item">Demo Login</div>
               </li>
               <li className="hover-link" onClick={() => setShowSignup(true)}>
-                <div
-                  className="profile-list-item"
-                >
-                  Sign Up
-                </div>
-               {/* <div><SignUpFormModal/></div>  */}
+                <div className="profile-list-item">Sign Up</div>
+                {/* <div><SignUpFormModal/></div>  */}
               </li>
             </ul>
           )}
