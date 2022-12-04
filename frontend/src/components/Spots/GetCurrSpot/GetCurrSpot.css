@@ -222,3 +222,47 @@ button.review-spot-button:disabled {
   margin-bottom: 1rem;
   width: 47rem;
 }
+
+.imgParentContainer {
+  display: flex;
+  /* justify-content: center; */
+  height:21rem;
+  gap: 5px;
+  
+}
+.mainImgContainer {
+  width: 35%;
+}
+.Big {
+  height: 20.6rem;
+  width: 100%;
+  /* border-radius: 10px; */
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.oneSpot-Image {
+  display: grid;
+
+  width:100px;
+  height: 100px;
+
+  object-fit: cover;
+}
+.secondaryImgContainer {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+  width: 54.2%;
+}
+.oneSpot-Image {
+  height: auto;
+  width: auto;
+  width: 40%;
+  height: 40%;
+}
+.small {
+  height: 10rem;
+  width: 100%;
+  border-radius: 10px;
+}

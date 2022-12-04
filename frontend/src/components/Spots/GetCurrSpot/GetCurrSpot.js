@@ -107,11 +107,48 @@ const GetSpotDetails = () => {
                 {currSpot.city}, {currSpot.state}, {currSpot.country}
               </p>
               <p className="price-text"> ${currSpot.price} night</p>
-              <img
+              <div className="imgParentContainer">
+          <div className="mainImgContainer">
+            <img
+              className="Big"
+              src={currSpot.Images[0].url}
+              // key={"imageId: " + JSON.stringify(index) + "big"}
+              alt="NOT FOUND"
+            />
+          </div>
+          <div className="secondaryImgContainer">
+            <img
+              className="oneSpot-Image small"
+              src={currSpot.Images[0].url}
+              // key={"imageId: " + JSON.stringify(index) + "topleft"}
+              alt="NOT FOUND"
+            />
+
+            <img
+              className="oneSpot-Image small corner-top"
+              src={currSpot.Images[0].url}
+              // key={"imageId: " + JSON.stringify(index) + "topright"}
+              alt="NOT FOUND"
+            />
+            <img
+              className="oneSpot-Image small"
+              src={currSpot.Images[0].url}
+              // key={"imageId: " + JSON.stringify(index) + "bottomleft"}
+              alt="NOT FOUND"
+            />
+            <img
+              className="oneSpot-Image small corner-bottom"
+              src={currSpot.Images[0].url}
+              // key={"imageId: " + JSON.stringify(index) + "bottomright"}
+              alt="NOT FOUND"
+            />
+          </div>
+        </div>
+              {/* <img
                 className="img-currSpots"
                 src={currSpot.Images[0].url}
                 alt=""
-              />
+              /> */}
             </div>
             <div className="spot-hosted-by">
               Spot hosted by {currSpot.Owner.firstName}&nbsp;{currSpot.Owner.lastName}
