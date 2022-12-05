@@ -29,7 +29,7 @@ const UserProfile = () => {
 
   // find how many spots the user has
   const userSpots = Object.values(currSpot).filter((spot) => spot.ownerId === user.id);
-//   console.log("userSpots", userSpots);
+
   return (
     isLoaded && (
         <div className="user-container">
@@ -44,28 +44,29 @@ const UserProfile = () => {
          
           <div className="business-bottom-container">
             <div className="single-rest-container-left">
-              {userSpots.map((business) => {
+              {userSpots.map((spot) => {
                 return (
-                  <div className="all-restraunts-container" key={business.id}>
+                  <div className="all-restraunts-container" key={spot.id}>
                     <div className="">
                       <div className="singleUserBusinessContainer">
-                        <NavLink to={`/businesses/${business.id}`}>
-                        <div className="currSpot-name"><strong>{business.name}</strong></div>{" "}
+                        <NavLink to={`/spots/${spot.id}`}>
+                        <div className="currSpot-name"><strong>{spot.name}</strong></div>{" "}
+
                         <div className="price-claim">
                           
                         </div>
-                          <img className="user-business-image" src={business.previewImage} alt="restraunt" />
+                          <img className="user-business-image" src={spot.previewImage} alt="restraunt" />
                         </NavLink>
                         <div className="user-business-info">
                             <div>
-                                <strong>Rating = </strong>{business.avgRating}
+                                <strong>Rating = </strong>{spot.avgRating}
                             </div>
                           <div>
-                            <strong>Business Address = </strong> {business.address} {business.city}, {business.state},
-                            {business.country} {business.zip_code}
+                            <strong>Business Address = </strong> {spot.address} {spot.city}, {spot.state},
+                            {spot.country} {spot.zip_code}
                           </div>
                           <div>
-                            <strong>Business Price =</strong> ${business.price}/night{" "}
+                            <strong>Business Price =</strong> ${spot.price}/night{" "}
                           </div>
                           <div>
                             {" "}
@@ -77,7 +78,7 @@ const UserProfile = () => {
                           </div> */}
                           <div>
                             <strong>Business Description = </strong>
-                            {business.description}
+                            {spot.description}
                           </div>
                         </div>
                       </div>
