@@ -11,6 +11,7 @@ import CreateSpotForm from "./components/Spots/CreateSpot/CreateSpot"
 import GetSpotDetails from "./components/Spots/GetCurrSpot/GetCurrSpot"
 import CreateReviewForm from "./components/Reviews/CreateForm/createReview";
 import UserBookings from "./components/UserPage/UserBookings";
+import UserProfile from "./components/UserProfile/UserProfile";
 
 
 
@@ -48,6 +49,9 @@ function App() {
           </Route>
           <Route exact path='/myBookings'>
             <UserBookings />
+          </Route>
+          <Route exact path='/users/:userId'>
+            <UserProfile />
           </Route>
         </Switch>
       )}

@@ -81,7 +81,8 @@ export default function ProfileButton({ user, isLoaded, setShowLogin, setShowSig
         <div className="dropdown-menu">
           {isLoaded && sessionUser && (
             <ul className="profile-list">
-              <li className="profile-list-item user-name-li">{user.username}</li>
+              <div><NavLink to={`/users/${user.id}`} className="profile-list-item user-name-li">{user.username}</NavLink></div>
+              
               <div
                 className="myBookings-dd"
                 onClick={() => {

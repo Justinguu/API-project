@@ -14,9 +14,16 @@ module.exports = {
           userId: 1,
           spotId: 3,
           review: "This was an awesome spot!",
-          stars: 4.8
+          stars: 4.9
         },
 
+        {
+        
+          userId: 2,
+          spotId: 1,
+          review: "This was an awesome spot!",
+          stars: 4.8
+        },
         {
         
           userId: 2,
@@ -36,7 +43,21 @@ module.exports = {
           userId: 4,
           spotId: 5,
           review: "This was an awesome spot!",
-          stars: 4.8
+          stars: 4.7
+        },
+        {
+        
+          userId: 4,
+          spotId: 7,
+          review: "This was an awesome spot!",
+          stars: 4.6
+        },
+        {
+        
+          userId: 4,
+          spotId: 8,
+          review: "This was an awesome spot!",
+          stars: 4.7
         },
         {
         
@@ -99,7 +120,21 @@ module.exports = {
           userId: 13,
           spotId: 12,
           review: "The spot was great but the host was not very friendly!",
-          stars: 5.0
+          stars: 4.0
+        },
+        {
+        
+          userId: 8,
+          spotId: 13,
+          review: "The spot was great but the host was not very friendly!",
+          stars: 3.5
+        },
+        {
+        
+          userId: 2,
+          spotId: 14,
+          review: "The spot was great but the host was not very friendly!",
+          stars: 4.0
         },
        
         
