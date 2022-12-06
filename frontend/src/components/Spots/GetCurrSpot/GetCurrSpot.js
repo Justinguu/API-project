@@ -198,8 +198,8 @@ const GetSpotDetails = () => {
               <span className="spancheckin">
                 <div>
                 <img className="getCurr-star-icon" src={starIcon} alt="" />
-                {Number(rating)}
-                  {currSpot.reviewss}
+                {Number(rating.toFixed(1))}
+                  {/* {currSpot.reviewss} */}
                 </div>
                 <div>·</div>
                 <span>{currSpot.reviewss} reviews</span>
@@ -221,11 +221,11 @@ const GetSpotDetails = () => {
 
             <div className="checkin-star-price">
              <strong><div>Cleaning Fee</div></strong> 
-              <div>Charged after checkout</div>
+              <div>Applied after checkout</div>
             </div>
             <div className="checkin-star-price">
              <strong><div>Service Fee</div></strong> 
-              <div>Charged after checkout</div>
+              <div>Applied after checkout</div>
             </div>
             <div className="checkin-star-price total-price">
               <strong><div>Total before Taxes</div></strong>

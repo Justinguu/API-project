@@ -39,7 +39,7 @@
   color: white;
   border: none;
   height: 2.6em;
-  margin-left: 33rem;
+  margin-left: 1.3rem;
   margin-top: 0.2rem;
 }
 
@@ -49,4 +49,11 @@
 }
 .booking-date {
   margin-bottom: 0.5rem;
+}
+
+.UserViewSpot{
+  margin-left: 27rem;
+  /* background: linear-gradient(#f6083f, #d42a79); */
+  cursor: pointer;
+  text-decoration: underline;
 }

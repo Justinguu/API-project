@@ -58,9 +58,9 @@ function UserBookings() {
                 <div className="booking-card-right" onClick={() => history.push(`/spots/${booking.Spot.id}`)}>
                   <img className="booking-image" src={booking.Spot?.previewImage} alt="Spot" />
                   <div className="booking-card-buttons">
-                    {/* <NavLink to={`/spots/${booking.Spot.id}`} className="spacing booking-card-button">
+                    <NavLink to={`/spots/${booking.Spot.id}`} className="UserViewSpot">
                     View Spot
-                  </NavLink> */}
+                  </NavLink>
                     <button className="cancel-booking-bttn" onClick={() => dispatch(deleteBookingId(booking.id))}>
                       Cancel Booking
                     </button>

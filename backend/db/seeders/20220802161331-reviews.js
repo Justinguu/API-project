@@ -82,6 +82,13 @@ module.exports = {
         },
         {
         
+          userId: 2,
+          spotId: 9,
+          review: "This was an awesome spot!",
+          stars: 4.5
+        },
+        {
+        
           userId: 9,
           spotId: 10,
           review: "The expierence could have been better!",
@@ -133,6 +140,13 @@ module.exports = {
         
           userId: 2,
           spotId: 14,
+          review: "The spot was great but the host was not very friendly!",
+          stars: 3.9
+        },
+        {
+        
+          userId: 5,
+          spotId: 15,
           review: "The spot was great but the host was not very friendly!",
           stars: 4.0
         },

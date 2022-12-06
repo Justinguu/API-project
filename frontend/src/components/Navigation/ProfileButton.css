@@ -50,8 +50,8 @@ ul.profile-list {
 }
 
 .profile-list-item {
-  color: black;
-  text-decoration: none;
+  /* color: black; */
+ 
   margin-top: .5rem;
   padding-top: 6px;
   padding-bottom:6px;
@@ -70,7 +70,7 @@ div.dropdown-menu {
   display: flex;
   flex-direction: column;
   width: 14em;
-  height:8rem;
+  height:8.8rem;
   background-color: white;
   box-shadow: 1px -2px 4px rgb(195, 195, 195);
   border-radius: .4em;
@@ -90,6 +90,8 @@ div.dropdown-menu {
 
 .user-name-li {
   margin-left: -1.5em;
+  text-decoration: underline;
+  margin-top: 1rem;
 }
 .become-host-link {
   color: rgb(8, 8, 8);
@@ -152,6 +154,7 @@ div.right-profile-container {
 
 } */
 .bookings-textt{
+  margin-top: 1rem;
   margin-left: -1.6rem;
   cursor:pointer;
 
