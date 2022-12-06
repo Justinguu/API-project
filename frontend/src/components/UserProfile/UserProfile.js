@@ -59,7 +59,7 @@ const UserProfile = () => {
                   <div className="all-restraunts-container" key={spot.id}>
                     <div className="">
                       <div className="singleUserBusinessContainer">
-                        <div>
+                        <div className="user-update-delete">
                           <button className="EditSpot-button" onClick={() => {setShowUpdate(true); setCurrUserSpot(spot)}}>
                             Edit Spot{" "}
                           </button>{" "}
@@ -79,7 +79,7 @@ const UserProfile = () => {
                           )}
                         </div>
                         <NavLink to={`/spots/${spot.id}`}>
-                          <div className="currSpot-name">
+                          <div className="owner-name">
                             <strong>{spot.name}</strong>
                           </div>{" "}
                           <div className="price-claim"></div>

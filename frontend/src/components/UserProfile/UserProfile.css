@@ -45,7 +45,7 @@
   .user-business-image{
     margin-top: 1rem;
     margin-bottom: -.5rem;
-    height:auto;
+    height:13rem;
     width:20rem;
     border-radius: 0.3rem;
   }
@@ -62,11 +62,21 @@
     margin:1rem;
     margin-bottom: 1rem;
     width: 60rem;
-    height: 15rem;
+    height: 19rem;
     /* height: 20rem; */
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   }
   .user-business-info{
     margin-left: 25rem;
     margin-top: -10rem;
+  }
+
+  .owner-name{
+    margin-top: .5rem;
+    font-size: 20px;
+  }
+
+  .user-update-delete{
+    margin-top: -2rem;
+    margin-left: 44.2rem;
   }
