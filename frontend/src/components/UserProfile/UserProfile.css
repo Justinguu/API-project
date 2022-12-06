@@ -58,12 +58,12 @@
   .singleUserBusinessContainer{
     box-sizing: border-box;
     border: 1px solid lightgray;
+    border-radius: 10px;
     padding: 1rem;
     margin:1rem;
     margin-bottom: 1rem;
     width: 60rem;
     height: 19rem;
-    /* height: 20rem; */
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   }
   .user-business-info{
@@ -77,6 +77,6 @@
   }
 
   .user-update-delete{
-    margin-top: -2rem;
+    margin-top: -1.5rem;
     margin-left: 44.2rem;
   }

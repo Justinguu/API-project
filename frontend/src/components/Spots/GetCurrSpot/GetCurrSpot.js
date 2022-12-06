@@ -220,15 +220,15 @@ const GetSpotDetails = () => {
             </div>
 
             <div className="checkin-star-price">
-              <div>Cleaning Fee</div>
-              <div>Free</div>
+             <strong><div>Cleaning Fee</div></strong> 
+              <div>Charged after checkout</div>
             </div>
             <div className="checkin-star-price">
-              <div>Service Fee</div>
-              <div>Free</div>
+             <strong><div>Service Fee</div></strong> 
+              <div>Charged after checkout</div>
             </div>
             <div className="checkin-star-price total-price">
-              <div>Total before Taxes</div>
+              <strong><div>Total before Taxes</div></strong>
               <div>${currSpot.price}</div>
             </div>
           </div>
