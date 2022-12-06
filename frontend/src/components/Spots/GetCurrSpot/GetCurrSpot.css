@@ -166,7 +166,7 @@ button.review-spot-button:disabled {
   font-family: "Montserrat", sans-serif;
   margin-bottom: 2rem;
   margin-left: 2rem;
-  z-index: 1;
+  /* z-index: 1; */
 }
 
 .checkin-star-price {

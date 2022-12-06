@@ -28,14 +28,16 @@ function UserBookings() {
   useEffect(() => {
     dispatch(getBookingsByUserthunk()).then(setIsLoaded(true));
     dispatch(getAllSpotsThunk());
-  }, [dispatch]);
+  }, [dispatch,isLoaded]);
 
   if (!isLoaded) {
     return null;
   }
 
   let userBookings;
+  
   if (Object.keys(bookings).length === 0) {
+    
     userBookings = (
       <div className="no-bookings">
         <h2>You have no bookings</h2>
@@ -52,9 +54,9 @@ function UserBookings() {
             {bookings.map((booking) => (
           <div className="user-showcase-wrapper">
               <div className="user-singleImgContainer" key={booking.id}>
-                <h3 className="spotAddy-Owned spacing">{booking.Spot.name}</h3>
+                <h3 className="spotAddy-Owned spacing">{booking.Spot?.name}</h3>
                 <div className="booking-card-right" onClick={() => history.push(`/spots/${booking.Spot.id}`)}>
-                  <img className="booking-image" src={booking.Spot.previewImage} alt="Spot" />
+                  <img className="booking-image" src={booking.Spot?.previewImage} alt="Spot" />
                   <div className="booking-card-buttons">
                     {/* <NavLink to={`/spots/${booking.Spot.id}`} className="spacing booking-card-button">
                     View Spot
@@ -68,7 +70,7 @@ function UserBookings() {
                   <p className="grouping-info spacing">
                     <div className="booking-info-font"> Booking Information</div>{" "}
                    <div className="booking-date">{new Date(booking.startDate).toLocaleDateString()} -{" "}{new Date(booking.endDate).toLocaleDateString()}</div> 
-                    <div>{booking.Spot.address},&nbsp;{booking.Spot.city} {booking.Spot.state}</div>
+                    <div>{booking.Spot?.address},&nbsp;{booking.Spot?.city} {booking.Spot?.state}</div>
                   </p>
                 </div>
               </div>
@@ -80,12 +82,15 @@ function UserBookings() {
   }
 
   return (
-    <div className="user-booking-container">
+    isLoaded && (
+        <div className="user-booking-container">
       <div className="user-booking-inner-container">
   
         {userBookings}
       </div>
     </div>
+    )
+  
   );
 }
 

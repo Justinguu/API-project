@@ -144,16 +144,46 @@ const GetSpotDetails = () => {
             />
           </div>
         </div>
-              {/* <img
-                className="img-currSpots"
-                src={currSpot.Images[0].url}
-                alt=""
-              /> */}
+            
             </div>
+            {currSpot.ownerId === user?.id && (
+                <div>
+                  <button
+                    className="EditSpot-button"
+                    onClick={() => setShowUpdate(true)}
+                  >
+                    Edit Spot{" "}
+                  </button>{" "}
+                  &nbsp;&nbsp;&nbsp;
+                  <button
+                    className="DeleteSpot-button"
+                    onClick={() => setShowDelete(true)}
+                  >
+                    Delete Spot
+                  </button>
+                  {showUpdate && (
+                    <Modal onClose={() => setShowUpdate(false)}>
+                      <EditSpotForm
+                        spotId={spotId}
+                        setShowUpdate={setShowUpdate}
+                      />
+                    </Modal>
+                  )}
+                  {showDelete && (
+                    <Modal onClose={() => setShowDelete(false)}>
+                      <SpotDelete
+                        spotId={spotId}
+                        setShowDelete={setShowDelete}
+                      />
+                    </Modal>
+                  )}
+                </div>
+              )}
             <div className="spot-hosted-by">
               Spot hosted by {currSpot.Owner.firstName}&nbsp;{currSpot.Owner.lastName}
               
             </div>
+              
             <div className="description-checkin-container">
           <div className="checkin-description">
             <img  className="aircover "src={airCover}/>
@@ -230,46 +260,13 @@ const GetSpotDetails = () => {
                       <div className="review-text-disabled">Thanks for leaving a review for this spot</div>
                     )}
 
-              {currSpot.ownerId === user?.id && (
-                <div>
-                  <button
-                    className="EditSpot-button"
-                    onClick={() => setShowUpdate(true)}
-                  >
-                    Edit Spot{" "}
-                  </button>{" "}
-                  &nbsp;&nbsp;&nbsp;
-                  <button
-                    className="DeleteSpot-button"
-                    onClick={() => setShowDelete(true)}
-                  >
-                    Delete Spot
-                  </button>
-                  {showUpdate && (
-                    <Modal onClose={() => setShowUpdate(false)}>
-                      <EditSpotForm
-                        spotId={spotId}
-                        setShowUpdate={setShowUpdate}
-                      />
-                    </Modal>
-                  )}
-                  {showDelete && (
-                    <Modal onClose={() => setShowDelete(false)}>
-                      <SpotDelete
-                        spotId={spotId}
-                        setShowDelete={setShowDelete}
-                      />
-                    </Modal>
-                  )}
-                </div>
-              )}
               <ReviewGetComponent
                 spotId={spotId}
                 user={user}
                 setReviews={setReviews}
               />
             </div>
-            <div></div>
+            
           </div>
         </div>
       </>

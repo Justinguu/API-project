@@ -4,10 +4,12 @@ import { Redirect, useHistory, useParams } from "react-router-dom";
 import { updateSpotThunk } from "../../../store/spots";
 import "./EditForm.css";
 
-function EditSpotForm({ setShowUpdate }) {
+function EditSpotForm({ setShowUpdate,spotId }) {
   const user = useSelector((state) => state.session.user);
-  const { spotId } = useParams();
+  // const { spotId } = useParams();
   const spotPlacement = useSelector((state) => state.spots[spotId]);
+
+  // console.log(spots)
 
   const [name, setName] = useState(spotPlacement.name);
   const [address, setAddress] = useState(spotPlacement.address);
@@ -144,8 +146,6 @@ function EditSpotForm({ setShowUpdate }) {
           type="number"
           value={lat}
           placeholder="Latitude"
-          min= "-90"
-          max="90"
           onChange={(e) => setLat(e.target.value)}
           required  
         />
@@ -155,8 +155,6 @@ function EditSpotForm({ setShowUpdate }) {
           value={lng}
           placeholder="Longitude"
           onChange={(e) => setLng(e.target.value)}
-          min= "-180"
-          max="180"
           required  
         />
         <input
@@ -165,7 +163,7 @@ function EditSpotForm({ setShowUpdate }) {
           value={price}
           placeholder="Price"
           onChange={(e) => setPrice(e.target.value)}
-          min="0.01"
+          // min="0.01"
           required  
         />
         <input

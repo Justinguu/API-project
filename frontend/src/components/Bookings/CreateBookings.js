@@ -52,7 +52,7 @@ const CreateBookings = ({ setStartDate, setEndDate, todayDate, startDate, endDat
   };
 
   useEffect(() => {
-    dispatch(getBookingsByUserthunk(spotId));
+    dispatch(getBookingsByUserthunk(spotId))
     errorValidations();
   }, [startDateNum, endDateNum]);
 
@@ -85,7 +85,9 @@ const CreateBookings = ({ setStartDate, setEndDate, todayDate, startDate, endDat
       setErrors(errors);
     }
     if (errors.length === 0 && spot?.ownerId !== sessionUser.id) {
-      dispatch(createNewUserBookingThunk(spotId, data)).then((res) => history.push(`/myBookings`));
+      dispatch(createNewUserBookingThunk(spotId, data))
+      .then(() => getBookingsByUserthunk())
+      .then(() => history.push(`/myBookings`));
     }
   };
 
