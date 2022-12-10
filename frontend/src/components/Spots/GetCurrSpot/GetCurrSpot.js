@@ -16,6 +16,7 @@ import starIcon from "../GetAllSpots/starIcon.png";
 import superHost from "../../icons/superHost.png";
 import airCover from "../../icons/airCover.png";
 import quality from "../../icons/qualityPicc.png";
+import offers from "../../icons/offers.png";
 
 
 import "./GetCurrSpot.css";
@@ -190,6 +191,10 @@ const GetSpotDetails = () => {
             <div className="aircover-text">Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</div>
             <div className="currSpot-description">{currSpot.description}</div>
             <div><img className="qualityPic" src={quality}/></div>
+
+            <div>
+              <img className="offers-pic" src={offers}/>
+            </div>
             
           </div>
           <div className="checkin">

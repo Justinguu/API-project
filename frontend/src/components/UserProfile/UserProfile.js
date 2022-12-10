@@ -47,7 +47,7 @@ const UserProfile = () => {
           </span> */}
 
           <div>
-            <h1>Welcome {user.username} </h1>
+            <h1>{user.username}'s Businesses </h1>
           </div>
 
           <div className="user-emails"></div>
