@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { getAllSpotsThunk } from "../../../store/spots";
 import { NavLink } from "react-router-dom";
 import starIcon from "./starIcon.png";
-
+import githubIcon from '../../icons/github-icon.png'
+import linkedinIcon from '../../icons/linkedin-icon.png'
 import "./Allspots.css";
 
 const GetAllSpots = () => {
@@ -86,6 +87,35 @@ const GetAllSpots = () => {
             ))}
           </div>
         </div>
+          <div className="hompage-footer-container">
+                    <div className='copyright-container'>
+                        <div> © 2022 Jusbnb, Inc.</div>
+                        {/* <NavLink>Developer Page</NavLink> */}
+                    </div>
+                    <div className='footer-links-container'>
+                        <a className="footer-link" href="https://github.com/Justinguu/API-project" target="_blank">
+                            <img className='footer-icon' src={githubIcon}></img>
+                            <div>Jusbnb Github Repository</div>
+                        </a>
+                        <div className="developer-footer-container">
+                            <div className='developer-name-container'>
+                                <div style={{ fontWeight: 'bold' }}>Developer: </div>
+                                <div style={{ fontWeight: '500' }}>Jung Gu</div>
+                            </div>
+                            <div className='jung-links'>
+                                <a className="footer-link" href="https://www.linkedin.com/in/jung-gu-b69b98154/" target="_blank">
+                                    <img className='footer-icon' src={linkedinIcon}></img>
+                                    <div>LinkedIn</div>
+                                </a>
+                                <a className="footer-link" href="https://github.com/Justinguu" target="_blank">
+                                    <img className='footer-icon' src={githubIcon}></img>
+                                    <div>Github</div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
       </>
     )
   );

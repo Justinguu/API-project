@@ -89,3 +89,70 @@ div.spot-info-right {
     justify-content: space-around;
     margin-right: 1em;
 }
+
+/* ----------------------------------------footer---------------------------------------- */
+.hompage-footer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid lightgrey; */
+    background-color: rgb(245, 245, 245);
+    width: 100%;
+    height: 4.4rem;
+}
+
+.copyright-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    margin-left: 3.5rem;
+}
+
+.footer-links-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+}
+
+.developer-footer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-right: 3.5rem;
+}
+
+.developer-name-container{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.footer-icon {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.footer-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    color: rgb(80, 80, 80);
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.jung-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 25px;
+}
