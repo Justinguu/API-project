@@ -18,6 +18,12 @@
   outline: none;
   background-color: white;
 }
+.search-bar-input:focus {
+  border-style: none;
+    outline-style: none;
+    outline-color: none;
+    box-shadow: none;
+}
 
 .clear-button {
   background-color: white;
@@ -65,4 +71,11 @@
   height: 18px;
   width: 18px;
   margin-top: 0.1rem;
+}
+
+.no-results{
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  padding-left: -.5rem; 
+  margin-left: .2rem;
 }

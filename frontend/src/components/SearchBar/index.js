@@ -15,8 +15,9 @@ const SearchBar = () => {
     setSearch(spotSearch);
     const findSpot = Object.values(allSpots).filter((spot) => {
       return (
-        spot.address.toLowerCase().includes(spotSearch.toLowerCase()) ||
+        spot.city.toLowerCase().includes(spotSearch.toLowerCase()) ||
         spot.name.toLowerCase().includes(spotSearch.toLowerCase())
+       
       );
     });
     spotSearch === "" ? setFilterSpots([]) : setFilterSpots(findSpot);
@@ -58,7 +59,9 @@ const SearchBar = () => {
         )}
       </div>
       <div className="spot-search-results">
-        {filterSpots.slice(0, 5).map((spots, idx) => (
+        {filterSpots.length === 0 && search ? 
+          <div className="no-results">No results found</div> :
+        filterSpots.slice(0, 5).map((spots, idx) => (
           <NavLink to={`/spots/${spots.id}`} style={{ textDecoration: "none", color: "black" }}>
             <div className="dropdown-searchbar-results" key={idx} onClick={clearSearch}>
               <div className="searchbar-image-container">
@@ -66,7 +69,8 @@ const SearchBar = () => {
               </div>
               <div className="searchbar-text-container">
                 <div>{spots.name}</div>
-                <div>{spots.address}</div>
+                <div>{spots.city}</div>
+              
               </div>
             </div>
           </NavLink>
