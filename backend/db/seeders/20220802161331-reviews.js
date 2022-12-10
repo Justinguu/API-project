@@ -13,7 +13,28 @@ module.exports = {
         
           userId: 1,
           spotId: 3,
-          review: "This was an awesome spot!",
+          review: "Accommodation was spotlessly clean and very warm. Sunny private aspect in living room. Comfortable bed.",
+          stars: 4.0
+        },
+        {
+        
+          userId: 3,
+          spotId: 1,
+          review: "The perfect pod for a little break. Everything you could possibly need, very well equipped, Clare thought of everything! Thanks for a great stay, we loved it.!",
+          stars: 4.9
+        },
+        {
+        
+          userId: 6,
+          spotId: 1,
+          review: "We had a brilliant stay. The coop is fantastically comfortable, the bed especially so. Great shower too. The hot tub is amazing! ",
+          stars: 4.9
+        },
+        {
+        
+          userId: 4,
+          spotId: 1,
+          review: "Wonderful location and property. We stayed with our dog and it was all perfect. Would recommend and return happily. Thanks for everything.",
           stars: 4.9
         },
 
@@ -21,56 +42,84 @@ module.exports = {
         
           userId: 2,
           spotId: 1,
-          review: "This was an awesome spot!",
+          review: "The JusBNB is modern, immaculately clean and a great get away for a couple. We had the best stay here with our little dog which was also a bonus. Check in was smooth and we were left to our own devices, it's equipped with everything you would need and there are some lovely surprise touches.",
+          stars: 4.8
+        },
+        {
+        
+          userId: 1,
+          spotId: 2,
+          review: "Chic flat that was perfect for our visit. Close to the sites and cool cafes, and nice industrial vibe.",
+          stars: 4.8
+        },
+        {
+        
+          userId: 3,
+          spotId: 2,
+          review: "The place is very stylish, comfortable spacious and clean, the bed is huge,, the location is great. There are small supermarkets and a great cafe ( Entree) 5 minutes walk away ( it opens at 8am 7 days a week).",
+          stars: 4.8
+        },
+        {
+        
+          userId: 4,
+          spotId: 3,
+          review: "We really enjoyed our time here. Check-in was easy and the hosts were quick to reply with any question. It is spacious and stylish. The",
+          stars: 4.8
+        },
+        {
+        
+          userId: 6,
+          spotId: 3,
+          review: "Cute spacious in a good location. The directions were super detailed and clear so it was very easy to get there. We had a lovely stay. Thank you!",
           stars: 4.8
         },
         {
         
           userId: 2,
           spotId: 4,
-          review: "This was an alright spot!",
+          review: "Everything worked super well and easy, top communication, the flat is great like on the pictures and has a super comfortable bed.",
           stars: 4.0
         },
 
         {
           userId: 3,
           spotId: 2,
-          review: "This was mediocre spot!",
+          review: "This was mediocre spot! Had the potential to be great but was not very clean and the host was not very friendly!",
           stars: 3.5
         },
         {
         
           userId: 4,
           spotId: 5,
-          review: "This was an awesome spot!",
+          review: "This was an awesome spot would recommend to others! Coming back again next year with friends!!!",
           stars: 4.7
         },
         {
         
           userId: 4,
           spotId: 7,
-          review: "This was an awesome spot!",
+          review: "great apartment in the best area, closeto everything. very modern and updated place with everything you may need. loved it.",
           stars: 4.6
         },
         {
         
           userId: 4,
           spotId: 8,
-          review: "This was an awesome spot!",
+          review: "Such a lovely space right in the middle of old town. Easy check-in and out. The shower was especially nice, plus very comfortable beds. Would love to stay her again.",
           stars: 4.7
         },
         {
         
           userId: 5,
           spotId: 6,
-          review: "Amazing Expierence!",
+          review: "Cozy and beautiful apartment with everything what you need for your travel. Balcony view is amazing! I liked small details around the apartment a lot - so cute! Location is perfect too.",
           stars: 4.4
         },
         {
         
           userId: 6,
           spotId: 7,
-          review: "Would Recommend to others!",
+          review: "he apartments are excellent! Location is convenient for tourists stay, you can walk to many interesting places just by foot.",
           stars: 4.3
         },
         {
@@ -112,7 +161,7 @@ module.exports = {
         
           userId: 11,
           spotId: 12,
-          review: "The spot was great but the host was not very friendly!",
+          review: "The spot was great but the host was not very friendly! Can't say i'd recommend this spot to others.",
           stars: 2.9
         },
         {
@@ -133,14 +182,14 @@ module.exports = {
         
           userId: 8,
           spotId: 13,
-          review: "The spot was great but the host was not very friendly!",
+          review: "The spot was fine and had all the essentials but nothing really stood out about it.",
           stars: 3.5
         },
         {
         
           userId: 2,
           spotId: 14,
-          review: "The spot was great but the host was not very friendly!",
+          review: "Wow what a great spot! I loved everything about it and would recommend to others!",
           stars: 3.9
         },
         {
