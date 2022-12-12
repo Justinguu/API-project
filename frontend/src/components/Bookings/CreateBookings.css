@@ -18,6 +18,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .BookingSubmit {
@@ -30,6 +31,20 @@
   background: linear-gradient(#f6083f, #d42a79);
   width: 9rem;
   margin-bottom: .5rem;
+}
+.BookingSubmit:disabled {
+  border-radius: 15px;
+  cursor: not-allowed;
+  color: rgb(228, 234, 240);
+  padding: 12px 40px;
+  font-size: 16px;
+  border: none;
+  background: darkgray;
+  width: 9rem;
+  margin-bottom: .5rem;
+}
+.disabled-textt{
+  color: #6d6567;
 }
 
 .errorMessageContainer {

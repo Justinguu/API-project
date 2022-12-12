@@ -5,7 +5,9 @@ div.currSpot-header {
 div.whole-page-container {
   display: flex;
   justify-content: center;
-  width: 100%;
+  align-items: center;
+  padding-left: 7rem;
+
 }
 div.whole-page-wrapper {
   display: flex;

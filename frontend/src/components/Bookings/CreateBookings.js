@@ -6,6 +6,9 @@ import "./CreateBookings.css";
 
 const CreateBookings = ({ setStartDate, setEndDate, todayDate, startDate, endDate }) => {
   const [errors, setErrors] = useState([]);
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
+
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -74,6 +77,15 @@ const CreateBookings = ({ setStartDate, setEndDate, todayDate, startDate, endDat
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setIsSubmitted(true)
+
+    if (!sessionUser){
+      return alert("Must be logged in to create a booking")
+    }
+    if (errors.length > 0){
+      return alert("There was an errror with your submission")
+    }
+
     let data = {
       startDate,
       endDate,
@@ -84,6 +96,7 @@ const CreateBookings = ({ setStartDate, setEndDate, todayDate, startDate, endDat
       errors.push("User cannot book their own listing");
       setErrors(errors);
     }
+
     if (errors.length === 0 && spot?.ownerId !== sessionUser.id) {
       dispatch(createNewUserBookingThunk(spotId, data))
       .then(() => getBookingsByUserthunk())
@@ -94,7 +107,7 @@ const CreateBookings = ({ setStartDate, setEndDate, todayDate, startDate, endDat
   return (
     <div className="CreateBookingContainer">
       <form className="CreateBookingForm" onSubmit={handleSubmit}>
-        <div className="handleErrors">{errorsList}</div>
+        <div className="handleErrors">{isSubmitted && errorsList}</div>
 
         <div className="createBookingDiv">
           <div className="createBookingInputContainer">
@@ -123,7 +136,17 @@ const CreateBookings = ({ setStartDate, setEndDate, todayDate, startDate, endDat
         </div>
 
         <div className="CreateBookingContainer">
-          <input className="BookingSubmit " type="Submit" defaultValue="Reserve" />
+          <button className="BookingSubmit "
+           type="Submit"
+           disabled={isSubmitted && errors.length > 0 || !sessionUser} 
+           >
+            Reserve
+           </button>
+           {!sessionUser && (
+            <div className="disabled-textt">
+              Please login to create a booking
+              </div>
+           )}
         </div>
       </form>
     </div>
