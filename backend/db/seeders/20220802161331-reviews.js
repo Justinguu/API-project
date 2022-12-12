@@ -41,7 +41,7 @@ module.exports = {
         
           userId: 4,
           spotId: 1,
-          review: "Wonderful location and property. We stayed with our dog and it was all perfect. Would recommend and return happily.Thanks for everything.",
+          review: "Wonderful location and property.We stayed with our dog and it was all perfect. Would recommend and return happily.Thanks for everything.",
           stars: 4.9
         },
 
