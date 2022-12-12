@@ -63,7 +63,7 @@ module.exports = {
         
           userId: 4,
           spotId: 3,
-          review: "We really enjoyed our time here. Check-in was easy and the hosts were quick to reply with any question. It is spacious and stylish. The",
+          review: "We really enjoyed our time here. Check-in was easy and the hosts were quick to reply with any question. It is spacious and stylish.",
           stars: 4.8
         },
         {
@@ -83,7 +83,7 @@ module.exports = {
 
         {
           userId: 3,
-          spotId: 2,
+          spotId: 10,
           review: "This was mediocre spot! Had the potential to be great but was not very clean and the host was not very friendly!",
           stars: 3.5
         },
