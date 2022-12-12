@@ -32,6 +32,13 @@ module.exports = {
         },
         {
         
+          userId: 7,
+          spotId: 6,
+          review: "We had a brilliant stay. The coop is fantastically comfortable, the bed especially so. Great shower too. The hot tub is amazing! ",
+          stars: 4.9
+        },
+        {
+        
           userId: 4,
           spotId: 1,
           review: "Wonderful location and property. We stayed with our dog and it was all perfect. Would recommend and return happily.Thanks for everything.",
@@ -117,6 +124,13 @@ module.exports = {
         },
         {
         
+          userId: 15,
+          spotId: 6,
+          review: "Cozy and beautiful apartment with everything what you need for your travel. I liked small details around the apartment a lot - so cute! ",
+          stars: 4.4
+        },
+        {
+        
           userId: 6,
           spotId: 7,
           review: "he apartments are excellent! Location is convenient for tourists stay, you can walk to many interesting places just by foot.",
@@ -180,6 +194,13 @@ module.exports = {
         },
         {
         
+          userId: 14,
+          spotId: 15,
+          review: "The spot was great the host was very friendly!",
+          stars: 4.0
+        },
+        {
+        
           userId: 8,
           spotId: 13,
           review: "The spot was fine and had all the essentials but nothing really stood out about it.",
@@ -198,6 +219,13 @@ module.exports = {
           spotId: 15,
           review: "The spot was great but the host was not very friendly!",
           stars: 4.0
+        },
+        {
+        
+          userId: 16,
+          spotId: 14,
+          review: "Wow what a great spot! I loved everything about it and would recommend to others!",
+          stars: 3.9
         },
        
         
