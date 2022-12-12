@@ -20,7 +20,7 @@ module.exports = {
         
           userId: 3,
           spotId: 1,
-          review: "The perfect pod for a little break. Everything you could possibly need, very well equipped, Clare thought of everything! Thanks for a great stay, we loved it.!",
+          review: "The perfect pod for a little break. Everything you could possibly need, very well equipped, Clare thought of everything! ",
           stars: 4.9
         },
         {
@@ -42,7 +42,7 @@ module.exports = {
         
           userId: 2,
           spotId: 1,
-          review: "The JusBNB is modern, immaculately clean and a great get away for a couple. We had the best stay here with our little dog which was also a bonus. Check in was smooth and we were left to our own devices, it's equipped with everything you would need and there are some lovely surprise touches.",
+          review: "The JusBNB is modern, immaculately clean and a great get away for a couple. ",
           stars: 4.8
         },
         {
@@ -56,7 +56,7 @@ module.exports = {
         
           userId: 3,
           spotId: 2,
-          review: "The place is very stylish, comfortable spacious and clean, the bed is huge,, the location is great. There are small supermarkets and a great cafe ( Entree) 5 minutes walk away ( it opens at 8am 7 days a week).",
+          review: "The place is very stylish, comfortable spacious and clean, the bed is huge.",
           stars: 4.8
         },
         {
@@ -70,7 +70,7 @@ module.exports = {
         
           userId: 6,
           spotId: 3,
-          review: "Cute spacious in a good location. The directions were super detailed and clear so it was very easy to get there. We had a lovely stay. Thank you!",
+          review: "Cute spacious in a good location. The directions were super detailed and clear so it was very easy to get there.Thank you!",
           stars: 4.8
         },
         {
@@ -105,14 +105,14 @@ module.exports = {
         
           userId: 4,
           spotId: 8,
-          review: "Such a lovely space right in the middle of old town. Easy check-in and out. The shower was especially nice, plus very comfortable beds. Would love to stay her again.",
+          review: "Such a lovely space right in the middle of old town. Easy check-in and out. The shower was especially nice, plus very comfortable beds.",
           stars: 4.7
         },
         {
         
           userId: 5,
           spotId: 6,
-          review: "Cozy and beautiful apartment with everything what you need for your travel. Balcony view is amazing! I liked small details around the apartment a lot - so cute! Location is perfect too.",
+          review: "Cozy and beautiful apartment with everything what you need for your travel. I liked small details around the apartment a lot - so cute! ",
           stars: 4.4
         },
         {
