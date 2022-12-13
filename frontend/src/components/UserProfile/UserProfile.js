@@ -17,9 +17,9 @@ const UserProfile = () => {
   const [showDelete, setShowDelete] = useState(false);
   const [currUserSpot, setCurrUserSpot] = useState(false)
 
-//   const { spotId } = useParams();
+
   const user = useSelector((state) => state.session.user);
-//    const spotPlacement = useSelector((state) => state.spots[spotId]);
+
 
   const currSpot = useSelector((state) => state.spots);
 
