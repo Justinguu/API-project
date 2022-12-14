@@ -203,7 +203,7 @@ const GetSpotDetails = () => {
               <span className="spancheckin">
                 <div>
                 <img className="getCurr-star-icon" src={starIcon} alt="" />
-                {Number(rating.toFixed(2))}
+                {/* {Number(rating.toFixed(2))} */}
                   {/* {currSpot.reviewss} */}
                 </div>
                 <div>·</div>
