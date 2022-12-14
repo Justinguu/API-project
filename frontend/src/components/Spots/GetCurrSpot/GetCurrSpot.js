@@ -204,6 +204,7 @@ const GetSpotDetails = () => {
                 <div>
                 <img className="getCurr-star-icon" src={starIcon} alt="" />
                 {/* {Number(rating.toFixed(2))}// */}
+                {Number(rating).toFixed(1)}
                   {/* {currSpot.reviewss} */}
                 </div>
                 <div>·</div>
