@@ -103,6 +103,7 @@ const CreateBookings = ({ setStartDate, setEndDate, todayDate, startDate, endDat
       .then(() => history.push(`/myBookings`));
     }
   };
+  //
 
   return (
     <div className="CreateBookingContainer">
