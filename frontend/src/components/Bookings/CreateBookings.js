@@ -6,8 +6,7 @@ import "./CreateBookings.css";
 
 const CreateBookings = ({ setStartDate, setEndDate, todayDate, startDate, endDate }) => {
   const [errors, setErrors] = useState([]);
-  const [isSubmitted, setIsSubmitted] = useState(false)
-
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const { spotId } = useParams();
   const dispatch = useDispatch();
@@ -28,6 +27,13 @@ const CreateBookings = ({ setStartDate, setEndDate, todayDate, startDate, endDat
     bookings?.map((booking) => {
       let bookedStartDate = new Date(booking?.startDate) - 0;
       let bookedEndDate = new Date(booking?.endDate) - 0;
+
+      if (spot.ownerId === sessionUser.id) {
+        errors.push("You cannot book your own spot");
+      }
+      if (booking.spotId === spot.id) {
+        errors.push("Cannot have more than one booking per spot at a time");
+      }
 
       if (startDateNum >= endDateNum) {
         errors.push("Checkout Date cannot be the same or before CheckIn Date");
@@ -55,7 +61,7 @@ const CreateBookings = ({ setStartDate, setEndDate, todayDate, startDate, endDat
   };
 
   useEffect(() => {
-    dispatch(getBookingsByUserthunk(spotId))
+    dispatch(getBookingsByUserthunk(spotId));
     errorValidations();
   }, [startDateNum, endDateNum]);
 
@@ -77,14 +83,14 @@ const CreateBookings = ({ setStartDate, setEndDate, todayDate, startDate, endDat
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setIsSubmitted(true)
+    setIsSubmitted(true);
 
-    if (!sessionUser){
-      return alert("Must be logged in to create a booking")
+    if (!sessionUser) {
+      return alert("Must be logged in to create a booking");
     }
-    if (errors.length > 0){
-      return alert("There was an errror with your submission")
-    }
+    // if (errors.length > 0) {
+    //   return alert("There was an errror with your submission");
+    // }
 
     let data = {
       startDate,
@@ -92,15 +98,15 @@ const CreateBookings = ({ setStartDate, setEndDate, todayDate, startDate, endDat
     };
 
     if (spot?.ownerId === sessionUser.id) {
-      let errors = [];
+      // let errors = [];
       errors.push("User cannot book their own listing");
-      setErrors(errors);
+      // setErrors(errors);
     }
 
     if (errors.length === 0 && spot?.ownerId !== sessionUser.id) {
       dispatch(createNewUserBookingThunk(spotId, data))
-      .then(() => getBookingsByUserthunk())
-      .then(() => history.push(`/myBookings`));
+        .then(() => getBookingsByUserthunk())
+        .then(() => history.push(`/myBookings`));
     }
   };
   //
@@ -112,7 +118,7 @@ const CreateBookings = ({ setStartDate, setEndDate, todayDate, startDate, endDat
 
         <div className="createBookingDiv">
           <div className="createBookingInputContainer">
-            <label className="checkin-label">CHECK-IN {" "} &nbsp; &nbsp;</label>
+            <label className="checkin-label">CHECK-IN &nbsp; &nbsp;</label>
             <input
               className="BookingCheckinInput"
               type="date"
@@ -137,17 +143,14 @@ const CreateBookings = ({ setStartDate, setEndDate, todayDate, startDate, endDat
         </div>
 
         <div className="CreateBookingContainer">
-          <button className="BookingSubmit "
-           type="Submit"
-           disabled={isSubmitted && errors.length > 0 || !sessionUser} 
-           >
+          <button
+            className="BookingSubmit "
+            type="Submit"
+            disabled={(isSubmitted && errors.length > 0) || !sessionUser}
+          >
             Reserve
-           </button>
-           {!sessionUser && (
-            <div className="disabled-textt">
-              Please login to create a booking
-              </div>
-           )}
+          </button>
+          {!sessionUser && <div className="disabled-textt">Please login to create a booking</div>}
         </div>
       </form>
     </div>

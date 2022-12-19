@@ -22,7 +22,7 @@ function UserBookings() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const redirectUser = () => {
-    history.push(`/spots/${spotId}`);
+    history.push(`/myBookings`);
   };
 
   useEffect(() => {
@@ -58,10 +58,10 @@ function UserBookings() {
                 <div className="booking-card-right" onClick={() => history.push(`/spots/${booking.Spot.id}`)}>
                   <img className="booking-image" src={booking.Spot?.previewImage} alt="Spot" />
                   <div className="booking-card-buttons">
-                    <NavLink to={`/spots/${booking.Spot.id}`} className="UserViewSpot">
+                    <NavLink to={`/spots/${booking.Spot?.id}`} className="UserViewSpot">
                     View Spot
                   </NavLink>
-                    <button className="cancel-booking-bttn" onClick={() => dispatch(deleteBookingId(booking.id))}>
+                    <button className="cancel-booking-bttn" onClick={() => dispatch(deleteBookingId(booking.id)).then(()=> redirectUser())}>
                       Cancel Booking
                     </button>
                   </div>
