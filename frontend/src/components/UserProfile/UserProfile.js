@@ -33,7 +33,7 @@ const UserProfile = () => {
   
 
 
-
+  const rating = currSpot?.avgRating == 0 ? "New" : currSpot?.avgRating;
 
   // find how many spots the user has
   const userSpots = Object.values(currSpot).filter((spot) => spot.ownerId === user.id);
@@ -88,7 +88,9 @@ const UserProfile = () => {
                         <div className="user-business-info">
                           <div>
                             <strong>Rating = </strong>
-                            {spot.avgRating}
+                            {spot.avgRating.toFixed(1)}
+                         
+                            
                           </div>
                           <div>
                             <strong>Business Address = </strong> {spot.address} {spot.city}, {spot.state},{spot.country}{" "}
@@ -101,10 +103,7 @@ const UserProfile = () => {
                             {" "}
                             <strong>Business Email =</strong> {user.email}
                           </div>
-                          {/* <div>
-                            <strong>Business Category = </strong>
-                            {business.category}
-                          </div> */}
+                         
                           <div>
                             <strong>Business Description = </strong>
                             {spot.description}
