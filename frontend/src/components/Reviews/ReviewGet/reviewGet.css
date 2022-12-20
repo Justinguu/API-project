@@ -30,6 +30,25 @@ div.review-name{
 div.review-text {
     font-weight: 320;
 }
+.editButtonRevieww{
+    background: linear-gradient( #f6083f, #d42a79);
+    color:white;
+    height: 1.5rem;
+    width: 1.6rem;
+    border-radius: .4rem;
+    cursor: pointer;
+    margin-right: 15px;
+    margin-top: 10px;
+}
+.deleteButtonRevieww{
+    background: linear-gradient( #f6083f, #d42a79);
+    color:white;
+    height: 1.5rem;
+    width: 1.6rem;
+    border-radius: .4rem;
+    cursor: pointer;
+    margin-right: 20px;
+}
 
 .deleteButtonReview{
     

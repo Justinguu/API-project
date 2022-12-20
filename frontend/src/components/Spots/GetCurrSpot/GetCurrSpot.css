@@ -224,7 +224,7 @@ button.review-spot-button:disabled {
   object-fit: cover;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  width: 45rem;
+  width: 42rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid lightgray;
 }
