@@ -17,7 +17,7 @@ function CreateReviewForm() {
   const [isLoaded, setisLoaded] = useState(false)
   const [submit, setSubmit] = useState(false)
   const [review, setReview] = useState("");
-  const [stars, setStars] = useState(5);
+  const [stars, setStars] = useState(1);
   const [errors, setErrors] = useState([]);
 
 
@@ -93,12 +93,12 @@ function CreateReviewForm() {
 
         <div className="modal-body">
           <label className="create-review-label">
-           <div className="Review-text-review">Review</div> 
+           <div className="Review-text-review">Describe Your Experince:</div> 
             <div className="create-review-input-container">
               <textarea
                 className="create-review-input"
                 type="string"
-                placeholder="Write your review..."
+                placeholder="How was your experience?"
               
                 value={review}
                 onChange={(e) => 
@@ -106,21 +106,51 @@ function CreateReviewForm() {
               />
             </div>
           </label>
-          <label className="create-review-label">
-           <div className="starRating-space">Star Rating</div> 
-            <div>
-              <input
-                className="create-star-input"
-                type="integer"
-                placeholder="1 - 5"
-                step="1"
-              
+          <div className="combined-line-rating">
+          <div className="text-rating-edit">Select your rating</div>
+          <div className="rating-stars">
+            <div class="star-container">
+              <div
+                onClick={() => setStars(5)}
                 value={stars}
-                onChange={(e) => setStars(e.target.value)}
-                />
-               
+                className={
+                  stars >= 5 ? "fa-regular fa-star s5-checked " : "fa-regular fa-star s5"
+                }
+              ></div>
+              
+              <div
+                onClick={() => setStars(4)}
+                value={stars}
+                className={
+                  stars >= 4 ? "fa-regular fa-star s4-checked" : "fa-regular fa-star s4"
+                }
+              ></div>
+              <div
+                onClick={() => setStars(3)}
+                value={stars}
+                className={
+                  stars >= 3 ? "fa-regular fa-star s3-checked" : "fa-regular fa-star s3"
+                }
+              ></div>
+              <div
+                onClick={() => setStars(2)}
+                value={stars}
+                className={
+                  stars >= 2 ? "fa-regular fa-star s2-checked" : "fa-regular fa-star s2"
+                }
+              ></div>
+              <div
+                onClick={() => setStars(1)}
+                value={stars}
+                className={
+                  stars >= 1 ? "fa-regular fa-star s1-checked" : "fa-regular fa-star s1"
+                }
+              ></div>
             </div>
-          </label>
+            
+      
+          </div>
+        </div>
         </div>
         <div className="review-submit-container">
           <button

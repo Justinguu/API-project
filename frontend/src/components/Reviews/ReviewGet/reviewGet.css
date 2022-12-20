@@ -33,8 +33,8 @@ div.review-text {
 .editButtonRevieww{
     background: linear-gradient( #f6083f, #d42a79);
     color:white;
-    height: 1.5rem;
-    width: 1.6rem;
+    height: 1.3rem;
+    width: 1.5rem;
     border-radius: .4rem;
     cursor: pointer;
     margin-right: 15px;
@@ -43,8 +43,8 @@ div.review-text {
 .deleteButtonRevieww{
     background: linear-gradient( #f6083f, #d42a79);
     color:white;
-    height: 1.5rem;
-    width: 1.6rem;
+    height: 1.3rem;
+    width: 1.5rem;
     border-radius: .4rem;
     cursor: pointer;
     margin-right: 20px;
@@ -69,4 +69,8 @@ div.review-text {
 }
 .single-error{
     margin-bottom: 10px;
+}
+
+.stars-review{
+   margin-bottom: .3rem;
 }

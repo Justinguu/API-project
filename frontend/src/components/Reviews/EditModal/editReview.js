@@ -51,11 +51,11 @@ return (
     <div className="edit-review-container">
         <div className="edit-review-wrapper">
             <div className="edit-review-header-container">
-                <div className="edit-review-header">Edit Review</div>
+                <div className="edit-review-header">Edit Your Review</div>
                 <div className="edit-review-close-bttn" onClick={() => setShowUpdateReview(false)}>X</div>
             </div>
 
-            <form className="create-review-form" onSubmit={handleSubmit}>
+            <form className="edit-review-form" onSubmit={handleSubmit}>
                 <div className="create-review-errors">
                     {isSubmitted && errorList}
                 </div>
@@ -64,33 +64,63 @@ return (
                         Describe Your Experince:
                         <div className="create-review-input-container">
                             <textarea
-                                className="review-edit-input"
+                                className="edit-review-input"
                                 type="string"
-                                placeholder="What was it like to stay here?"
+                                placeholder="How was your experience?"
                                 value={review}
                                 onChange={(e) => setReview(e.target.value)}
                             />
                         </div>
                     </label>
-                    <label className="create-review-label">
-                        Rating:
-                        <div className="rating-input-container">
-                            <input
-                                className="rating-input"
-                                type="number"
-                                placeholder="1 - 5 stars"
-                                minLength="1"
-                                maxLength="5"
-                                step="1"
-                                value={stars}
-                                onChange={(e) => setStars(e.target.value)}
-                            />
-                        </div>
-                    </label>
+                    <div className="combined-line-rating">
+          <div className="text-rating-edit">Select your rating</div>
+          <div className="rating-stars">
+            <div class="star-container">
+              <div
+                onClick={() => setStars(5)}
+                value={stars}
+                className={
+                  stars >= 5 ? "fa-regular fa-star s5-checked " : "fa-regular fa-star s5"
+                }
+              ></div>
+              
+              <div
+                onClick={() => setStars(4)}
+                value={stars}
+                className={
+                  stars >= 4 ? "fa-regular fa-star s4-checked" : "fa-regular fa-star s4"
+                }
+              ></div>
+              <div
+                onClick={() => setStars(3)}
+                value={stars}
+                className={
+                  stars >= 3 ? "fa-regular fa-star s3-checked" : "fa-regular fa-star s3"
+                }
+              ></div>
+              <div
+                onClick={() => setStars(2)}
+                value={stars}
+                className={
+                  stars >= 2 ? "fa-regular fa-star s2-checked" : "fa-regular fa-star s2"
+                }
+              ></div>
+              <div
+                onClick={() => setStars(1)}
+                value={stars}
+                className={
+                  stars >= 1 ? "fa-regular fa-star s1-checked" : "fa-regular fa-star s1"
+                }
+              ></div>
+            </div>
+            
+      
+          </div>
+        </div>
                 </div>
                 <div className="edit-review-submit-container">
                     <button
-                        className="create-review-button edit-review-submit-button"
+                        className="edit-review-submit-button"
                         type="submit"
                         disabled={isSubmitted && errors.length > 0}
                     >

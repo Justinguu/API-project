@@ -6,6 +6,7 @@ import { getCurrSpotThunk } from "../../../store/spots";
 import EditReview from "../EditModal/editReview";
 import editIcon from "../../icons/edit-icon.png";
 import trashIcon from "../../icons/trashIcon.png"
+import Bstar from "../../icons/BBStar.png"
 import icon from "../../Navigation/Images/icon.svg";
 
 import "./reviewGet.css";
@@ -47,8 +48,13 @@ const GetSpotReviews = ({ spotId }) => {
                   </div>{" "}
                   <div className="review-name">&nbsp;&nbsp;{review.User?.firstName}</div>
                 </div>
+                  <div className="star-review-container">
+             
+                <table><tr><td>{review.stars}</td><td><img className="BBStar" src={Bstar}/></td></tr></table>
+               </div> 
                 <div className="review-text">
                   {review.review} &nbsp; &nbsp;
+                  
                   {!sessionUser
                     ? null
                     : sessionUser.id === review.userId && (

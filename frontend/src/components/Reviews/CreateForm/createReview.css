@@ -27,8 +27,8 @@
     transition: all 0.2s ease-in-out;
 }
 .create-review-input{
-width: 500px;
-height: 30px;
+width: 29rem;
+height: 10rem;
 border: 1px solid #202020;
 border-radius: .6em
 }
@@ -69,4 +69,101 @@ border-radius: .6em
 .Review-text-review{
     padding-top: 10px;
     padding-bottom: 10px;
+}
+.star-review-container{
+    margin-top: -.5rem;
+    /* height: 1.3rem; */
+}
+ .stars-review{
+    margin-left:.2rem;
+    margin-bottom: .5rem;
+}
+
+.BBStar{
+    margin-left: .1rem;
+ 
+    height: 20px;
+    width: 18px;
+}
+
+/* star ratings css */
+
+
+.combined-line-rating{
+    display:flex;
+    align-items: center;
+    margin-top:1rem;
+    
+}
+
+.text-rating{
+    margin-left:.3rem;
+    margin-bottom:.5rem;
+    font-weight:450;
+}
+
+.star-container {
+    margin-bottom: .3rem;
+    margin-left: .3rem;
+    top: 50%;
+    right: 50%;
+    direction: rtl;
+}
+.star-container div {
+    font-size: 1em;
+    color: rgba(0, 0, 0, .4);
+    text-decoration: none;
+    transition: all 0.5s;
+    margin: 0 .2rem;
+}
+
+.star-container div:hover {
+    color: rgb(255, 173, 21);
+    transform: scale(1.3);
+    cursor: pointer;
+}
+
+
+.s1:hover~div {
+    color: rgb(255, 173, 21);
+}
+
+.s1::after~div {
+    color: rgb(255, 173, 21);
+}
+
+.s1-checked {
+  color: rgb(255, 173, 21) !important;
+}
+
+.s2:hover~div {
+    color: rgb(255, 173, 21);
+}
+
+.s2-checked {
+  color: rgb(255, 173, 21) !important;
+}
+
+.s3:hover~div {
+    color: rgb(255, 173, 21);
+}
+
+.s3-checked {
+  color: rgb(255, 173, 21) !important;
+}
+
+.s4:hover~div {
+    color: rgb(255, 173, 21);
+}
+
+.s4-checked {
+  color: rgb(255, 173, 21) !important;
+}
+
+.s5:hover~div {
+    color: rgb(255, 173, 21);
+}
+
+.s5-checked {
+  color: rgb(255, 173, 21) !important;
 }
