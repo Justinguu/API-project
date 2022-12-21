@@ -1,76 +1,111 @@
 img.review-icon {
-    display:flex;
-    justify-content:left;
-    height: 40px;
-    width: 40px;
-    padding-bottom: 10px;
+  display: flex;
+  justify-content: left;
+  height: 40px;
+  width: 40px;
+  padding-bottom: 10px;
 }
 
 div.reviewe-box {
-  
-    display: flex;
-    align-items: center;
-    padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 10px;
+  justify-content: space-between;
+  gap: 20rem;
 }
 div.review-box {
-    padding: 20px;
-    width: 40rem;
-    word-wrap: break-word;
-    /* border: 1px solid lightgray */
+  padding: 20px;
+  width: 40rem;
+  word-wrap: break-word;
+  font-weight: 800px;
+  /* border: 1px solid lightgray */
+}
+.review-box:hover{
+    box-shadow: 0px 0px 6px rgb(195, 195, 195);
+}
+.review-date {
+ font-size: 14px;
+}
+.reviewNameandDate {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 1rem;
 }
 
-ul.review-border{
-    padding: 0px 0px 0px 0px
+ul.review-border {
+  padding: 0px 0px 0px 0px;
 }
 
-div.review-name{
-    padding-bottom: 25px;
-    font-weight: 450;
+div.review-name {
+  /* padding-bottom: 25px; */
+  font-weight: 450;
+  font-size: 18px;
 }
 div.review-text {
-    font-weight: 320;
+  font-weight: 320;
 }
-.editButtonRevieww{
-    background: linear-gradient( #f6083f, #d42a79);
-    color:white;
-    height: 1.3rem;
-    width: 1.5rem;
-    border-radius: .4rem;
-    cursor: pointer;
-    margin-right: 15px;
-    margin-top: 10px;
+.editButtonRevieww {
+  /* background: linear-gradient(#f6083f, #d42a79); */
+  color: white;
+  height: 1.3rem;
+  width: 1.5rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  margin-right: 15px;
+  /* margin-top: 10px; */
 }
-.deleteButtonRevieww{
-    background: linear-gradient( #f6083f, #d42a79);
-    color:white;
-    height: 1.3rem;
-    width: 1.5rem;
-    border-radius: .4rem;
-    cursor: pointer;
-    margin-right: 20px;
+.deleteButtonRevieww {
+  /* background: linear-gradient(#f6083f, #d42a79); */
+  color: white;
+  height: 1.3rem;
+  width: 1.5rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  margin-right: 20px;
 }
 
-.deleteButtonReview{
-    
-    background: linear-gradient( #f6083f, #d42a79);
-    color:white;
-    border: none;
-    height: 1.9em;
-    width: 1.9em;
-    border-radius: .6em;
-    width: 100px;
-    cursor: pointer;
-    margin-top: 20px;
-      
+.deleteButtonReview {
+  background: linear-gradient(#f6083f, #d42a79);
+  color: white;
+  border: none;
+  height: 1.9em;
+  width: 1.9em;
+  border-radius: 0.6em;
+  width: 100px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.review-body-container{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    margin-top: 1rem;
+ 
 }
 
 .create-review-errors {
-    padding-top: 17px;
+  padding-top: 17px;
 }
-.single-error{
-    margin-bottom: 10px;
+.single-error {
+  margin-bottom: 10px;
 }
 
-.stars-review{
-   margin-bottom: .3rem;
+.stars-review {
+  margin-bottom: 0.3rem;
+}
+
+
+.review-box-left{
+    display:flex;
+    flex-direction: row;
+
+}
+
+.review-box-right{
+    display:flex;
+    flex-direction: row;
+    gap:10px;
 }
