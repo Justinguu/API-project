@@ -5,10 +5,19 @@ import { NavLink } from "react-router-dom";
 import starIcon from "./starIcon.png";
 import githubIcon from '../../icons/github-icon.png'
 import linkedinIcon from '../../icons/linkedin-icon.png'
+
+import cabinIcon from "../../icons/cabin.png"
+import condoIcon from "../../icons/condo.png"
+import homeIcon from "../../icons/home.png"
+import mansionIcon from "../../icons/mansion.png"
+import othersIcon from "../../icons/others.png"
+import filterIcon from "../../icons/clearIcon.png"
+
 import "./Allspots.css";
 
 const GetAllSpots = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [filterType, setFilterType] = useState('allResultsType')
 
   const dispatch = useDispatch();
   // const [,setRender] = useState(false)
@@ -18,6 +27,14 @@ const GetAllSpots = () => {
   // const state = useSelector(state => state.spots[spotId])
 
   const allSpotsArr = Object.values(allSpots);
+
+  let typeSpotArr;
+
+  if(filterType !== 'allResultsType') {
+    typeSpotArr = allSpotsArr.filter((spot) => spot.type == filterType)
+  } else {
+    typeSpotArr = allSpotsArr
+  }
 
   useEffect(() => {
     dispatch(getAllSpotsThunk()).then(setIsLoaded(true))
@@ -30,9 +47,52 @@ const GetAllSpots = () => {
   return (
     isLoaded && (
       <>
+      <div className='filter-type-container'>
+                    <div className='filter-type-options'>
+                        <div className={filterType === 'House' ? "filter-type-buttons type-active-filter-bg" : "filter-type-buttons"} onClick={() => setFilterType('House')}>
+                            <img className='house-icon' src={homeIcon}></img>
+                            <div>House</div>
+                        </div>
+                        <div className={filterType === 'Condo' ? "filter-type-buttons type-active-filter-bg" : "filter-type-buttons"} onClick={() => setFilterType('Condo')}>
+                            <img className='condo-icon' src={condoIcon}></img>
+                            <div>Condo</div>
+                        </div>
+                        {/* <div className={filterType === 'Apartment' ? "filter-type-buttons type-active-filter-bg" : "filter-type-buttons"} onClick={() => setFilterType('Apartment')}>
+                           
+                            <div>Apartment</div>
+                        </div> */}
+                        <div className={filterType === 'Cabin' ? "filter-type-buttons type-active-filter-bg" : "filter-type-buttons"} onClick={() => setFilterType('Cabin')}>
+                            <img className='cabin-icon' src={cabinIcon}></img>
+                            <div>Cabin</div>
+                        </div>
+                        <div className={filterType === 'Mansion' ? "filter-type-buttons type-active-filter-bg" : "filter-type-buttons"} onClick={() => setFilterType('Mansion')}>
+                            <img className='mansion-icon' src={mansionIcon}></img>
+                            <div>Mansion</div>
+                        </div>
+                        <div className={filterType === 'Other' ? "filter-type-buttons type-active-filter-bg" : "filter-type-buttons"} onClick={() => setFilterType('Other')}>
+                            <img className='other-icon' src={othersIcon}></img>
+                            <div>Other</div>
+                        </div>
+                    </div>
+                    <div className={filterType === 'allResultsType' ? "clear-filter-buttons-inactive" : "clear-filter-buttons-active"} onClick={() => setFilterType('allResultsType')}>
+                        <img className='filter-icon' src={filterIcon}></img>
+                        <div className='clear-filter-buttons-text'>clear filter</div>
+                    </div>
+                </div>
         <div className="spots-container">
           <div className="spots-cards-container">
-            {allSpotsArr.map((spot) => (
+            {typeSpotArr.length === 0 ?
+            <div className="DNF-container">
+              <div className="logo-DNF">
+                {/* Image goes here */}
+                <div className="title-DNF"> No results found
+              </div>
+              <div className={filterType === 'allResultsType' ? "clear-filter-buttons-no-data" : "clear-filter-buttons-no-data"} onClick={() => setFilterType('allResultsType')}>
+                Click Here to go back to seeing all results
+                 </div>
+                 </div>
+            </div> :
+            typeSpotArr.map((spot) => (
               <div key={spot.id}>
                 <NavLink to={`/spots/${spot.id}`}>
                   <img

@@ -21,6 +21,7 @@ module.exports = {
           lng: -122.4730327,
           name: "The Lounge",
           description: "5 guests · 4 bedrooms · 4 beds · 2 bath",
+          type: "House",
           price: 123
         },
         {
@@ -33,6 +34,7 @@ module.exports = {
           lng: -222.4730327,
           name: "Getaway House",
           description: "3 guests · 2 bedroom · 2 bed · 2 bath",
+          type: "Condo",
           price: 400
         },
         {
@@ -45,6 +47,7 @@ module.exports = {
           lng: -111.4730327,
           name: "The Benelovent",
           description: "4 guests · 3 bedrooms · 3 beds · 2 bath",
+          type: "Cabin",
           price: 250
         },
         {
@@ -57,6 +60,7 @@ module.exports = {
           lng: 11.4730327,
           name: "Nautilus",
           description: "6 guests · 3 bedrooms · 3 beds · 3 bath",
+          type: "Mansion",
           price: 190
         },
         {
@@ -69,6 +73,7 @@ module.exports = {
         lng: 14.4730327,
         name: "Cootolio",
         description: "3 guests · 2 bedroom · 2 bed · 2 bath",
+        type: "Other",
         price: 350
       },
       {
@@ -81,6 +86,7 @@ module.exports = {
         lng: 24.4730327,
         name: "King",
         description: "6 guests · 4 bedrooms · 4 beds · 3 bath",
+        type: "House",
         price: 458
       },
       {
@@ -93,6 +99,7 @@ module.exports = {
         lng: 24.4730427,
         name: "Queen",
         description: "5 guests · 3 bedrooms · 3 beds · 2 bath",
+        type: "Condo",
         price: 670
       },
       {
@@ -105,6 +112,7 @@ module.exports = {
         lng: 74.4730417,
         name: "Ash",
         description: "10 guests · 5 bedrooms · 5 beds · 4 bath",
+        type: "Mansion",
         price: 864
       },
       {
@@ -117,6 +125,7 @@ module.exports = {
         lng: 54.4730422,
         name: "Jinro",
         description: "15 guests · 7 bedrooms · 7 beds · 6 bath",
+        type: "Mansion",
         price: 435
       },
       {
@@ -129,6 +138,7 @@ module.exports = {
         lng: 22.4712427,
         name: "Crown",
         description: "8 guests · 4 bedrooms · 4 beds · 3 bath",
+        type: "Mansion",
         price: 542
       },
       {
@@ -141,6 +151,7 @@ module.exports = {
         lng: 52.4720127,
         name: "LaCrema",
         description: "4 guests · 2 bedrooms · 2 beds · 2 bath",
+        type: "House",
         price: 642
       },
       {
@@ -153,6 +164,7 @@ module.exports = {
         lng: 52.4730427,
         name: "Medici",
         description: "6 guests · 4 bedrooms · 4 beds · 3 bath",
+        type: "House",
         price: 645
       },
       {
@@ -165,6 +177,7 @@ module.exports = {
         lng: 52.4722427,
         name: "Kodak",
         description: "6 guests · 4 bedrooms · 4 beds · 3 bath",
+        type: "Cabin",
         price: 645
       },
       {
@@ -177,6 +190,7 @@ module.exports = {
         lng: 52.4722448,
         name: "Mountain Point",
         description: "6 guests · 4 bedrooms · 4 beds · 3 bath",
+        type: "Cabin",
         price: 215
       },
       {
@@ -189,6 +203,7 @@ module.exports = {
         lng: 52.4122448,
         name: "Mountain Point",
         description: "8 guests · 4 bedrooms · 4 beds · 3 bath",
+        type: "Condo",
         price: 355
       },
       
