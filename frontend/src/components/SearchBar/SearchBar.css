@@ -45,6 +45,7 @@
 .dropdown-searchbar-results {
   margin-left: 5px;
   display: flex;
+  border-bottom:1.0px solid #d1cfcf;
 }
 
 .searchbar-image-container {
