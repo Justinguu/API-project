@@ -69,11 +69,11 @@ module.exports = (sequelize, DataTypes) => {
         len: [1, 49]
       }
     },
-    description: {
+    type: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    type: {
+    description: {
       type: DataTypes.STRING,
       allowNull: false,
     },

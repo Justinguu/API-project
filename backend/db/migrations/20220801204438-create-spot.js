@@ -46,11 +46,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      description: {
+      type: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      type: {
+      description: {
         type: Sequelize.STRING,
         allowNull: false,
       },

@@ -55,3 +55,14 @@
     margin-top: 20px;
   }
   
+.form-input-text-create{
+  border-left: 1.5px solid #d1cfcf;
+  border-right: 1.5px solid #d1cfcf;
+  border-bottom: none;
+  border-top: 1.5px solid #d1cfcf;
+  min-height: 2.5em;
+  min-width: 100%;
+  box-sizing: border-box;
+  padding-left: .7rem;
+  color: rgb(133,133,133)
+}

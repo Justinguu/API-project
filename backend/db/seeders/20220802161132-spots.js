@@ -20,8 +20,8 @@ module.exports = {
           lat: 37.7645358,
           lng: -122.4730327,
           name: "The Lounge",
-          description: "5 guests · 4 bedrooms · 4 beds · 2 bath",
           type: "House",
+          description: "5 guests · 4 bedrooms · 4 beds · 2 bath",
           price: 123
         },
         {
@@ -33,8 +33,8 @@ module.exports = {
           lat: 58.7645358,
           lng: -222.4730327,
           name: "Getaway House",
-          description: "3 guests · 2 bedroom · 2 bed · 2 bath",
           type: "House",
+          description: "3 guests · 2 bedroom · 2 bed · 2 bath",
           price: 400
         },
         {
@@ -46,8 +46,8 @@ module.exports = {
           lat: 50.7645358,
           lng: -111.4730327,
           name: "The Benelovent",
-          description: "4 guests · 3 bedrooms · 3 beds · 2 bath",
           type: "Condo",
+          description: "4 guests · 3 bedrooms · 3 beds · 2 bath",
           price: 850
         },
         {
@@ -59,8 +59,8 @@ module.exports = {
           lat: 50.7645328,
           lng: 11.4730327,
           name: "Nautilus",
-          description: "6 guests · 3 bedrooms · 3 beds · 3 bath",
           type: "Condo",
+          description: "6 guests · 3 bedrooms · 3 beds · 3 bath",
           price: 750
         },
         {
@@ -72,8 +72,8 @@ module.exports = {
         lat: 25.7645328,
         lng: 14.4730327,
         name: "EverGreen",
-        description: "3 guests · 2 bedroom · 2 bed · 2 bath",
         type: "Cabin",
+        description: "3 guests · 2 bedroom · 2 bed · 2 bath",
         price: 350
       },
       {
@@ -85,8 +85,8 @@ module.exports = {
         lat: 50.7645328,
         lng: 24.4730327,
         name: "Camouflage",
-        description: "8 guests · 6 bedrooms · 6 beds · 3 bath",
         type: "Omg",
+        description: "8 guests · 6 bedrooms · 6 beds · 3 bath",
         price: 458
       },
       {
@@ -98,8 +98,8 @@ module.exports = {
         lat: 52.7645328,
         lng: 24.4730427,
         name: "Midnight",
-        description: "5 guests · 3 bedrooms · 3 beds · 2 bath",
         type: "Omg",
+        description: "5 guests · 3 bedrooms · 3 beds · 2 bath",
         price: 670
       },
       {
@@ -111,8 +111,8 @@ module.exports = {
         lat: 62.7645318,
         lng: 74.4730417,
         name: "Ash",
-        description: "10 guests · 5 bedrooms · 5 beds · 4 bath",
         type: "Mansion",
+        description: "10 guests · 5 bedrooms · 5 beds · 4 bath",
         price: 864
       },
       {
@@ -124,8 +124,8 @@ module.exports = {
         lat: 32.7645321,
         lng: 54.4730422,
         name: "Jinro",
-        description: "15 guests · 7 bedrooms · 7 beds · 6 bath",
         type: "Mansion",
+        description: "15 guests · 7 bedrooms · 7 beds · 6 bath",
         price: 435
       },
       {
@@ -137,8 +137,8 @@ module.exports = {
         lat: 11.7612328,
         lng: 22.4712427,
         name: "Crown",
-        description: "8 guests · 4 bedrooms · 4 beds · 3 bath",
         type: "Condo",
+        description: "8 guests · 4 bedrooms · 4 beds · 3 bath",
         price: 542
       },
       {
@@ -150,8 +150,8 @@ module.exports = {
         lat: 31.7443328,
         lng: 52.4720127,
         name: "Trapezoid",
-        description: "3 guests · 1 bedrooms · 2 beds · 1 bath",
         type: "Cabin",
+        description: "3 guests · 1 bedrooms · 2 beds · 1 bath",
         price: 642
       },
       {
@@ -163,8 +163,8 @@ module.exports = {
         lat: 31.7245328,
         lng: 52.4730427,
         name: "Medici",
-        description: "6 guests · 4 bedrooms · 4 beds · 3 bath",
         type: "Omg",
+        description: "6 guests · 4 bedrooms · 4 beds · 3 bath",
         price: 645
       },
       {
@@ -176,8 +176,8 @@ module.exports = {
         lat: 31.7443328,
         lng: 52.4722427,
         name: "Kodak",
-        description: "6 guests · 4 bedrooms · 4 beds · 3 bath",
         type: "Cabin",
+        description: "6 guests · 4 bedrooms · 4 beds · 3 bath",
         price: 645
       },
       {
@@ -189,8 +189,8 @@ module.exports = {
         lat: 31.7442329,
         lng: 52.4722448,
         name: "The Cube",
-        description: "6 guests · 4 bedrooms · 4 beds · 3 bath",
         type: "Omg",
+        description: "6 guests · 4 bedrooms · 4 beds · 3 bath",
         price: 215
       },
       {
@@ -202,8 +202,8 @@ module.exports = {
         lat: 32.7442329,
         lng: 52.4122448,
         name: "Mountain Point",
-        description: "8 guests · 4 bedrooms · 4 beds · 3 bath",
         type: "Condo",
+        description: "8 guests · 4 bedrooms · 4 beds · 3 bath",
         price: 950
       },
       {
@@ -215,8 +215,8 @@ module.exports = {
         lat: 32.7442329,
         lng: 52.4122448,
         name: "MultiPlex",
-        description: "8 guests · 4 bedrooms · 4 beds · 3 bath",
         type: "Apartment",
+        description: "8 guests · 4 bedrooms · 4 beds · 3 bath",
         price: 2500
       },
 
