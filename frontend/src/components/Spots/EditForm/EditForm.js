@@ -4,12 +4,12 @@ import { Redirect, useHistory, useParams } from "react-router-dom";
 import { updateSpotThunk } from "../../../store/spots";
 import "./EditForm.css";
 
-function EditSpotForm({ setShowUpdate,spotId }) {
-  const user = useSelector((state) => state.session.user);
-  // const { spotId } = useParams();
-  const spotPlacement = useSelector((state) => state.spots[spotId]);
+const TYPES = ["House", "Condo", "Apartment", "Cabin", "Mansion", "Omg"];
 
-  // console.log(spots)
+function EditSpotForm({ setShowUpdate, spotId }) {
+  const user = useSelector((state) => state.session.user);
+
+  const spotPlacement = useSelector((state) => state.spots[spotId]);
 
   const [name, setName] = useState(spotPlacement.name);
   const [address, setAddress] = useState(spotPlacement.address);
@@ -19,6 +19,7 @@ function EditSpotForm({ setShowUpdate,spotId }) {
   const [lat, setLat] = useState(spotPlacement.lat);
   const [lng, setLng] = useState(spotPlacement.lng);
   const [price, setPrice] = useState(spotPlacement.price);
+  const [type, setType] = useState(spotPlacement.type);
   const [description, setDescription] = useState(spotPlacement.description);
   const [url, setUrl] = useState(spotPlacement.Images[0].url);
 
@@ -30,8 +31,7 @@ function EditSpotForm({ setShowUpdate,spotId }) {
   const dispatch = useDispatch();
   useEffect(() => {
     const errors = [];
-    if (name.length < 1 || name.length > 49)
-      errors.push("Name length must be between 1 and 49 characters");
+    if (name.length < 1 || name.length > 49) errors.push("Name length must be between 1 and 49 characters");
     if (!address.length) errors.push("Please provide an address");
     if (!city.length) errors.push("Please provide a city");
     if (!state.length) errors.push("Please provide a state");
@@ -39,11 +39,12 @@ function EditSpotForm({ setShowUpdate,spotId }) {
     if (!lat || lat > 90 || lat < -90) errors.push("Please provide a valid lat");
     if (!lng || lng > 90 || lng < -90) errors.push("Please provide a valid lng");
     if (!price || price <= 0) errors.push("Please set a higher price");
+    if (!type) errors.push("Please provide a propery type");
     if (!description) errors.push("Please provide a description");
     if (!url) errors.push("Please provide a url");
 
     return setErrors(errors);
-  }, [name, address, city, state, country, lat, lng, price, description, url]);
+  }, [name, address, city, state, country, lat, lng, price, type, description, url]);
 
   if (user === null) {
     alert("must be logged in to edit a spot");
@@ -54,8 +55,7 @@ function EditSpotForm({ setShowUpdate,spotId }) {
     e.preventDefault();
 
     setHasSubmitted(true);
-    if (errors.length > 0)
-      return alert("There was an error submitting your form.");
+    if (errors.length > 0) return alert("There was an error submitting your form.");
 
     const updatedSpot = {
       id: spotId,
@@ -67,23 +67,21 @@ function EditSpotForm({ setShowUpdate,spotId }) {
       lat,
       lng,
       price,
+      type,
       description,
       url,
-      imageId:spotPlacement.Images[0].id
+      imageId: spotPlacement.Images[0].id,
     };
 
-    function loadImage(url){
-      return url
+    function loadImage(url) {
+      return url;
     }
-    
-    if(loadImage(url)){
-      dispatch(updateSpotThunk(updatedSpot))
-      // .then(() => dispatch(getCurrSpotThunk(spotId)))
-    } 
-    // dispatch(updateSpotThunk(updatedSpot));
-    
+
+    if (loadImage(url)) {
+      dispatch(updateSpotThunk(updatedSpot));
+    }
+
     setShowUpdate(false);
-    // history.push(`/spots/${spotId}`);
   }
   return (
     <form onSubmit={onSubmit} className="spot-form-update">
@@ -147,7 +145,7 @@ function EditSpotForm({ setShowUpdate,spotId }) {
           value={lat}
           placeholder="Latitude"
           onChange={(e) => setLat(e.target.value)}
-          required  
+          required
         />
         <input
           className="form-input mid edit"
@@ -155,16 +153,25 @@ function EditSpotForm({ setShowUpdate,spotId }) {
           value={lng}
           placeholder="Longitude"
           onChange={(e) => setLng(e.target.value)}
-          required  
+          required
         />
+        <select className="form-input-text-update" value={type} onChange={(e) => setType(e.target.value)}>
+          <option selected disabled value="">
+            Select a Property Type
+          </option>
+          {TYPES.map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
+        </select>
         <input
           className="form-input mid edit"
           type="number"
           value={price}
           placeholder="Price"
           onChange={(e) => setPrice(e.target.value)}
-          // min="0.01"
-          required  
+          required
         />
         <input
           className="form-input mid edit"
@@ -173,7 +180,7 @@ function EditSpotForm({ setShowUpdate,spotId }) {
           placeholder="Image URL"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          required  
+          required
         />
         <textarea
           type="text"
@@ -181,7 +188,7 @@ function EditSpotForm({ setShowUpdate,spotId }) {
           placeholder="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-            required  
+          required
         />
       </div>
       <button className="submit-button-edit" type="submit">

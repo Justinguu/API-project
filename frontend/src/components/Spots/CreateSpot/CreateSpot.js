@@ -160,11 +160,10 @@ export default function CreateSpotForm() {
               max="180"
               required
             />
-            
+
             <select className="form-input-text-create" value={type} onChange={(e) => setType(e.target.value)}>
-              <option selected disabled value=""
-              >
-            <div className="property-text">Select a Property Type</div>
+              <option selected disabled value="">
+                Select a Property Type
               </option>
               {TYPES.map((type) => (
                 <option key={type} value={type}>

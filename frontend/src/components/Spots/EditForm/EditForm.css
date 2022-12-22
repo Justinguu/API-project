@@ -1,4 +1,4 @@
-.spot-form-update{
+.spot-form-update {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,33 +7,38 @@
   max-width: 33em;
 }
 
-
 .submit-button-edit {
-  background: linear-gradient(0.25turn, #E61E4D, #D70666);
-    color: white;
-    border: none;
-    height: 2.6em;
-    border-radius: .5em;
-    min-width: 39em;
-    cursor: pointer;
-    padding-bottom: -20px;
- 
-  }
+  background: linear-gradient(0.25turn, #e61e4d, #d70666);
+  color: white;
+  border: none;
+  height: 2.6em;
+  border-radius: 0.5em;
+  min-width: 39em;
+  cursor: pointer;
+  padding-bottom: -20px;
+}
 
-  .form-input-description {
+.form-input-description {
   min-width: 35rem;
-  
-  }
+}
 
-  .edit-errors {
-    color:#ea1547;
-    list-style: none;
-    margin-left: -14px;
-  }
+.edit-errors {
+  color: #ea1547;
+  list-style: none;
+  margin-left: -14px;
+}
 
-  .edit-form-temp {
-    margin-bottom: 40px;
-  }
+.edit-form-temp {
+  margin-bottom: 40px;
+}
 
-
- 
+.form-input-text-update {
+  border-left: 1.5px solid #d1cfcf;
+  border-right: 1.5px solid #d1cfcf;
+  border-bottom: none;
+  border-top: 1.5px solid #d1cfcf;
+  min-height: 2.5em;
+  min-width: 100%;
+  box-sizing: border-box;
+  padding-left: 0.7rem;
+}
