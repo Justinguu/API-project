@@ -189,7 +189,7 @@ export default function CreateSpotForm() {
               required
             />
             <textarea
-              className="form-input last create"
+              className="form-input last create description-input-input"
               type="text"
               placeholder="Description"
               value={description}

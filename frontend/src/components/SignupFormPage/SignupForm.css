@@ -77,12 +77,16 @@
     border-right: 1.5px solid #e3d5d5;
     border-bottom: 1.5px solid #e3d5d5;
     border-top: 1.5px solid #e3d5d5;
-  
+    /* padding-top: .2rem; */
   }
   
   .signup-form-errors{
     min-height: 3.6em;
     display: flex;
     align-items: center;
+  }
+
+  .description-input-input{
+    padding-top: 7px;
   }
   

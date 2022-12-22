@@ -281,3 +281,9 @@ button.review-spot-button:disabled {
   width: 47rem;
 }
 }
+
+.spot-type{
+  margin-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1.5px solid rgb(235, 228, 228);
+}
