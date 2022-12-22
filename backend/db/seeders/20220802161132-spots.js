@@ -34,7 +34,7 @@ module.exports = {
           lng: -222.4730327,
           name: "Getaway House",
           description: "3 guests · 2 bedroom · 2 bed · 2 bath",
-          type: "Condo",
+          type: "House",
           price: 400
         },
         {
@@ -47,8 +47,8 @@ module.exports = {
           lng: -111.4730327,
           name: "The Benelovent",
           description: "4 guests · 3 bedrooms · 3 beds · 2 bath",
-          type: "Cabin",
-          price: 250
+          type: "Condo",
+          price: 850
         },
         {
           ownerId: 4,
@@ -60,20 +60,20 @@ module.exports = {
           lng: 11.4730327,
           name: "Nautilus",
           description: "6 guests · 3 bedrooms · 3 beds · 3 bath",
-          type: "Mansion",
-          price: 190
+          type: "Condo",
+          price: 750
         },
         {
         ownerId: 5,
         address: "735 Savage Drive",
         city: "Taepei",
-        state: "Taiwan",
-        country: "South America",
+        state: "Ontario",
+        country: "Canada",
         lat: 25.7645328,
         lng: 14.4730327,
-        name: "Cootolio",
+        name: "EverGreen",
         description: "3 guests · 2 bedroom · 2 bed · 2 bath",
-        type: "Other",
+        type: "Cabin",
         price: 350
       },
       {
@@ -84,9 +84,9 @@ module.exports = {
         country: "Europe",
         lat: 50.7645328,
         lng: 24.4730327,
-        name: "King",
-        description: "6 guests · 4 bedrooms · 4 beds · 3 bath",
-        type: "House",
+        name: "Camouflage",
+        description: "8 guests · 6 bedrooms · 6 beds · 3 bath",
+        type: "Omg",
         price: 458
       },
       {
@@ -97,9 +97,9 @@ module.exports = {
         country: "South America",
         lat: 52.7645328,
         lng: 24.4730427,
-        name: "Queen",
+        name: "Midnight",
         description: "5 guests · 3 bedrooms · 3 beds · 2 bath",
-        type: "Condo",
+        type: "Omg",
         price: 670
       },
       {
@@ -138,7 +138,7 @@ module.exports = {
         lng: 22.4712427,
         name: "Crown",
         description: "8 guests · 4 bedrooms · 4 beds · 3 bath",
-        type: "Mansion",
+        type: "Condo",
         price: 542
       },
       {
@@ -149,9 +149,9 @@ module.exports = {
         country: "United States of America",
         lat: 31.7443328,
         lng: 52.4720127,
-        name: "LaCrema",
-        description: "4 guests · 2 bedrooms · 2 beds · 2 bath",
-        type: "House",
+        name: "Trapezoid",
+        description: "3 guests · 1 bedrooms · 2 beds · 1 bath",
+        type: "Cabin",
         price: 642
       },
       {
@@ -164,7 +164,7 @@ module.exports = {
         lng: 52.4730427,
         name: "Medici",
         description: "6 guests · 4 bedrooms · 4 beds · 3 bath",
-        type: "House",
+        type: "Omg",
         price: 645
       },
       {
@@ -188,9 +188,9 @@ module.exports = {
         country: "United States of America",
         lat: 31.7442329,
         lng: 52.4722448,
-        name: "Mountain Point",
+        name: "The Cube",
         description: "6 guests · 4 bedrooms · 4 beds · 3 bath",
-        type: "Cabin",
+        type: "Omg",
         price: 215
       },
       {
@@ -204,8 +204,24 @@ module.exports = {
         name: "Mountain Point",
         description: "8 guests · 4 bedrooms · 4 beds · 3 bath",
         type: "Condo",
-        price: 355
+        price: 950
       },
+      {
+        ownerId: 16,
+        address: "123 RiverDale Drive",
+        city: "tatalouii",
+        state: "Ohio",
+        country: "United States of America",
+        lat: 32.7442329,
+        lng: 52.4122448,
+        name: "MultiPlex",
+        description: "8 guests · 4 bedrooms · 4 beds · 3 bath",
+        type: "Apartment",
+        price: 2500
+      },
+
+
+
       
      
      
