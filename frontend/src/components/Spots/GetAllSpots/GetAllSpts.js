@@ -7,6 +7,8 @@ import githubIcon from '../../icons/github-icon.png'
 import linkedinIcon from '../../icons/linkedin-icon.png'
 
 import cabinIcon from "../../icons/cabin.png"
+import apartmentIcon from "../../icons/apartmentIcon.png"
+import omgIcon from "../../icons/omgIcon.png"
 import condoIcon from "../../icons/condo.png"
 import homeIcon from "../../icons/home.png"
 import mansionIcon from "../../icons/mansion.png"
@@ -57,10 +59,10 @@ const GetAllSpots = () => {
                             <img className='condo-icon' src={condoIcon}></img>
                             <div>Condo</div>
                         </div>
-                        {/* <div className={filterType === 'Apartment' ? "filter-type-buttons type-active-filter-bg" : "filter-type-buttons"} onClick={() => setFilterType('Apartment')}>
-                           
+                        <div className={filterType === 'Apartment' ? "filter-type-buttons type-active-filter-bg" : "filter-type-buttons"} onClick={() => setFilterType('Apartment')}>
+                            <img className='apartment-icon' src={apartmentIcon}></img>
                             <div>Apartment</div>
-                        </div> */}
+                        </div>
                         <div className={filterType === 'Cabin' ? "filter-type-buttons type-active-filter-bg" : "filter-type-buttons"} onClick={() => setFilterType('Cabin')}>
                             <img className='cabin-icon' src={cabinIcon}></img>
                             <div>Cabin</div>
@@ -69,9 +71,10 @@ const GetAllSpots = () => {
                             <img className='mansion-icon' src={mansionIcon}></img>
                             <div>Mansion</div>
                         </div>
-                        <div className={filterType === 'Other' ? "filter-type-buttons type-active-filter-bg" : "filter-type-buttons"} onClick={() => setFilterType('Other')}>
-                            <img className='other-icon' src={othersIcon}></img>
-                            <div>Other</div>
+                       
+                        <div className={filterType === 'Omg' ? "filter-type-buttons type-active-filter-bg" : "filter-type-buttons"} onClick={() => setFilterType('Omg')}>
+                            <img className='other-icon' src={omgIcon}></img>
+                            <div>Omg</div>
                         </div>
                     </div>
                     <div className={filterType === 'allResultsType' ? "clear-filter-buttons-inactive" : "clear-filter-buttons-active"} onClick={() => setFilterType('allResultsType')}>

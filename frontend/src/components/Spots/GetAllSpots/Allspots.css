@@ -235,17 +235,20 @@ div.spot-info-right {
   height: 40px;
   width: 40px;
 }
+.apartment-icon {
+  height: 39px;
+  width: 38px;
+}
 .cabin-icon {
   height: 42px;
   width: 42px;
 }
 .mansion-icon {
-    height: 42px;
-    width: 42px;
+  height: 42px;
+  width: 42px;
 }
 
 .other-icon {
-    height: 42px;
-    width: 42px;
-    object-fit: fill;
+  height: 43px;
+  width: 42px;
 }
