@@ -99,9 +99,9 @@ const CreateBookings = ({ setStartDate, setEndDate, todayDate, startDate, endDat
     };
 
     if (spot?.ownerId === sessionUser.id) {
-      // let errors = [];
+
       errors.push("User cannot book their own listing");
-      // setErrors(errors);
+
     }
 
     if (errors.length === 0 && spot?.ownerId !== sessionUser.id) {
