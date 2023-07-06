@@ -44,7 +44,7 @@ const GetAllSpots = () => {
 
   // if(state === undefined){
   //   dispatch(getAllSpotsThunk(spotId)).then(()=> setRender((prev) => !prev))
-  // }
+  // }// 
 
   return (
     isLoaded && (
